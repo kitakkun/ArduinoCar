@@ -1,7 +1,7 @@
 // trace straight line
 
 #define L_WHEEL 0
-#define R_WHEEL 2
+#define R_WHEEL 1
 #define UNDEFINED_WHEEL -1
 
 const int moter_r1 = 2;
