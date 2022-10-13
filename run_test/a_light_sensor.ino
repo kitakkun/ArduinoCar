@@ -69,6 +69,13 @@ void update_wheel_speed(int wheel_key, long speed) {
 
 void setup(){
 
+    pinMode(moter_r1, OUTPUT);
+    pinMode(moter_r2, OUTPUT);
+    pinMode(moter_l1, OUTPUT);
+    pinMode(moter_l2, OUTPUT);
+    pinMode(pwm_moter_r, OUTPUT);
+    pinMode(pwm_moter_l, OUTPUT);
+
     Serial.begin(9600);
 }
 
