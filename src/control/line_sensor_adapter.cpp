@@ -13,7 +13,7 @@ void LineSensorAdapter::Update() {
 
 // ライン検出センサーの値取得
 PaperColor LineSensorAdapter::CurrentValue() {
-    int value = this->sensor_->CurrentValue();
+    int value = this->sensor_->RawValue();
     if (value > this->theta_) {
         return black;
     } else {
