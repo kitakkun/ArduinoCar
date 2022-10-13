@@ -5,13 +5,13 @@
  * センサークラス（センサーの値更新・提供）
  */
 class Sensor {
-    public:
-        Sensor(int pin);
-        void Update();
-        int RawValue();
-    private:
-        int pin_;
-        int value_;
+public:
+    Sensor(int pin);
+    void Update();
+    int RawValue();
+private:
+    int pin_;
+    int value_;
 };
 
 #endif
