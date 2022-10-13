@@ -1,9 +1,7 @@
 // trace straight line
 
-#define LF_WHEEL 0
-#define LB_WHEEL 1
-#define RF_WHEEL 2
-#define RB_WHEEL 3
+#define L_WHEEL 0
+#define R_WHEEL 1
 #define UNDEFINED_WHEEL -1
 
 const int moter_r1 = 2;
@@ -16,18 +14,14 @@ const int pwm_moter_r = 10;
 const int pwm_moter_l = 11;
 
 // 速度記憶用変数
-int lf_speed = 0;   // 左前
-int lb_speed = 0;   // 左後ろ
-int rf_speed = 0;   // 右前
-int rb_speed = 0;   // 右後ろ
+int l_speed = 0;   // 左
+int r_speed = 0;   // 右
 
 int get_pwm(int wheel_key) {
     switch(wheel_key) {
-        case LF_WHEEL:
-        case LB_WHEEL:
+        case L_WHEEL:
             return pwm_moter_l;
-        case RF_WHEEL:
-        case RB_WHEEL:
+        case R_WHEEL:
             return pwm_moter_r;
         default:
             return UNDEFINED_WHEEL;
@@ -36,11 +30,9 @@ int get_pwm(int wheel_key) {
 
 int get_moter_pin_1(int wheel_key) {
     switch(wheel_key) {
-        case LF_WHEEL:
-        case LB_WHEEL:
+        case L_WHEEL:
             return moter_l1;
-        case RF_WHEEL:
-        case RB_WHEEL:
+        case R_WHEEL:
             return moter_r1;
         default:
             return UNDEFINED_WHEEL;
@@ -49,11 +41,9 @@ int get_moter_pin_1(int wheel_key) {
 
 int get_moter_pin_2(int wheel_key) {
     switch(wheel_key) {
-        case LF_WHEEL:
-        case LB_WHEEL:
+        case L_WHEEL:
             return moter_l2;
-        case RF_WHEEL:
-        case RB_WHEEL:
+        case R_WHEEL:
             return moter_r2;
         default:
             return UNDEFINED_WHEEL;
