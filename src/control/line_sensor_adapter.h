@@ -9,11 +9,11 @@
  */
 class LineSensorAdapter {
     public:
-        LineSensorAdapter();
+        LineSensorAdapter(int pin);
         void Update();
         PaperColor CurrentValue();
     private:
-        Sensor sensor_;
+        Sensor *sensor_;
 };
 
 #endif
