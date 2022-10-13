@@ -9,11 +9,12 @@
  */
 class LineSensorAdapter {
     public:
-        LineSensorAdapter(int pin);
+        LineSensorAdapter(int pin, int theta);
         void Update();
         PaperColor CurrentValue();
     private:
         Sensor *sensor_;
+        int theta_;         // 白か黒か判定する境目
 };
 
 #endif
