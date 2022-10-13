@@ -5,15 +5,13 @@
 #include "paper_color.h"
 
 /**
- * ライン検出用センサー
+ * フォトリフレクタ（ライン検出用センサ）
  */
-class LineSensorAdapter {
+class PhotoReflector : Sensor {
     public:
-        LineSensorAdapter(int pin, int theta);
-        void Update();
-        PaperColor CurrentValue();
+        PhotoReflector(int pin, int theta);
+        PaperColor Value();
     private:
-        Sensor *sensor_;
         int theta_;         // 白か黒か判定する境目
 };
 
