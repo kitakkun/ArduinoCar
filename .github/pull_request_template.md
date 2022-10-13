@@ -1,3 +1,7 @@
+## 対応するIssue
+<!-- ISSUE_NUMBER には対応するIssueの番号を -->
+- close #ISSUE_NUMBER
+
 ## 変更内容
 <!-- Pull Requestによって変更が入る箇所について簡単に説明してください！ -->
 - 
