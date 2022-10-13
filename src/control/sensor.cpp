@@ -13,6 +13,6 @@ void Sensor::Update() {
 }
 
 // センサーの現在の値を取得
-int Sensor::RawValue() {
+int Sensor::RawValue() const {
     return this->value_;
 }

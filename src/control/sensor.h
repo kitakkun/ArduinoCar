@@ -8,7 +8,7 @@ class Sensor {
 public:
     Sensor(int pin);
     void Update();
-    int RawValue();
+    int RawValue() const;
 private:
     int pin_;
     int value_;

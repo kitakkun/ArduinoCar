@@ -6,7 +6,7 @@ PhotoReflector::PhotoReflector(int pin, int theta) : Sensor(pin) {
 }
 
 // フォトリフレクタの値取得（黒か白）
-PaperColor PhotoReflector::Value() {
+PaperColor PhotoReflector::Value() const {
     int value = this->RawValue();
     if (value > this->theta_) {
         return black;

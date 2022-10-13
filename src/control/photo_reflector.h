@@ -10,7 +10,7 @@
 class PhotoReflector : public Sensor {
 public:
     PhotoReflector(int pin, int theta);
-    PaperColor Value();
+    PaperColor Value() const;
 private:
     int theta_;         // 白か黒か判定する境目
 };
