@@ -4,6 +4,7 @@
 // センサーの初期化
 Sensor::Sensor(int pin) {
     this->pin_ = pin;
+    this->value_ = 0;
 }
 
 // センサーの更新
