@@ -7,7 +7,7 @@
 /**
  * フォトリフレクタ（ライン検出用センサ）
  */
-class PhotoReflector : Sensor {
+class PhotoReflector : public Sensor {
 public:
     PhotoReflector(int pin, int theta);
     PaperColor Value();
