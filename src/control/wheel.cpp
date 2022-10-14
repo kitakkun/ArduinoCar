@@ -17,6 +17,10 @@ int Wheel::Speed() {
     return this->speed_;
 }
 
+void Wheel::UpdateMoveDirectionBySpeed(int speed) {
+    this->direction_ = speed >= 0 ? forward : backward;
+}
+
 void Wheel::UpdateSpeed(int speed, int milliseconds) {
     // TODO: 速度を指定時間かけてゆっくり変化させる処理
 }

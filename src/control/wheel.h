@@ -18,6 +18,7 @@ private:
     int pwm_pin_;
     MoveDirection direction_ = forward;
     int speed_;
+    void UpdateMoveDirectionBySpeed(int speed);
 };
 
 #endif
