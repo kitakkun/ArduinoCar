@@ -1,13 +1,13 @@
 #include "car.h"
+#include "car_builder.h"
 
-Car::Car(Brain *brain, Wheel *left_wheel, Wheel *right_wheel, PhotoReflector *left_reflector,
-         PhotoReflector *right_reflector, PhotoReflector *front_reflector) {
-    this->brain_ = brain;
-    this->left_wheel_ = left_wheel;
-    this->right_wheel_ = right_wheel;
-    this->left_reflector_ = left_reflector;
-    this->right_reflector_ = right_reflector;
-    this->front_reflector_ = front_reflector;
+Car::Car(CarBuilder *builder) {
+    this->brain_ = builder->GetBrain();
+    this->left_wheel_ = builder->GetLeftWheel();
+    this->right_wheel_ = builder->GetRightWheel();
+    this->left_reflector_ = builder->GetLeftReflector();
+    this->right_reflector_ = builder->GetRightReflector();
+    this->front_reflector_ = builder->GetFrontReflector();
 }
 
 // センサー情報を更新

@@ -5,10 +5,11 @@
 #include "photo_reflector.h"
 #include "brain.h"
 
+class CarBuilder;
+
 class Car {
 public:
-    Car(Brain *brain, Wheel *left_wheel, Wheel *right_wheel, PhotoReflector *left_reflector,
-        PhotoReflector *right_reflector, PhotoReflector *front_reflector);
+    Car(CarBuilder *builder);
     void UpdateSensors();
     void Action();
 private:
@@ -21,4 +22,3 @@ private:
 };
 
 #endif
-
