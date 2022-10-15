@@ -17,7 +17,22 @@ void Car::UpdateSensors() {
     this->front_reflector_->Update();
 }
 
-// 行動
-void Car::Action() {
-    // TODO: brain_に必要なデータを渡して次の行動を決定
+CarState Car::CollectCarState() {
+    return {
+        this->left_wheel_->Speed(),
+        this->right_wheel_->Speed(),
+        this->left_wheel_->Direction(),
+        this->right_wheel_->Direction(),
+        this->front_reflector_->Value(),
+        this->right_reflector_->Value(),
+        this->left_reflector_->Value(),
+    };
+}
+
+Instruction Car::Think(CarState state) {
+    return this->brain_->CalculateNextInstruction(state);
+}
+
+void Car::Act(Instruction instruction) {
+    // TODO: 具体的な行動処理
 }
