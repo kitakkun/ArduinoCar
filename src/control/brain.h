@@ -1,10 +1,13 @@
 #ifndef BRAIN_H
 #define BRAIN_H
 
+#include "car_state.h"
+#include "instruction.h"
+
 class Brain {
 public:
-    // TODO: どのようにデータを受け渡すか考え中
-    virtual void Think();
+    // 現在の車の情報を元に次に取るべき行動を決定
+    virtual Instruction CalculateNextInstruction(CarState state);
 };
 
 #endif //BRAIN_H
