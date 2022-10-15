@@ -9,7 +9,7 @@ public:
     virtual void Run(Wheel* left_wheel, Wheel* right_wheel);
     bool InterruptionEnabled();
 private:
-    bool enable_interruption = false;   // 割り込みを処理かどうかのフラグ
+    bool enable_interruption = false;   // 割り込み処理するかどうかのフラグ
 };
 
 #endif //INSTRUCTION_H
