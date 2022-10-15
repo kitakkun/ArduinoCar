@@ -33,6 +33,9 @@ Instruction Car::Think(CarState state) {
     return this->brain_->CalculateNextInstruction(state);
 }
 
-void Car::Act(Instruction instruction) {
-    // TODO: 具体的な行動処理
+void Car::Act() {
+}
+
+void Car::SetInstruction(Instruction instruction) {
+    this->instruction_ = instruction;
 }
