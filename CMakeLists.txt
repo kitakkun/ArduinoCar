@@ -1,56 +1,33 @@
-cmake_minimum_required(VERSION 3.22)
-project(Laboratory_Work_In_Information_Engineering_III)
+# !!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE
+# https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+#
+# If you need to override existing CMake configuration or add extra,
+# please create `CMakeListsUser.txt` in the root of project.
+# The `CMakeListsUser.txt` will not be overwritten by PlatformIO.
 
-set(CMAKE_CXX_STANDARD 14)
+cmake_minimum_required(VERSION 3.13)
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_C_COMPILER_WORKS 1)
+set(CMAKE_CXX_COMPILER_WORKS 1)
 
-include(FetchContent)
+project("Laboratory_Work_In_Information_Engineering_III" C CXX)
 
-FetchContent_Declare(
-        ace_routine
-        GIT_REPOSITORY https://github.com/bxparks/AceRoutine
-        GIT_TAG v1.5.1
+include(CMakeListsPrivate.txt)
+
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/CMakeListsUser.txt)
+include(CMakeListsUser.txt)
+endif()
+
+add_custom_target(
+    Production ALL
+    COMMAND platformio -c clion run "$<$<NOT:$<CONFIG:All>>:-e${CMAKE_BUILD_TYPE}>"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-FetchContent_Declare(
-        arduino_core_avr
-        GIT_REPOSITORY https://github.com/arduino/ArduinoCore-avr
-        GIT_TAG 1.8.5
+add_custom_target(
+    Debug ALL
+    COMMAND platformio -c clion debug "$<$<NOT:$<CONFIG:All>>:-e${CMAKE_BUILD_TYPE}>"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-FetchContent_MakeAvailable(arduino_core_avr)
-FetchContent_MakeAvailable(ace_routine)
-
-include_directories(src/control)
-include_directories(cmake-build-debug/_deps/ace_routine-src/src)
-include_directories(cmake-build-debug/_deps/ace_routine-src/src/ace_routine)
-include_directories(cmake-build-debug/_deps/arduino_core_avr-src/cores/arduino)
-
-add_library(
-        car_control
-        src/control/car.h
-        src/control/photo_reflector.cpp
-        src/control/photo_reflector.h
-        src/control/move_direction.h
-        src/control/paper_color.h
-        src/control/sensor.cpp
-        src/control/sensor.h
-        src/control/wheel.cpp
-        src/control/sample.ino
-        src/control/wheel.h
-        src/control/config.h
-        src/control/car.cpp
-        src/control/brain.cpp
-        src/control/brain.h
-        src/control/car_state.h
-        src/control/car_builder.cpp
-        src/control/car_builder.h
-        src/control/ilne_trace_brain.cpp
-        src/control/line_trace_brain.h
-        src/control/instruction.h
-        src/control/instruction.cpp
-        src/control/instruction/accelerate_instruction.cpp
-        src/control/instruction/accelerate_instruction.h
-        src/control/instruction/decelerate_instruction.cpp src/control/instruction/decelerate_instruction.h)
-
-target_link_libraries(car_control PRIVATE ace_routine_target)
-target_link_libraries(car_control PRIVATE arduino_core_avr_target)
+add_executable(Z_DUMMY_TARGET ${SRC_LIST})
