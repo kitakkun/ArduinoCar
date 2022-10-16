@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <car_control.h>
+#include <config.h>
 
 Car *car;
 
