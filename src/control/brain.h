@@ -7,7 +7,7 @@
 class Brain {
 public:
     // 現在の車の情報を元に次に取るべき行動を決定
-    virtual Instruction CalculateNextInstruction(CarState state);
+    virtual Instruction *CalculateNextInstruction(CarState state) = 0;
 };
 
 #endif //BRAIN_H

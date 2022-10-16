@@ -29,13 +29,13 @@ CarState Car::CollectCarState() {
     };
 }
 
-Instruction Car::Think(CarState state) {
+Instruction *Car::Think(CarState state) {
     return this->brain_->CalculateNextInstruction(state);
 }
 
 void Car::Act() {
 }
 
-void Car::SetInstruction(Instruction instruction) {
+void Car::SetInstruction(Instruction *instruction) {
     this->instruction_ = instruction;
 }
