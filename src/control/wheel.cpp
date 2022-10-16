@@ -1,4 +1,5 @@
 #include "wheel.h"
+#include <Arduino.h>
 
 // タイヤのコンストラクタ
 Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin) {
@@ -21,8 +22,37 @@ void Wheel::UpdateMoveDirectionBySpeed(int speed) {
     this->direction_ = speed >= 0 ? forward : backward;
 }
 
-void Wheel::UpdateSpeed(int speed, int milliseconds) {
+void Wheel::UpdateSpeed(signed int speed, int milliseconds) {
     // TODO: 速度を指定時間かけてゆっくり変化させる処理
+}
+
+void Wheel::UpdateSpeed(signed int speed) {
+    this->speed_ = speed;
+}
+
+// 加速
+void Wheel::Accelerate(signed int amount) {
+    this->speed_ += amount;
+}
+
+// 減速
+void Wheel::Decelerate(signed int amount) {
+    this->speed_ -= amount;
+}
+
+void Wheel::Apply() {
+    if (this->direction_ == forward) {
+        digitalWrite(this->plus_pin_, HIGH);
+        digitalWrite(this->minus_pin_, LOW);
+    } else {
+        digitalWrite(this->plus_pin_, LOW);
+        digitalWrite(this->minus_pin_, HIGH);
+    }
+    analogWrite(this->pwm_pin_, this->speed_);
+}
+
+void Wheel::UpdateDirection(MoveDirection direction) {
+    this->direction_ = direction;
 }
 
 

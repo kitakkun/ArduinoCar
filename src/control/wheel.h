@@ -9,7 +9,12 @@
 class Wheel {
 public:
     Wheel(int plus_pin, int minus_pin, int pwm_pin);
-    void UpdateSpeed(int speed, int milliseconds);
+    void Accelerate(signed int amount);
+    void Decelerate(signed int amount);
+    void UpdateSpeed(signed int speed);
+    void UpdateSpeed(signed int speed, int milliseconds);
+    void UpdateDirection(MoveDirection direction);
+    void Apply();
     MoveDirection Direction();
     int Speed();
 private:
