@@ -6,7 +6,7 @@
  */
 class Sensor {
 public:
-    Sensor(int pin);
+    explicit Sensor(int pin);
     void Update();
     int RawValue() const;
 private:
