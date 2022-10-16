@@ -1,7 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include "wheel.h"
+#include "../../component/wheel/wheel.h"
 
 // 車に対する指令
 class Instruction {

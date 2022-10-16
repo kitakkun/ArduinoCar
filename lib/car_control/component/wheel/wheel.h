@@ -1,7 +1,7 @@
 #ifndef WHEEL_H
 #define WHEEL_H
 
-#include "move_direction.h"
+#include "../../model/move_direction.h"
 
 /**
  * タイヤクラス

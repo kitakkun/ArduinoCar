@@ -1,11 +1,11 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include "wheel.h"
-#include "photo_reflector.h"
-#include "brain.h"
-#include "car_state.h"
-#include "instruction.h"
+#include "component/wheel/wheel.h"
+#include "component/sensor/photo_reflector.h"
+#include "control/brain/brain.h"
+#include "model/car_state.h"
+#include "control/instruction/instruction.h"
 
 class CarBuilder;   // 循環参照防止
 

@@ -1,8 +1,8 @@
 #ifndef BRAIN_H
 #define BRAIN_H
 
-#include "car_state.h"
-#include "instruction.h"
+#include "../../model/car_state.h"
+#include "../instruction/instruction.h"
 
 class Brain {
 public:

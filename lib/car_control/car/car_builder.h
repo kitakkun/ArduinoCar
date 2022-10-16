@@ -1,9 +1,9 @@
 #ifndef CAR_BUILDER_H
 #define CAR_BUILDER_H
 
-#include "wheel.h"
-#include "photo_reflector.h"
-#include "brain.h"
+#include "component/wheel/wheel.h"
+#include "component/sensor/photo_reflector.h"
+#include "control/brain/brain.h"
 
 class Car;
 
