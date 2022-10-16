@@ -6,6 +6,7 @@ Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin) {
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
+    this->speed_ = 0;
 }
 
 // 現在の進行方向を返す
