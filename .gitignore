@@ -158,3 +158,9 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
+# PlatformIO
+.pioenvs
+.piolibdeps
+.clang_complete
+.gcc-flags.json
+.pio
