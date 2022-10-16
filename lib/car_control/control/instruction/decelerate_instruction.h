@@ -4,14 +4,14 @@
 #include "instruction.h"
 
 /*
- * 減速命令
+ * 減速指令
  */
 class DecelerateInstruction : public Instruction {
 public:
     explicit DecelerateInstruction(int amount);
     void Run(Wheel *left_wheel, Wheel *right_wheel) override;
 private:
-    int amount_;
+    int amount_;    /// 減速量
 };
 
 #endif //DECELERATE_INSTRUCTION
