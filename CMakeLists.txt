@@ -50,7 +50,7 @@ add_library(
         src/control/instruction.cpp
         src/control/instruction/accelerate_instruction.cpp
         src/control/instruction/accelerate_instruction.h
-)
+        src/control/instruction/decelerate_instruction.cpp src/control/instruction/decelerate_instruction.h)
 
 target_link_libraries(car_control PRIVATE ace_routine_target)
 target_link_libraries(car_control PRIVATE arduino_core_avr_target)
