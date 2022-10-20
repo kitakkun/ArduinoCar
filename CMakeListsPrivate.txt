@@ -41,8 +41,8 @@ if (CMAKE_BUILD_TYPE MATCHES "uno")
     include_directories("$ENV{HOME}/.platformio/packages/framework-arduino-avr/libraries/SPI/src")
     include_directories("$ENV{HOME}/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src")
     include_directories("$ENV{HOME}/.platformio/packages/framework-arduino-avr/libraries/Wire/src")
-    include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include-fixed")
     include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include")
+    include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/7.3.0/include-fixed")
     include_directories("$ENV{HOME}/.platformio/packages/toolchain-atmelavr/avr/include")
 
     FILE(GLOB_RECURSE EXTRA_LIB_SOURCES
