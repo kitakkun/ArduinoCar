@@ -3,9 +3,11 @@
 
 #include "brain.h"
 
-class ZigZagLineTraceBrain : Brain {
+class ZigZagLineTraceBrain : public Brain {
 public:
-    Instruction * CalculateNextInstruction(CarState state) override;
+    ZigZagLineTraceBrain();
+
+    Instruction *CalculateNextInstruction(CarState state) override;
 };
 
 #endif // ZIGZAG_LINE_TRACE_BRAIN

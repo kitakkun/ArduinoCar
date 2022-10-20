@@ -11,3 +11,5 @@ Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
     }
     return new ForceSpeedUpdateInstruction(50, 50);
 }
+
+ZigZagLineTraceBrain::ZigZagLineTraceBrain() = default;
