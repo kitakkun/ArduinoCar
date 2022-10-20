@@ -1,6 +1,6 @@
 # include "wheel_stabilizer.h"
 
-void WheelStablizer::Stablize(Wheel *left_wheel,Wheel *right_wheel){
+void WheelStabilizer::Stabilize(Wheel *left_wheel,Wheel *right_wheel){
     if(left_wheel->Speed() < this->min_speed_) left_wheel->UpdateSpeed(this->min_speed_);
     if(left_wheel->Speed() > this->max_speed_) left_wheel->UpdateSpeed(this->max_speed_);
     if(right_wheel->Speed() < this->min_speed_) right_wheel->UpdateSpeed(this->min_speed_);
