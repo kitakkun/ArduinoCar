@@ -2,6 +2,7 @@
 #define STOP_INSTRUCTION_H
 
 #include "instruction.h"
+#include <Arduino.h>
 
 /**
  * 一定時間かけて減速，停止する指令
@@ -11,8 +12,6 @@ public:
     explicit StopInstruction(int duration_millis);
 
     void Run(Wheel *left_wheel, Wheel *right_wheel) override;
-
-    bool InterruptionEnabled() override;
 
 private:
     int speed_;    /// 現在のスピード
