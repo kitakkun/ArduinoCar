@@ -5,10 +5,8 @@
 
 class ForceStopInstruction : public Instruction {
 public:
-    explicit ForceStopInstruction(int speed);
+    explicit ForceStopInstruction();
     void Run(Wheel *left_wheel, Wheel *right_wheel) override;
-private:
-    int speed_;
 };
 
 #endif //FORCESTOPINSTRUCTION_H
