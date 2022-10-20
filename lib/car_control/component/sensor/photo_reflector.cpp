@@ -9,8 +9,8 @@ PhotoReflector::PhotoReflector(int pin, int theta) : Sensor(pin) {
 PaperColor PhotoReflector::Value() const {
     int value = this->RawValue();
     if (value > this->theta_) {
-        return black;
-    } else {
         return white;
+    } else {
+        return black;
     }
 }
