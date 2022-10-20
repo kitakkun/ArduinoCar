@@ -11,5 +11,6 @@
 #include "component/sensor/photo_reflector.h"
 #include "component/sensor/sensor.h"
 #include "component/wheel/wheel.h"
+#include "config/pin_configurator.h"
 
 #endif //CAR_CONTROL_H
