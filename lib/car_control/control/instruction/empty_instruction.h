@@ -3,7 +3,7 @@
 
 #include "instruction.h"
 
-class EmptyInstruction : Instruction {
+class EmptyInstruction : public Instruction {
 public:
     void Run(Wheel *left_wheel, Wheel *right_wheel) override;
 
