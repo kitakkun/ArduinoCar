@@ -12,8 +12,6 @@ public:
 
     void Run(Wheel *left_wheel, Wheel *right_wheel) override;
 
-    bool InterruptionEnabled() override;
-
 private:
     int force_;     /// 加えるトルクの強さ
 };
