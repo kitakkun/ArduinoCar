@@ -4,12 +4,17 @@
 #include "../instruction/force_speed_update_instruction.h"
 
 Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
-    if (state.left_color == white) {
-        return new TorqueRightInstruction(10);
-    } else if (state.right_color == white) {
-        return new TorqueLeftInstruction(10);
+    if (state.lw_speed == 0 && state.rw_speed == 0) {
+        return new ForceSpeedUpdateInstruction(run_speed_, run_speed_);
+    } else if (state.left_color == white) {
+        return new TorqueRightInstruction(torque_force_);
+    } else if (state.right_color == white){
+        return new TorqueLeftInstruction(torque_force_);
     }
-    return new ForceSpeedUpdateInstruction(50, 50);
+    return new ForceSpeedUpdateInstruction(run_speed_, run_speed_);
 }
 
-ZigZagLineTraceBrain::ZigZagLineTraceBrain() = default;
+ZigZagLineTraceBrain::ZigZagLineTraceBrain(int run_speed, int torque_force) {
+    this->run_speed_ = run_speed;
+    this->torque_force_ = torque_force;
+}
