@@ -35,6 +35,8 @@ Instruction *Car::Think(CarState state) {
 
 void Car::Act() {
     this->instruction_->Run(this->left_wheel_, this->right_wheel_);
+    this->left_wheel_->Apply();
+    this->right_wheel_->Apply();
     delete this->instruction_;
 }
 
