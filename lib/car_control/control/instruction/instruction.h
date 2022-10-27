@@ -25,7 +25,7 @@ public:
      * 割り込みをするか否かを取得。
      * @return 割り込みが有効かどうか
      */
-    virtual bool InterruptionEnabled() = 0;
+    virtual bool InterruptionEnabled() { return false; };
 };
 
 #endif //INSTRUCTION_H
