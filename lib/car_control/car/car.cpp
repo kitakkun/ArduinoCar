@@ -26,6 +26,9 @@ CarState Car::CollectCarState() {
         this->front_reflector_->Value(),
         this->right_reflector_->Value(),
         this->left_reflector_->Value(),
+        this->front_reflector_->RawValue(),
+        this->right_reflector_->RawValue(),
+        this->left_reflector_->RawValue(),
     };
 }
 
