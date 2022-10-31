@@ -28,3 +28,8 @@
 - PlatformIO (https://platformio.org/)
 
 Arduino IDEでも可能ではありますが、セットアップが面倒なので非推奨です。
+
+## トラブルシューティング
+- ヘッダーファイル内のインクルードにエラーが出てしまう。
+    - `platformio init --board uno`を走らせてみてください。多分消えると思う。
+    - 上記でも無理ならCLionのプロジェクトを再作成するとき、当プロジェクトのフォルダを選択した状態で、PlatformIOプロジェクト（Arduino Uno）を「Create from Existing Sources」すれば解消されるかも。
