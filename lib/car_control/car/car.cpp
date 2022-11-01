@@ -7,14 +7,14 @@ Car::Car(CarBuilder *builder) {
     this->right_wheel_ = builder->GetRightWheel();
     this->left_reflector_ = builder->GetLeftReflector();
     this->right_reflector_ = builder->GetRightReflector();
-    this->front_reflector_ = builder->GetFrontReflector();
+    this->mid_reflector_ = builder->GetMidReflector();
 }
 
 // センサー情報を更新
 void Car::UpdateSensors() {
     this->left_reflector_->Update();
     this->right_reflector_->Update();
-    this->front_reflector_->Update();
+    this->mid_reflector_->Update();
 }
 
 CarState Car::CollectCarState() {
@@ -23,10 +23,10 @@ CarState Car::CollectCarState() {
         this->right_wheel_->Speed(),
         this->left_wheel_->Direction(),
         this->right_wheel_->Direction(),
-        this->front_reflector_->Value(),
+        this->mid_reflector_->Value(),
         this->right_reflector_->Value(),
         this->left_reflector_->Value(),
-        this->front_reflector_->RawValue(),
+        this->mid_reflector_->RawValue(),
         this->right_reflector_->RawValue(),
         this->left_reflector_->RawValue(),
     };

@@ -9,7 +9,7 @@ void setup() {
     builder.SetBrain(new ZigZagLineTraceBrain(100, 40));
     builder.SetLeftWheel(new Wheel(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN));
     builder.SetRightWheel(new Wheel(RIGHT_MOTOR_PLUS_PIN, RIGHT_MOTOR_MINUS_PIN, RIGHT_MOTOR_PWM_PIN));
-    builder.SetFrontReflector(new PhotoReflector(FRONT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
+    builder.SetMidReflector(new PhotoReflector(FRONT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     builder.SetRightReflector( new PhotoReflector(RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     builder.SetLeftReflector(new PhotoReflector(LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     car = builder.Build();
