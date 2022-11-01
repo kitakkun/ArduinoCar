@@ -1,0 +1,119 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class CarBuilder {
++ void SetBrain(Brain *brain)
++ void SetLeftWheel(Wheel *wheel)
++ void SetRightWheel(Wheel *wheel)
++ void SetLeftReflector(PhotoReflector *reflector)
++ void SetMidReflector(PhotoReflector *reflector)
++ void SetRightReflector(PhotoReflector *reflector)
++ Brain *GetBrain()
++ Wheel *GetLeftWheel()
++ Wheel *GetRightWheel()
++ PhotoReflector *GetMidReflector()
++ PhotoReflector *GetLeftReflector()
++ PhotoReflector *GetRightReflector()
++ Car *Build()
+- Brain *brain_
+- Wheel *left_wheel_
+- Wheel *right_wheel_
+- PhotoReflector *left_reflector_
+- PhotoReflector *mid_reflector_
+- PhotoReflector *right_reflector_
+}
+
+CarBuilder ..> Car
+CarBuilder ..> PhotoReflector
+CarBuilder ..> Brain
+CarBuilder ..> Wheel
+Car ..> CarBuilder
+
+class Car {
+- Brain *brain_
+- Wheel *left_wheel_
+- Wheel *right_wheel_
+- PhotoReflector *left_reflector_
+- PhotoReflector *mid_reflector_
+- PhotoReflector *right_reflector_
++ Car(CarBuilder *builder)
++ void UpdateSensors()
++ CarState CollectCarState()
++ Instruction *Think()
++ void Act()
+}
+
+class CarState <<struct>>  {
++ int lw_speed
++ int rw_speed
++ MoveDirection lw_direction
++ MoveDirection rw_direction
++ PaperColor mid_color
++ PaperColor left_color
++ PaperColor right_color
++ int mid_raw
++ int left_raw
++ int right_raw
+}
+
+Car ..> CarState
+Car ..> Brain
+Car ..> Wheel
+
+interface Brain {
+Instruction *CalculateNextInstruction(CarState state)
+}
+
+Brain ..> Instruction
+Car ..> Instruction
+
+interface Instruction {
++ void Run(Wheel *left_wheel, Wheel *right_wheel)
++ InstructionMode Mode()
+}
+
+Instruction ..> InstructionMode
+
+enum InstructionMode {
+    blocking
+    coroutine
+}
+
+class Wheel {
+- int plus_pin_
+- int minus_pin_
+- int pwm_pin_
+- int speed_
+- MoveDirection direction_ = forward
++ void UpdateSpeed(int speed)
++ void UpdateDirection(MoveDirection direction)
++ int Speed()
++ MoveDirection Direction()
+}
+
+Wheel ..> MoveDirection
+
+enum MoveDirection {
+    forward
+    backward
+}
+
+class Sensor {
+- int pin_
+- int value_
++ Sensor(int pin)
++ void Update()
++ int RawValue()
+}
+
+class PhotoReflector {
+- int black_theta_
+- int white_theta_
++ PhotoReflector(int pin, int black_theta, int white_theta)
++ PaperColor Value()
+}
+
+
+PhotoReflector ..|> Sensor
+
+@enduml
