@@ -1,8 +1,8 @@
 #ifndef CAR_STATE_H
 #define CAR_STATE_H
 
-#include "paper_color.h"
-#include "move_direction.h"
+#include "model/paper_color.h"
+#include "model/move_direction.h"
 
 /**
  * 車の状態データ
