@@ -4,13 +4,12 @@
 #include "control/instruction/implementation/torque_right_instruction.h"
 #include "control/instruction/implementation/force_speed_update_instruction.h"
 #include "control/instruction/implementation/force_stop_instruction.h"
-#include "control/instruction/implementation/wait_instruction.h"
 
 Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
     if (this->state_ == READY) {
         Serial.println("READY");
         this->state_ = TRACING_LINE;
-        return new WaitInstruction(1000);
+//        return new WaitInstruction(1000);
     }
     if (this->state_ == TRACING_LINE) {
 //        Serial.println("TRACING_LINE");
@@ -20,7 +19,7 @@ Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
         // ライン上にいる
         if (state.left_reflector_color == black) {
             Serial.println("TORQUE_LEFT");
-            return new TorqueLeftInstruction(torque_force_);
+//            return new TorqueLeftInstruction(torque_force_);
         } else if (state.right_reflector_color == black) {
             Serial.println("TORQUE_RIGHT");
             return new TorqueRightInstruction(torque_force_);
