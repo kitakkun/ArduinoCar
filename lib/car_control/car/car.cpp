@@ -1,7 +1,5 @@
-#include <HardwareSerial.h>
 #include "car.h"
 #include "car_builder.h"
-#include "ArduinoLog.h"
 
 Car::Car(CarBuilder *builder) {
     this->brain_ = builder->GetBrain();
@@ -22,16 +20,16 @@ void Car::UpdateSensors() {
 
 CarState Car::CollectCarState() {
     return {
-        this->left_wheel_->Speed(),
-        this->right_wheel_->Speed(),
-        this->left_wheel_->Direction(),
-        this->right_wheel_->Direction(),
-        this->mid_reflector_->Value(),
-        this->right_reflector_->Value(),
-        this->left_reflector_->Value(),
-        this->mid_reflector_->RawValue(),
-        this->right_reflector_->RawValue(),
-        this->left_reflector_->RawValue(),
+            this->left_wheel_->Speed(),
+            this->right_wheel_->Speed(),
+            this->left_wheel_->Direction(),
+            this->right_wheel_->Direction(),
+            this->mid_reflector_->Value(),
+            this->right_reflector_->Value(),
+            this->left_reflector_->Value(),
+            this->mid_reflector_->RawValue(),
+            this->right_reflector_->RawValue(),
+            this->left_reflector_->RawValue(),
     };
 }
 
@@ -41,11 +39,10 @@ Instruction *Car::Think(CarState state) {
 
 void Car::Act() {
     if (instruction_ == nullptr) return;
-    this->instruction_->Run(this->left_wheel_, this->right_wheel_);
+    this->instruction_->runCoroutine();
     this->left_wheel_->Apply();
     this->right_wheel_->Apply();
-    if (this->instruction_->IsCompleted()) {
-        Log.verboseln("DELETED INSTRUCTION");
+    if (this->instruction_->isDone()) {
         delete this->instruction_;
         this->instruction_ = nullptr;
     }
@@ -53,7 +50,9 @@ void Car::Act() {
 
 void Car::SetInstruction(Instruction *instruction) {
     if (instruction_ == nullptr) {
-        Log.verboseln("SET");
-        this->instruction_ = instruction;
+        instruction_ = instruction;
+        instruction_->Setup(left_wheel_, right_wheel_);
+    } else {
+        delete instruction;
     }
 }

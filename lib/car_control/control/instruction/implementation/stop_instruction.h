@@ -10,13 +10,16 @@
 class StopInstruction : public Instruction {
 public:
     explicit StopInstruction(int duration_millis);
-
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    int runCoroutine() override;
 
 private:
     int speed_;    /// 現在のスピード
     int amount_;    /// 減速量
     int duration_millis_;   /// 停止するまでの時間（ミリ秒）
+    int start_left_speed_;
+    int start_right_speed_;
+    int left_unit_decelerate_amount_;
+    int right_unit_decelerate_amount_;
 };
 
 #endif //STOP_INSTRUCTION_H

@@ -9,8 +9,7 @@
 class TorqueRightInstruction : public Instruction {
 public:
     explicit TorqueRightInstruction(int force);
-
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    int runCoroutine() override;
 
 private:
     int force_;     /// 加えるトルクの強さ
