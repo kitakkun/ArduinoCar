@@ -6,7 +6,7 @@
 class ForceStopInstruction : public Instruction {
 public:
     explicit ForceStopInstruction();
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    int runCoroutine() override;
 };
 
 #endif //FORCESTOPINSTRUCTION_H

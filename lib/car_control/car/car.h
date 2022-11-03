@@ -48,13 +48,14 @@ public:
 
 private:
     Instruction *instruction_;   /// 設定中の指令
-    Instruction *coroutine_instruction_;
+    Instruction *interruptInstruction_ = nullptr;
     Brain *brain_;          /// 車の状態を見て指令を送るアルゴリズム実装部
     Wheel *left_wheel_;     /// 左の車輪
     Wheel *right_wheel_;    /// 右の車輪
     PhotoReflector *left_reflector_;    /// 左のセンサ
     PhotoReflector *right_reflector_;   /// 右のセンサ
     PhotoReflector *mid_reflector_;   /// 真ん中のセンサ
+    void ClearInstruction();
 };
 
 #endif

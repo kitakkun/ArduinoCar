@@ -9,7 +9,7 @@
 class DecelerateInstruction : public Instruction {
 public:
     explicit DecelerateInstruction(int amount);
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    int runCoroutine() override;
 private:
     int amount_;    /// 減速量
 };

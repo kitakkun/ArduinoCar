@@ -1,8 +1,6 @@
 #include <Arduino.h>
 #include <car_control.h>
 #include <config.h>
-#include "control/instruction/implementation/empty_instruction.h"
-#include "control/instruction/implementation/LogCoroutineInstruction.h"
 #include <ArduinoLog.h>
 
 Car *car;
@@ -24,10 +22,8 @@ void setup() {
 void loop() {
      car->UpdateSensors();
      CarState state = car->CollectCarState();
-//     Instruction *instruction = car->Think(state);
-     Instruction *instruction = new LogCoroutineInstruction();
+     Instruction *instruction = car->Think(state);
      car->SetInstruction(instruction);
      car->Act();
-//     delete instruction;
      delay(1000);
 }

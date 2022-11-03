@@ -5,7 +5,7 @@
 
 class ForceSpeedUpdateInstruction: public Instruction {
 public:
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    int runCoroutine() override;
     ForceSpeedUpdateInstruction(int left_speed, int right_speed);
 private:
     int left_speed_;
