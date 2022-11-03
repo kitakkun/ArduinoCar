@@ -53,7 +53,6 @@ void Car::Act() {
 
 void Car::SetInstruction(Instruction *instruction) {
     if (instruction_ == nullptr) {
-        Log.verboseln("SET");
         this->instruction_ = instruction;
     }
 }

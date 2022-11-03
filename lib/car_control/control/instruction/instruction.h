@@ -26,7 +26,7 @@ public:
      * 割り込みをするか否かを取得。
      * @return 割り込みが有効かどうか
      */
-    virtual InstructionMode Mode() { return normal; };
+    virtual InstructionMode Mode() { return noInterrupt; };
 
     bool IsCompleted() const { return isCompleted_; }
 
