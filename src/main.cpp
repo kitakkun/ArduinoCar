@@ -26,5 +26,4 @@ void loop() {
      Instruction *instruction = car->Think(state);
      car->SetInstruction(instruction);
      car->Act();
-     delay(1000);
 }
