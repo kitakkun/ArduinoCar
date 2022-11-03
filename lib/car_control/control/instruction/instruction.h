@@ -2,6 +2,7 @@
 #define INSTRUCTION_H
 
 #include "../../component/wheel/wheel.h"
+#include "instruction_mode.h"
 
 /**
  * 車に対する指令を表す抽象クラス
@@ -19,13 +20,18 @@ public:
      * @param left_wheel 左車輪のインスタンス
      * @param right_wheel 右車輪のインスタンス
      */
-    virtual void Run(Wheel* left_wheel, Wheel* right_wheel) = 0;
+    virtual void Run(Wheel *left_wheel, Wheel *right_wheel) = 0;
 
     /**
      * 割り込みをするか否かを取得。
      * @return 割り込みが有効かどうか
      */
-    virtual bool InterruptionEnabled() { return false; };
+    virtual InstructionMode Mode() { return normal; };
+
+    bool IsCompleted() const { return isCompleted_; }
+
+protected:
+    bool isCompleted_ = false;
 };
 
 #endif //INSTRUCTION_H

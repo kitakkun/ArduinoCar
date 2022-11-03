@@ -1,5 +1,7 @@
+#include <HardwareSerial.h>
 #include "car.h"
 #include "car_builder.h"
+#include "ArduinoLog.h"
 
 Car::Car(CarBuilder *builder) {
     this->brain_ = builder->GetBrain();
@@ -8,6 +10,7 @@ Car::Car(CarBuilder *builder) {
     this->left_reflector_ = builder->GetLeftReflector();
     this->right_reflector_ = builder->GetRightReflector();
     this->mid_reflector_ = builder->GetMidReflector();
+    this->instruction_ = nullptr;
 }
 
 // センサー情報を更新
@@ -37,12 +40,20 @@ Instruction *Car::Think(CarState state) {
 }
 
 void Car::Act() {
+    if (instruction_ == nullptr) return;
     this->instruction_->Run(this->left_wheel_, this->right_wheel_);
     this->left_wheel_->Apply();
     this->right_wheel_->Apply();
-    delete this->instruction_;
+    if (this->instruction_->IsCompleted()) {
+        Log.verboseln("DELETED INSTRUCTION");
+        delete this->instruction_;
+        this->instruction_ = nullptr;
+    }
 }
 
 void Car::SetInstruction(Instruction *instruction) {
-    this->instruction_ = instruction;
+    if (instruction_ == nullptr) {
+        Log.verboseln("SET");
+        this->instruction_ = instruction;
+    }
 }

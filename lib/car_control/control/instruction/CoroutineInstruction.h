@@ -4,14 +4,15 @@
 #include <AceRoutine.h>
 #include "instruction.h"
 
-class CoroutineInstruction : ace_routine::Coroutine, Instruction {
+#define COROUTINE_COMPLETE() isCompleted_ = true; COROUTINE_END();
+
+class CoroutineInstruction : public Instruction {
 public:
-    int runCoroutine() override;
+    virtual int runCoroutine() = 0;
     void Run(Wheel *left_wheel, Wheel *right_wheel) override;
-private:
+protected:
     Wheel *left_wheel_;
     Wheel *right_wheel_;
-    bool is_first_run_ = true;
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_COROUTINEINSTRUCTION_H
