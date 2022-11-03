@@ -1,9 +1,10 @@
 #include "torque_right_instruction.h"
 
-void TorqueRightInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {
-    right_wheel->UpdateSpeed(left_wheel->Speed() - this->force_);
-}
-
 TorqueRightInstruction::TorqueRightInstruction(int force) {
     this->force_ = force;
+}
+
+int TorqueRightInstruction::runCoroutine() {
+    right_wheel_->UpdateSpeed(left_wheel_->Speed() - this->force_);
+    return Instruction::runCoroutine();
 }

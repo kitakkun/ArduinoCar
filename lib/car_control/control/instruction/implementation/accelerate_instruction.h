@@ -9,7 +9,7 @@
 class AccelerateInstruction : public Instruction {
 public:
     explicit AccelerateInstruction(int amount);
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    int runCoroutine() override;
 private:
     int amount_;    /// 加速量
 };
