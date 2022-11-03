@@ -12,8 +12,7 @@ public:
     int runCoroutine() override;
 private:
     int force_;     /// 加えるトルクの強さ
-    int duration_millis_;
-    int current_time_ = 0;
+    int duration_millis_;     /// トルクを加える時間
 };
 
 #endif //TORQUE_LEFT_INSTRUCTION_H
