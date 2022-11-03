@@ -51,5 +51,7 @@ void Car::Act() {
 void Car::SetInstruction(Instruction *instruction) {
     if (instruction_ == nullptr) {
         this->instruction_ = instruction;
+    } else {
+        delete instruction;
     }
 }
