@@ -59,6 +59,7 @@ class CarState <<struct>>  {
 Car ..> CarState
 Car ..> Brain
 Car ..> Wheel
+Car ..> PhotoReflector
 
 interface Brain {
 Instruction *CalculateNextInstruction(CarState state)

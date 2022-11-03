@@ -1,7 +1,7 @@
 #ifndef EMPTY_INSTRUCTION
 #define EMPTY_INSTRUCTION
 
-#include "instruction.h"
+#include "control/instruction/instruction.h"
 
 class EmptyInstruction : public Instruction {
 public:

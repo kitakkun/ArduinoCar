@@ -1,7 +1,7 @@
 #ifndef TORQUE_RIGHT_INSTRUCTION_H
 #define TORQUE_RIGHT_INSTRUCTION_H
 
-#include "instruction.h"
+#include "control/instruction/instruction.h"
 
 /**
  * 右へ曲がる指令

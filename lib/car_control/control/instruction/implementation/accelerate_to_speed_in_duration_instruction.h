@@ -1,7 +1,7 @@
 #ifndef ACCELERATE_TO_SPEED_INSTRUCTION_H
 #define ACCELERATE_TO_SPEED_INSTRUCTION_H
 
-#include "instruction.h"
+#include "../instruction.h"
 
 /**
  * 一定時間かけて目的の速度へ加速する指令

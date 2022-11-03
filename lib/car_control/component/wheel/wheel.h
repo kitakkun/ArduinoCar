@@ -1,7 +1,7 @@
 #ifndef WHEEL_H
 #define WHEEL_H
 
-#include "../../model/move_direction.h"
+#include "model/move_direction.h"
 
 /**
  * 車輪の速度制御や回転方向制御を行うクラス

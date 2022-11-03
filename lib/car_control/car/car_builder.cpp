@@ -17,8 +17,8 @@ void CarBuilder::SetRightReflector(PhotoReflector *reflector) {
     this->right_reflector_ = reflector;
 }
 
-void CarBuilder::SetFrontReflector(PhotoReflector *reflector) {
-    this->front_reflector_ = reflector;
+void CarBuilder::SetMidReflector(PhotoReflector *reflector) {
+    this->mid_reflector_ = reflector;
 }
 
 void CarBuilder::SetBrain(Brain *brain) {
@@ -45,8 +45,8 @@ PhotoReflector *CarBuilder::GetLeftReflector() {
     return left_reflector_;
 }
 
-PhotoReflector *CarBuilder::GetFrontReflector() {
-    return front_reflector_;
+PhotoReflector *CarBuilder::GetMidReflector() {
+    return mid_reflector_;
 }
 
 Car *CarBuilder::Build() {
