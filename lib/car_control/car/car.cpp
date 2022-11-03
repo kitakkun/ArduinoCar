@@ -50,7 +50,8 @@ void Car::Act() {
 
 void Car::SetInstruction(Instruction *instruction) {
     if (instruction_ == nullptr) {
-        this->instruction_ = instruction;
+        instruction_ = instruction;
+        instruction_->Setup(left_wheel_, right_wheel_);
     } else {
         delete instruction;
     }
