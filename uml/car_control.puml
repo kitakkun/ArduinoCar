@@ -75,9 +75,15 @@ interface Instruction {
 Instruction ..> InstructionMode
 
 enum InstructionMode {
-    blocking
-    coroutine
+    interrupt
+    force
+    noInterrupt
 }
+
+class CoroutineInstruction {
+}
+
+CoroutineInstruction --|> Instruction
 
 class Wheel {
 - int plus_pin_
