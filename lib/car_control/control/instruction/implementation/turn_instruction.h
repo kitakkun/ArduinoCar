@@ -8,8 +8,11 @@
  */
 class TurnInstruction : public Instruction {
 public:
-    explicit TurnInstruction();
-    void Run(Wheel *left_wheel, Wheel *right_wheel) override;
+    explicit TurnInstruction(int speed, int duration);
+    int runCoroutine() override;
+private:
+    int speed_;
+    int duration_;
 };
 
 #endif //ACCELERATEINSTRUCTION_H
