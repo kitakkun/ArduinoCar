@@ -8,5 +8,7 @@ ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int left_speed, int rig
 int ForceSpeedUpdateInstruction::runCoroutine() {
     left_wheel_->UpdateSpeed(this->left_speed_);
     right_wheel_->UpdateSpeed(this->right_speed_);
+    left_wheel_->Apply();
+    right_wheel_->Apply();
     return Instruction::runCoroutine();
 }
