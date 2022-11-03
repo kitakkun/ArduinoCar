@@ -14,13 +14,13 @@ public:
     void SetRightWheel(Wheel *wheel);
     void SetLeftReflector(PhotoReflector *reflector);
     void SetRightReflector(PhotoReflector *reflector);
-    void SetFrontReflector(PhotoReflector *reflector);
+    void SetMidReflector(PhotoReflector *reflector);
     Brain *GetBrain();
     Wheel *GetLeftWheel();
     Wheel *GetRightWheel();
     PhotoReflector *GetLeftReflector();
     PhotoReflector *GetRightReflector();
-    PhotoReflector *GetFrontReflector();
+    PhotoReflector *GetMidReflector();
     Car * Build();
 private:
     Brain *brain_;
@@ -28,7 +28,7 @@ private:
     Wheel *right_wheel_;
     PhotoReflector *left_reflector_;
     PhotoReflector *right_reflector_;
-    PhotoReflector *front_reflector_;
+    PhotoReflector *mid_reflector_;
 };
 
 #endif //CAR_BUILDER_H

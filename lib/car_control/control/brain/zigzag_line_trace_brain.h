@@ -1,7 +1,7 @@
 #ifndef ZIGZAG_LINE_TRACE_BRAIN
 #define ZIGZAG_LINE_TRACE_BRAIN
 
-#include "brain.h"
+#include "control/brain/brain.h"
 
 enum ZigZagLineTraceState {
     READY, TRACING_LINE, FINISHED

@@ -1,7 +1,7 @@
 #ifndef DECELERATE_INSTRUCTION
 #define DECELERATE_INSTRUCTION
 
-#include "instruction.h"
+#include "control/instruction/instruction.h"
 
 /*
  * 減速指令

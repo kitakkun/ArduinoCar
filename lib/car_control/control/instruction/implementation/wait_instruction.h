@@ -1,8 +1,8 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_WAIT_INSTRUCTION_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_WAIT_INSTRUCTION_H
 
-#include "instruction.h"
-#include <Arduino.h>
+#include "../instruction.h"
+#include "../../../../../../../../.platformio/packages/framework-arduino-avr/cores/arduino/Arduino.h"
 
 class WaitInstruction : public Instruction {
 public:
