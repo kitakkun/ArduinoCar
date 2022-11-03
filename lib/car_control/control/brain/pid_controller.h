@@ -16,7 +16,12 @@ public:
 private:
     int run_speed_;
     int torque_force_;
+    signed long diff_R[2];
+    float integral_R;
+    signed long diff_L[2];
+    float integral_L;
     PidLineTraceState state_ = READY;
+    float PID_left(signed short Senser_Value);
 };
 
 #endif // PID_LINE_TRACE_BRAIN
