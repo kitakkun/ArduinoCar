@@ -5,9 +5,10 @@ AccelerateInstruction::AccelerateInstruction(int amount) {
 }
 
 int AccelerateInstruction::runCoroutine() {
+    COROUTINE_BEGIN();
     left_wheel_->Accelerate(this->amount_);
     right_wheel_->Accelerate(this->amount_);
     left_wheel_->Apply();
     right_wheel_->Apply();
-    return Instruction::runCoroutine();
+    COROUTINE_END();
 }

@@ -1,5 +1,6 @@
 #include "car.h"
 #include "car_builder.h"
+#include "ArduinoLog.h"
 
 Car::Car(CarBuilder *builder) {
     this->brain_ = builder->GetBrain();
@@ -38,7 +39,7 @@ Instruction *Car::Think(CarState state) {
 }
 
 void Car::Act() {
-    if (instruction_ == nullptr) return;
+    if (instruction_ == nullptr) { return; }
     this->instruction_->runCoroutine();
     this->left_wheel_->Apply();
     this->right_wheel_->Apply();

@@ -5,9 +5,10 @@ DecelerateInstruction::DecelerateInstruction(int amount) {
 }
 
 int DecelerateInstruction::runCoroutine() {
+    COROUTINE_BEGIN();
     left_wheel_->Decelerate(this->amount_);
     right_wheel_->Decelerate(this->amount_);
     left_wheel_->Apply();
     right_wheel_->Apply();
-    return Instruction::runCoroutine();
+    COROUTINE_END();
 }
