@@ -6,17 +6,20 @@ Car::Car(CarBuilder *builder) {
     this->brain_ = builder->GetBrain();
     this->left_wheel_ = builder->GetLeftWheel();
     this->right_wheel_ = builder->GetRightWheel();
-    this->left_reflector_ = builder->GetLeftReflector();
-    this->right_reflector_ = builder->GetRightReflector();
-    this->mid_reflector_ = builder->GetMidReflector();
+    this->front_left_reflector_ = builder->GetFrontLeftReflector();
+    this->front_right_reflector_ = builder->GetFrontRightReflector();
+    this->front_mid_reflector_ = builder->GetFrontMidReflector();
+    this->back_left_reflector_ = builder->GetBackLeftReflector();
+    this->back_right_reflector_ = builder->GetBackRightReflector();
+    this->back_mid_reflector_ = builder->GetBackMidReflector();
     this->instruction_ = nullptr;
 }
 
 // センサー情報を更新
 void Car::UpdateSensors() {
-    this->left_reflector_->Update();
-    this->right_reflector_->Update();
-    this->mid_reflector_->Update();
+    this->front_left_reflector_->Update();
+    this->front_right_reflector_->Update();
+    this->front_mid_reflector_->Update();
 }
 
 CarState Car::CollectCarState() {
@@ -25,12 +28,18 @@ CarState Car::CollectCarState() {
             this->right_wheel_->Speed(),
             this->left_wheel_->Direction(),
             this->right_wheel_->Direction(),
-            this->mid_reflector_->Value(),
-            this->right_reflector_->Value(),
-            this->left_reflector_->Value(),
-            this->mid_reflector_->RawValue(),
-            this->right_reflector_->RawValue(),
-            this->left_reflector_->RawValue(),
+            this->front_mid_reflector_->Value(),
+            this->front_right_reflector_->Value(),
+            this->front_left_reflector_->Value(),
+            this->back_mid_reflector_->Value(),
+            this->back_right_reflector_->Value(),
+            this->back_left_reflector_->Value(),
+            this->front_mid_reflector_->RawValue(),
+            this->front_right_reflector_->RawValue(),
+            this->front_left_reflector_->RawValue(),
+            this->back_mid_reflector_->RawValue(),
+            this->back_right_reflector_->RawValue(),
+            this->back_left_reflector_->RawValue(),
     };
 }
 

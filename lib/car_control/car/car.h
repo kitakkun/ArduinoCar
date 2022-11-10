@@ -52,10 +52,12 @@ private:
     Brain *brain_;          /// 車の状態を見て指令を送るアルゴリズム実装部
     Wheel *left_wheel_;     /// 左の車輪
     Wheel *right_wheel_;    /// 右の車輪
-    PhotoReflector *left_reflector_;    /// 左のセンサ
-    PhotoReflector *right_reflector_;   /// 右のセンサ
-    PhotoReflector *mid_reflector_;   /// 真ん中のセンサ
-    void ClearInstruction();
+    PhotoReflector *front_left_reflector_;    /// 左のセンサ
+    PhotoReflector *front_right_reflector_;   /// 右のセンサ
+    PhotoReflector *front_mid_reflector_;   /// 真ん中のセンサ
+    PhotoReflector *back_left_reflector_;    /// 左のセンサ
+    PhotoReflector *back_right_reflector_;   /// 右のセンサ
+    PhotoReflector *back_mid_reflector_;   /// 真ん中のセンサ
 };
 
 #endif

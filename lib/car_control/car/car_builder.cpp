@@ -9,24 +9,36 @@ void CarBuilder::SetRightWheel(Wheel *wheel) {
     this->right_wheel_ = wheel;
 }
 
-void CarBuilder::SetLeftReflector(PhotoReflector *reflector) {
-    this->left_reflector_ = reflector;
+void CarBuilder::SetFrontLeftReflector(PhotoReflector *reflector) {
+    this->front_left_reflector_ = reflector;
 }
 
-void CarBuilder::SetRightReflector(PhotoReflector *reflector) {
-    this->right_reflector_ = reflector;
+void CarBuilder::SetFrontRightReflector(PhotoReflector *reflector) {
+    this->front_right_reflector_ = reflector;
 }
 
-void CarBuilder::SetMidReflector(PhotoReflector *reflector) {
-    this->mid_reflector_ = reflector;
+void CarBuilder::SetFrontMidReflector(PhotoReflector *reflector) {
+    this->front_mid_reflector_ = reflector;
+}
+
+void CarBuilder::SetBackLeftReflector(PhotoReflector *reflector) {
+    this->back_left_reflector_ = reflector;
+}
+
+void CarBuilder::SetBackRightReflector(PhotoReflector *reflector) {
+    this->back_right_reflector_ = reflector;
+}
+
+void CarBuilder::SetBackMidReflector(PhotoReflector *reflector) {
+    this->back_mid_reflector_ = reflector;
 }
 
 void CarBuilder::SetBrain(Brain *brain) {
     this->brain_ = brain;
 }
 
-PhotoReflector *CarBuilder::GetRightReflector() {
-    return this->right_reflector_;
+PhotoReflector *CarBuilder::GetFrontRightReflector() {
+    return this->front_right_reflector_;
 }
 
 Wheel *CarBuilder::GetLeftWheel() {
@@ -41,16 +53,28 @@ Wheel *CarBuilder::GetRightWheel() {
     return this->right_wheel_;
 }
 
-PhotoReflector *CarBuilder::GetLeftReflector() {
-    return left_reflector_;
+PhotoReflector *CarBuilder::GetFrontLeftReflector() {
+    return front_left_reflector_;
 }
 
-PhotoReflector *CarBuilder::GetMidReflector() {
-    return mid_reflector_;
+PhotoReflector *CarBuilder::GetFrontMidReflector() {
+    return front_mid_reflector_;
 }
 
+PhotoReflector *CarBuilder::GetBackLeftReflector() {
+    return back_left_reflector_;
+}
+
+PhotoReflector *CarBuilder::GetBackRightReflector() {
+    return back_right_reflector_;
+}
+
+PhotoReflector *CarBuilder::GetBackMidReflector() {
+    return back_mid_reflector_;
+}
 Car *CarBuilder::Build() {
     return new Car(this);
 }
+
 
 

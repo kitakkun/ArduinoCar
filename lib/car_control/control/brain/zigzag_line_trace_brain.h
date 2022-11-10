@@ -29,6 +29,7 @@ private:
     ZigZagLineTraceState state_ = READY;
     unsigned long trace_start_time_;
     LastInstruction last_instruction_ = Other;
+    CarState prev_state_;
 };
 
 #endif // ZIGZAG_LINE_TRACE_BRAIN

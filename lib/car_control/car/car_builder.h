@@ -12,23 +12,32 @@ public:
     void SetBrain(Brain *brain);
     void SetLeftWheel(Wheel *wheel);
     void SetRightWheel(Wheel *wheel);
-    void SetLeftReflector(PhotoReflector *reflector);
-    void SetRightReflector(PhotoReflector *reflector);
-    void SetMidReflector(PhotoReflector *reflector);
+    void SetFrontLeftReflector(PhotoReflector *reflector);
+    void SetFrontRightReflector(PhotoReflector *reflector);
+    void SetFrontMidReflector(PhotoReflector *reflector);
+    void SetBackLeftReflector(PhotoReflector *reflector);
+    void SetBackMidReflector(PhotoReflector *reflector);
+    void SetBackRightReflector(PhotoReflector *reflector);
     Brain *GetBrain();
     Wheel *GetLeftWheel();
     Wheel *GetRightWheel();
-    PhotoReflector *GetLeftReflector();
-    PhotoReflector *GetRightReflector();
-    PhotoReflector *GetMidReflector();
+    PhotoReflector *GetFrontLeftReflector();
+    PhotoReflector *GetFrontRightReflector();
+    PhotoReflector *GetFrontMidReflector();
+    PhotoReflector *GetBackRightReflector();
+    PhotoReflector *GetBackLeftReflector();
+    PhotoReflector *GetBackMidReflector();
     Car * Build();
 private:
     Brain *brain_;
     Wheel *left_wheel_;
     Wheel *right_wheel_;
-    PhotoReflector *left_reflector_;
-    PhotoReflector *right_reflector_;
-    PhotoReflector *mid_reflector_;
+    PhotoReflector *front_left_reflector_;
+    PhotoReflector *front_right_reflector_;
+    PhotoReflector *front_mid_reflector_;
+    PhotoReflector *back_left_reflector_;
+    PhotoReflector *back_right_reflector_;
+    PhotoReflector *back_mid_reflector_;
 };
 
 #endif //CAR_BUILDER_H
