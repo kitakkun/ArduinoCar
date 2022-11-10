@@ -6,11 +6,11 @@
 #include "control/instruction/implementation/force_stop_instruction.h"
 #include "control/instruction/implementation/wait_instruction.h"
 
+#define KP 0.005
+#define KI 0.015
+#define KD 0.00005
 #define DELTA_T 0.010
-#define Kp      0.015
-#define Ki      0.013
-#define Kd      0.0007
-#define Target_Value  30
+#define Target_Value 50
 
 PidLineTraceBrain::PID_left(signed short Senser_Value){   
    float p,i,d;
@@ -43,13 +43,15 @@ PidLineTraceBrain::PID_right(signed short Senser_Value){
 Instruction *PidLineTraceBrain::CalculateNextInstruction(CarState state) {
     if (this->state_ == READY) {
         Serial.println("READY");
+        if (state.left_reflector_color == black || state.right_reflector_color == black || state.mid_reflector_color == white){
+            return new ForceStopInstruction();
+        }
         this->state_ = TRACING_LINE;
-        return new WaitInstruction(1000);
     }
     if (this->state_ == TRACING_LINE) {
 //      Serial.println("TRACING_LINE");
-        float pid_left = PID_left(state.left_reflecter_raw);
-        float pid_right = PID_right(state.right_reflecter_raw);
+        int pid_left = PID_left(state.left_reflecter_raw);
+        int pid_right = PID_right(state.right_reflecter_raw);
 
         if (state.left_wheel_speed == 0 || state.right_wheel_speed == 0) {
             return new ForceSpeedUpdateInstruction(run_speed_, run_speed_);
@@ -60,7 +62,7 @@ Instruction *PidLineTraceBrain::CalculateNextInstruction(CarState state) {
             return new ForceSpeedUpdateInstruction(run_speed_ + pid_left - pid_right, run_speed_ - pid_left + pid_right);
         }
         if (state.left_reflector_color == white && state.right_reflector_color == white && state.mid_reflector_color == white) {
-//            this->state_ = FINISHED;
+            //this->state_ = FINISHED;
         }
         return new ForceSpeedUpdateInstruction(run_speed_, run_speed_);
     }
