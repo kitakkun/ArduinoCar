@@ -1,10 +1,15 @@
 #include "torque_right_instruction.h"
 
-TorqueRightInstruction::TorqueRightInstruction(int force) {
-    this->force_ = force;
+TorqueRightInstruction::TorqueRightInstruction(int force, int duration_millis) {
+    force_ = force;
+    duration_millis_ = duration_millis;
 }
 
 int TorqueRightInstruction::runCoroutine() {
-    right_wheel_->UpdateSpeed(left_wheel_->Speed() - this->force_);
-    return Instruction::runCoroutine();
+    COROUTINE_BEGIN();
+    right_wheel_->UpdateSpeed(left_wheel_->Speed() - force_);
+    right_wheel_->Apply();
+    COROUTINE_DELAY(duration_millis_);
+    right_wheel_->UpdateSpeed(left_wheel_->Speed());
+    COROUTINE_END();
 }
