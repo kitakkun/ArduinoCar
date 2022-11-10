@@ -4,7 +4,7 @@
 #include "control/brain/brain.h"
 
 enum ZigZagLineTraceState {
-    READY, TRACING_LINE, FINISHED
+    READY, TRACING_LINE, READY_FOR_BACK, TRACING_BACK_LINE, FINISHED
 };
 
 class ZigZagLineTraceBrain : public Brain {

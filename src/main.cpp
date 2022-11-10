@@ -11,7 +11,7 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial);
 
     CarBuilder builder = CarBuilder();
-    builder.SetBrain(new DummyBrain());
+    builder.SetBrain(new ZigZagLineTraceBrain(100, 50));
     builder.SetLeftWheel(new Wheel(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN));
     builder.SetRightWheel(new Wheel(RIGHT_MOTOR_PLUS_PIN, RIGHT_MOTOR_MINUS_PIN, RIGHT_MOTOR_PWM_PIN));
     builder.SetMidReflector(new PhotoReflector(FRONT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
