@@ -3,7 +3,7 @@
 #include "custom/instruction/torque_right_instruction.h"
 #include "custom/instruction/force_speed_update_instruction.h"
 #include "custom/instruction/force_stop_instruction.h"
-#include "custom/instruction/WaitInstruction.h"
+#include "custom/instruction/wait_instruction.h"
 #include "ArduinoLog.h"
 #include "custom/instruction/update_direction_instruction.h"
 #include "custom/instruction/decelerate_instruction.h"
@@ -39,7 +39,7 @@ Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
             state_ = TRACING_LINE;
             return new ForceStopInstruction();
         }
-        return new WaitInstruction(10);
+        return new wait_instruction(10);
     }
     // ライントレース中
     if (this->state_ == TRACING_LINE) {

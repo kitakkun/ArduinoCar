@@ -1,11 +1,11 @@
-#include "WaitInstruction.h"
+#include "wait_instruction.h"
 
-int WaitInstruction::runCoroutine() {
+int wait_instruction::runCoroutine() {
     COROUTINE_BEGIN();
     COROUTINE_DELAY(duration_millis_);
     COROUTINE_END();
 }
 
-WaitInstruction::WaitInstruction(int duration_millis) {
+wait_instruction::wait_instruction(int duration_millis) {
     duration_millis_ = duration_millis;
 }
