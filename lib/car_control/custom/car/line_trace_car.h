@@ -12,7 +12,7 @@ class LineTraceCarBuilder;
 
 class LineTraceCar : public Car {
 public:
-    explicit LineTraceCar(LineTraceCarBuilder *builder);
+    LineTraceCar(LineTraceCarBuilder *builder);
 
     void UpdateSensors() override;
     void Think() override;
@@ -25,7 +25,7 @@ private:
     PhotoReflector *back_mid_reflector_;
     PhotoReflector *back_left_reflector_;
     PhotoReflector *back_right_reflector_;
-    Instruction* instruction_;
+    Instruction* instruction_{};
 
     LineTraceCarState CollectCarState();
 };

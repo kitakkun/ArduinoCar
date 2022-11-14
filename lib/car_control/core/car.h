@@ -12,8 +12,6 @@ class Car {
 public:
     Car(CarBuilder *builder);
 
-    virtual ~Car() = default;
-
     /**
      * センサー情報を更新します。
      */

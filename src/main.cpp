@@ -2,14 +2,16 @@
 #include <core.h>
 #include <custom.h>
 #include "config.h"
-#include <ArduinoLog.h>
+#include "ArduinoLog.h"
 
 Car *car;
 
 void setup() {
-    Serial.begin(9600);
-    Log.begin(LOG_LEVEL_VERBOSE, &Serial);
+    Serial.begin(115200);
+    while (!Serial);
+    Log.begin(LOG_LEVEL_VERBOSE, &Serial, false);
 
+    Log.verboseln("Building a Car instance...");
     LineTraceCarBuilder builder = LineTraceCarBuilder();
     builder.SetBrain(new LineTraceBrain(105, 45));
     builder.SetLeftWheel(new Wheel(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN));
@@ -21,10 +23,11 @@ void setup() {
     builder.SetBackRightReflector(new PhotoReflector(BACK_RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     builder.SetBackLeftReflector(new PhotoReflector(BACK_LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     car = builder.Build();
+    Log.verboseln("Done!");
 }
 
 void loop() {
-     car->UpdateSensors();
-     car->Think();
-     car->Act();
+    car->UpdateSensors();
+    car->Think();
+    car->Act();
 }

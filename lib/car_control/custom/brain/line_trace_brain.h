@@ -5,12 +5,12 @@
 #include "custom/data_model/line_trace_car_state.h"
 
 enum ZigZagLineTraceState {
-    READY,
-    SEARCHING_LINE,
-    TRACING_LINE,
-    READY_FOR_BACK,
-    SEARCHING_BACK_LINE,
-    TRACING_BACK_LINE,
+    ready,
+    searching,
+    tracing,
+    readyBack,
+    searchingBack,
+    tracingBack,
     FINISHED
 };
 
@@ -20,18 +20,24 @@ enum LastInstruction {
 
 class LineTraceBrain : public Brain {
 public:
-    LineTraceBrain(int run_speed, int torque_force);
+    LineTraceBrain(int base_speed, int torque_force);
 
     void SetCurrentCarState(LineTraceCarState car_state);
 
     Instruction *CalculateNextInstruction() override;
 
 private:
+    Instruction* Ready();
+    Instruction* Search();
+    Instruction* Trace();
+    Instruction* ReadyBack();
+    Instruction* SearchBack();
+    Instruction* TraceBack();
     LineTraceCarState current_car_state_;
-    int run_speed_;
+    int base_speed_;
     int torque_force_;
-    ZigZagLineTraceState state_ = READY;
-    unsigned long trace_start_time_;
+    ZigZagLineTraceState state_ = ready;
+    unsigned long last_time_on_black_;
     LastInstruction last_instruction_ = Other;
 };
 

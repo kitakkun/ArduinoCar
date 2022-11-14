@@ -2,12 +2,14 @@
 #include "custom/data_model/line_trace_car_state.h"
 
 LineTraceCar::LineTraceCar(LineTraceCarBuilder *builder) : Car(builder) {
+    this->brain_ = builder->GetBrain();
     this->front_mid_reflector_ = builder->GetFrontMidReflector();
     this->front_left_reflector_ = builder->GetFrontLeftReflector();
     this->front_right_reflector_ = builder->GetFrontRightReflector();
     this->back_mid_reflector_ = builder->GetBackMidReflector();
     this->back_left_reflector_ = builder->GetBackLeftReflector();
     this->back_right_reflector_ = builder->GetBackRightReflector();
+    this->instruction_ = nullptr;
 }
 
 void LineTraceCar::UpdateSensors() {
@@ -24,11 +26,13 @@ void LineTraceCar::Think() {
     Instruction *instruction = brain_->CalculateNextInstruction();
     if (instruction_ == nullptr) {
         instruction_ = instruction;
+        instruction_->Setup(left_wheel_, right_wheel_);
         return;
     }
     if (instruction->Mode() == interrupt) {
         delete instruction_;
         instruction_ = instruction;
+        instruction_->Setup(left_wheel_, right_wheel_);
     } else {
         delete instruction;
     }
