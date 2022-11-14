@@ -27,17 +27,6 @@ void Wheel::UpdateSpeed(signed int speed) {
     ApplySpeed();
 }
 
-void Wheel::Apply() {
-    if (this->direction_ == forward) {
-        digitalWrite(this->plus_pin_, HIGH);
-        digitalWrite(this->minus_pin_, LOW);
-    } else {
-        digitalWrite(this->plus_pin_, LOW);
-        digitalWrite(this->minus_pin_, HIGH);
-    }
-    analogWrite(this->pwm_pin_, this->speed_);
-}
-
 void Wheel::UpdateDirection(MoveDirection direction) {
     this->direction_ = direction;
     ApplyDirection();

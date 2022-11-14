@@ -35,12 +35,6 @@ public:
     void UpdateDirection(MoveDirection direction);
 
     /**
-     * 変更内容の反映
-     */
-    [[deprecated("UpdateDirection, UpdateSpeedで即座に更新してしまいますので、不要です。")]]
-    void Apply();
-
-    /**
      * 現在の回転方向を取得
      * @return 進行方向
      */

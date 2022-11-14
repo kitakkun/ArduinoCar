@@ -50,8 +50,6 @@ Instruction *Car::Think(CarState state) {
 void Car::Act() {
     if (instruction_ == nullptr) { return; }
     this->instruction_->runCoroutine();
-    this->left_wheel_->Apply();
-    this->right_wheel_->Apply();
     if (this->instruction_->isDone()) {
         delete this->instruction_;
         this->instruction_ = nullptr;
