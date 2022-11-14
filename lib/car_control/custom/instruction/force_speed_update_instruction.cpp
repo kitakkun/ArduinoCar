@@ -11,3 +11,8 @@ int ForceSpeedUpdateInstruction::runCoroutine() {
     right_wheel_->UpdateSpeed(this->right_speed_);
     COROUTINE_END();
 }
+
+ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed) {
+    this->left_speed_ = speed;
+    this->right_speed_ = speed;
+}
