@@ -15,12 +15,13 @@ MoveDirection Wheel::Direction() {
 }
 
 // 現在のスピードを返す
-int Wheel::Speed() {
+int Wheel::Speed() const {
     return this->speed_;
 }
 
 void Wheel::UpdateSpeed(signed int speed) {
     this->speed_ = speed;
+    ApplySpeed();
 }
 
 // 加速
@@ -49,4 +50,19 @@ void Wheel::Apply() {
 
 void Wheel::UpdateDirection(MoveDirection direction) {
     this->direction_ = direction;
+    ApplyDirection();
+}
+
+void Wheel::ApplySpeed() const {
+    analogWrite(this->pwm_pin_, this->speed_);
+}
+
+void Wheel::ApplyDirection() {
+    if (this->direction_ == forward) {
+        digitalWrite(this->plus_pin_, HIGH);
+        digitalWrite(this->minus_pin_, LOW);
+    } else {
+        digitalWrite(this->plus_pin_, LOW);
+        digitalWrite(this->minus_pin_, HIGH);
+    }
 }

@@ -56,7 +56,7 @@ public:
      * 現在のスピードを取得
      * @return 現在のスピード
      */
-    int Speed();
+    int Speed() const;
 
 private:
     int plus_pin_;      /// プラスピン
@@ -64,6 +64,9 @@ private:
     int pwm_pin_;       /// PWMのピン
     MoveDirection direction_ = forward;     /// 進行方向
     int speed_;     /// 速度
+
+    void ApplySpeed() const;
+    void ApplyDirection();
 };
 
 #endif
