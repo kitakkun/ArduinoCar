@@ -15,14 +15,7 @@ public:
      * @param pwm_pin 速度調整用PWMのピン
      */
     Wheel(int plus_pin, int minus_pin, int pwm_pin);
-
-    /**
-     * 加速する
-     * @param amount 加速する量
-     */
-    [[deprecated("UpdateSpeedを使ってください。")]]
-    void Accelerate(signed int amount);
-
+    
     /**
      * 減速する
      * @param amount 減速する量

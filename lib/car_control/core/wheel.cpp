@@ -27,17 +27,10 @@ void Wheel::UpdateSpeed(signed int speed) {
     ApplySpeed();
 }
 
-// 加速
-void Wheel::Accelerate(signed int amount) {
-    this->speed_ += amount;
-}
-
 // 減速
 void Wheel::Decelerate(signed int amount) {
     this->speed_ -= amount;
     if (speed_ < 0) speed_ = 0;
-
-
 }
 
 void Wheel::Apply() {
