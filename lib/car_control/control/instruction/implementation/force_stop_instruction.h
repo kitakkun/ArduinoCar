@@ -1,7 +1,7 @@
 #ifndef FORCE_STOP_INSTRUCTION
 #define FORCE_STOP_INSTRUCTION
 
-#include "control/instruction/instruction.h"
+#include "core/instruction.h"
 
 class ForceStopInstruction : public Instruction {
 public:

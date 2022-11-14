@@ -2,7 +2,7 @@
 #define LINE_SENSOR_ADAPTER_H
 
 #include "sensor.h"
-#include "model/paper_color.h"
+#include "paper_color.h"
 
 /**
  * フォトリフレクタに対応するセンサークラス

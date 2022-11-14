@@ -1,7 +1,7 @@
 #ifndef TURN_INSTRUCTION_H
 #define TURN_INSTRUCTION_H
 
-#include "control/instruction/instruction.h"
+#include "core/instruction.h"
 
 /*
  * 180度回転する指令

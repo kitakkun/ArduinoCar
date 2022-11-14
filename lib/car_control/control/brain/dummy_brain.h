@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_DUMMY_BRAIN_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_DUMMY_BRAIN_H
 
-#include "control/brain/brain.h"
+#include "core/brain.h"
 
 class DummyBrain : public Brain {
 public:

@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_UPDATE_DIRECTION_INSTRUCTION_H
 
 
-#include "control/instruction/instruction.h"
+#include "core/instruction.h"
 
 class UpdateDirectionInstruction : public Instruction {
 public:

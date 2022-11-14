@@ -1,7 +1,7 @@
 #ifndef ACCELERATEINSTRUCTION_H
 #define ACCELERATEINSTRUCTION_H
 
-#include "control/instruction/instruction.h"
+#include "core/instruction.h"
 
 /*
  * 加速指令

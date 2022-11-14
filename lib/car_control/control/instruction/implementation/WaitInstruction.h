@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_WAITINSTRUCTION_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_WAITINSTRUCTION_H
 
-#include "control/instruction/instruction.h"
+#include "core/instruction.h"
 
 class WaitInstruction : public Instruction {
 public:

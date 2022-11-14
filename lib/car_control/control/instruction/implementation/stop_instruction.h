@@ -1,7 +1,7 @@
 #ifndef STOP_INSTRUCTION_H
 #define STOP_INSTRUCTION_H
 
-#include "control/instruction/instruction.h"
+#include "core/instruction.h"
 #include <Arduino.h>
 
 /**
