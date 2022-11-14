@@ -37,7 +37,7 @@ Instruction *LineTraceBrain::CalculateNextInstruction() {
             state_ = TRACING_LINE;
             return new ForceStopInstruction();
         }
-        return new wait_instruction(10);
+        return new WaitInstruction(10);
     }
     // ライントレース中
     if (this->state_ == TRACING_LINE) {

@@ -3,9 +3,9 @@
 
 #include "core/logic/instruction.h"
 
-class wait_instruction : public Instruction {
+class WaitInstruction : public Instruction {
 public:
-    explicit wait_instruction(int duration_millis);
+    explicit WaitInstruction(int duration_millis);
     int runCoroutine() override;
 private:
     int duration_millis_;
