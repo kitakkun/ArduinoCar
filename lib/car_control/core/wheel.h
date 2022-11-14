@@ -19,12 +19,14 @@ public:
     /**
      * 加速する
      * @param amount 加速する量
+     * @deprecated UpdateSpeedを使ってください。
      */
     void Accelerate(signed int amount);
 
     /**
      * 減速する
      * @param amount 減速する量
+     * @deprecated UpdateSpeedを使ってください。
      */
     void Decelerate(signed int amount);
 
