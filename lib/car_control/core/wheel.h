@@ -15,7 +15,7 @@ public:
      * @param pwm_pin 速度調整用PWMのピン
      */
     Wheel(int plus_pin, int minus_pin, int pwm_pin);
-    
+
     /**
      * 減速する
      * @param amount 減速する量
@@ -28,6 +28,12 @@ public:
      * @param speed 速度
      */
     void UpdateSpeed(signed int speed);
+
+    /**
+     * 速度の更新（差分）
+     * @param delta_speed 速度差分
+     */
+    void UpdateDeltaSpeed(signed int delta_speed);
 
     /**
      * 回転方向の転換

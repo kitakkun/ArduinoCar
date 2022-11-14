@@ -62,3 +62,8 @@ void Wheel::ApplyDirection() {
         digitalWrite(this->minus_pin_, HIGH);
     }
 }
+
+void Wheel::UpdateDeltaSpeed(int delta_speed) {
+    this->speed_ += delta_speed;
+    ApplySpeed();
+}

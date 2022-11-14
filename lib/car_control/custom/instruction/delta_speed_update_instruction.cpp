@@ -7,8 +7,8 @@ DeltaSpeedUpdateInstruction::DeltaSpeedUpdateInstruction(int amount) {
 
 int DeltaSpeedUpdateInstruction::runCoroutine() {
     COROUTINE_BEGIN();
-    left_wheel_->UpdateSpeed(left_wheel_->Speed() + l_amount_);
-    right_wheel_->UpdateSpeed(right_wheel_->Speed() + r_amount_);
+    left_wheel_->UpdateDeltaSpeed(l_amount_);
+    right_wheel_->UpdateDeltaSpeed(r_amount_);
     COROUTINE_END();
 }
 
