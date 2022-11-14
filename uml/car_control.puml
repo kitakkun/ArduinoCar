@@ -1,101 +1,131 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class CarBuilder {
-+ void SetBrain(Brain *brain)
-+ void SetLeftWheel(Wheel *wheel)
-+ void SetRightWheel(Wheel *wheel)
-+ void SetFrontLeftReflector(PhotoReflector *reflector)
-+ void SetFrontMidReflector(PhotoReflector *reflector)
-+ void SetFrontRightReflector(PhotoReflector *reflector)
-+ Brain *GetBrain()
-+ Wheel *GetLeftWheel()
-+ Wheel *GetRightWheel()
-+ PhotoReflector *GetFrontMidReflector()
-+ PhotoReflector *GetFrontLeftReflector()
-+ PhotoReflector *GetFrontRightReflector()
-+ Car *Build()
-- Brain *brain_
-- Wheel *left_wheel_
-- Wheel *right_wheel_
-- PhotoReflector *front_left_reflector_
-- PhotoReflector *front_mid_reflector_
-- PhotoReflector *front_right_reflector_
+abstract class CarBuilder {
++ SetLeftWheel(wheel: Wheel*)
++ SetRightWheel(wheel: Wheel*)
++ GetLeftWheel(): Wheel*
++ GetRightWheel(): Wheel*
++ Build(): Car*
+# left_wheel_: Wheel*
+# right_wheel_: Wheel*
 }
 
 CarBuilder ..> Car
-CarBuilder ..> PhotoReflector
-CarBuilder ..> Brain
 CarBuilder ..> Wheel
 Car ..> CarBuilder
 
-class Car {
-- Brain *brain_
-- Wheel *left_wheel_
-- Wheel *right_wheel_
-- PhotoReflector *front_left_reflector_
-- PhotoReflector *front_mid_reflector_
-- PhotoReflector *front_right_reflector_
-+ Car(CarBuilder *builder)
-+ void UpdateSensors()
-+ CarState CollectCarState()
-+ Instruction *Think()
-+ void Act()
+abstract class Car {
+# left_wheel_: Wheel*
+# right_wheel_: Wheel*
++ Car(builder: CarBuilder*)
++ UpdateSensors()
++ Think()
++ Act()
 }
 
-class CarState <<struct>>  {
-+ int lw_speed
-+ int rw_speed
-+ MoveDirection lw_direction
-+ MoveDirection rw_direction
-+ BinaryColor mid_color
-+ BinaryColor left_color
-+ BinaryColor right_color
-+ int mid_raw
-+ int left_raw
-+ int right_raw
+class LineTraceCar {
+- brain_: LineTraceBrain*
+- front_mid_reflector_: PhotoReflector*
+- front_left_reflector_: PhotoReflector*
+- front_right_reflector_: PhotoReflector*
+- back_mid_reflector_: PhotoReflector*
+- back_left_reflector_: PhotoReflector*
+- back_right_reflector_: PhotoReflector*
+- instruction_: Instruction*
++ LineTraceCar(builder: LineTraceCarBuilder*)
+- CollectCarState(): LineTraceCarState
 }
 
-Car ..> CarState
-Car ..> Brain
+class LineTraceCarState {
++ left_wheel_speed_: int
++ right_wheel_speed_: int
++ left_wheel_direction_: MoveDirection
++ right_wheel_direction_: MoveDirection
++ front_mid_reflector_color_: BinaryColor
++ front_left_reflector_color_: BinaryColor
++ front_right_reflector_color_: BinaryColor
++ back_mid_reflector_color_: BinaryColor
++ back_left_reflector_color_: BinaryColor
++ back_right_reflector_color_: BinaryColor
++ front_mid_reflector_raw_: int
++ front_left_reflector_raw_: int
++ front_right_reflector_raw_: int
++ back_mid_reflector_raw_: int
++ back_left_reflector_raw_: int
++ back_right_reflector_raw_: int
++ IsAnyBlack(): bool
++ IsAnyWhite(): bool
++ IsAllBlack(): bool
++ IsAllWhite(): bool
++ IsAnyFrontBlack(): bool
++ IsAnyBackBlack(): bool
++ IsAnyFrontWhite(): bool
++ IsAnyBackWhite(): bool
++ IsAllFrontBlack(): bool
++ IsAllBackBlack(): bool
++ IsAllFrontWhite(): bool
++ IsAllBackWhite(): bool
+}
+
+abstract class LineTraceBrain {
++ SetCurrentCarState(car_state: LineTraceCarState)
+# current_car_state_: LineTraceCarState
+# activity_state_: LineTraceActivityState
+}
+
+enum LineTraceActivityState {
+    ready
+    searching
+    tracing
+    readyBack
+    searchingBack
+    tracingBack
+    finished
+}
+
+class LineTraceCarBuilder {
+}
+
+LineTraceCar --|> Car
+LineTraceCar ..> LineTraceCarState
+
 Car ..> Wheel
-Car ..> PhotoReflector
 
 interface Brain {
-Instruction *CalculateNextInstruction(CarState state)
+CalculateNextInstruction(): Instruction*
 }
 
 Brain ..> Instruction
-Car ..> Instruction
 
-interface Instruction {
-+ void Run(Wheel *left_wheel, Wheel *right_wheel)
-+ InstructionMode Mode()
+class Instruction {
++ runCoroutine(): int
++ Setup(left_wheel: Wheel*, right_wheel: Wheel*)
++ SetMode(mode: InstructionMode)
++ Mode(): InstructionMode
+# left_wheel_: Wheel*
+# right_wheel: Wheel*
+# mode_: InstructionMode
 }
 
 Instruction ..> InstructionMode
 
 enum InstructionMode {
+    none
     interrupt
-    force
-    noInterrupt
 }
-
-class CoroutineInstruction {
-}
-
-CoroutineInstruction --|> Instruction
 
 class Wheel {
-- int plus_pin_
-- int minus_pin_
-- int pwm_pin_
-- int speed_
-- MoveDirection direction_ = forward
-+ void UpdateSpeed(int speed)
-+ void UpdateDirection(MoveDirection direction)
-+ int Speed()
-+ MoveDirection Direction()
+- plus_pin_: int
+- minus_pin_: int
+- pwm_pin_: int
+- speed_: int
+- direction_: MoveDirection
++ UpdateSpeed(speed: int)
++ UpdateDeltaSpeed(speed: int)
++ UpdateDirection(direction: MoveDirection)
++ Speed(): int
++ Direction(): MoveDirection
 }
 
 Wheel ..> MoveDirection
@@ -106,21 +136,25 @@ enum MoveDirection {
 }
 
 class Sensor {
-- int pin_
-- int value_
-+ Sensor(int pin)
-+ void Update()
-+ int RawValue()
+- pin_: int
+- value_: int
++ Sensor(pin: int)
++ Update()
++ RawValue(): int
 }
 
 class PhotoReflector {
-- int black_theta_
-- int white_theta_
-+ PhotoReflector(int pin, int black_theta, int white_theta)
-+ BinaryColor Value()
+- theta_: int
++ PhotoReflector(pin: int, theta: int)
++ Value(): BinaryColor
+}
+
+enum BinaryColor {
+    black, white
 }
 
 
-PhotoReflector ..|> Sensor
+PhotoReflector --|> Sensor
+PhotoReflector ..> BinaryColor
 
 @enduml
