@@ -1,15 +1,18 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include "core/wheel.h"
-#include "core/brain.h"
-#include "core/instruction.h"
+#include "core/component/wheel.h"
+#include "core/logic/brain.h"
+#include "core/logic/instruction.h"
+#include "car_builder.h"
+
+class CarBuilder;
 
 class Car {
 public:
-    explicit Car(Brain *brain, Wheel *left_wheel, Wheel *right_wheel);
+    Car(CarBuilder *builder);
 
-    virtual ~Car() = 0;
+    virtual ~Car() = default;
 
     /**
      * センサー情報を更新します。
@@ -28,7 +31,6 @@ public:
     virtual void Act() = 0;
 
 protected:
-    Brain *brain_;          /// 車の状態を見て指令を送るアルゴリズム実装部
     Wheel *left_wheel_;     /// 左の車輪
     Wheel *right_wheel_;    /// 右の車輪
 };

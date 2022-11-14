@@ -1,7 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include "wheel.h"
+#include "core/component/wheel.h"
 #include "ace_routine/Coroutine.h"
 
 /**

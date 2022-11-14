@@ -1,7 +1,7 @@
 #ifndef WHEEL_STABILIZER_H
 #define WHEEL_STABILIZER_H
 
-#include "core/wheel.h"
+#include "core/component/wheel.h"
 
 class WheelStabilizer{
 public:

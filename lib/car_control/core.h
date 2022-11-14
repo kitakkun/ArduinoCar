@@ -1,15 +1,14 @@
 #ifndef CAR_CONTROL_H
 #define CAR_CONTROL_H
 
-#include "core/brain.h"
+#include "core/logic/brain.h"
 #include "core/car.h"
-#include "core/car_builder.h"
 #include "config.h"
-#include "core/instruction.h"
-#include "core/move_direction.h"
-#include "core/binary_color.h"
-#include "core/photo_reflector.h"
-#include "core/sensor.h"
-#include "core/wheel.h"
+#include "core/logic/instruction.h"
+#include "core/data_model/move_direction.h"
+#include "core/data_model/binary_color.h"
+#include "core/component/photo_reflector.h"
+#include "core/component/sensor.h"
+#include "core/component/wheel.h"
 
 #endif //CAR_CONTROL_H

@@ -2,7 +2,7 @@
 #define LINE_SENSOR_ADAPTER_H
 
 #include "sensor.h"
-#include "binary_color.h"
+#include "core/data_model/binary_color.h"
 
 /**
  * フォトリフレクタに対応するセンサークラス

@@ -1,7 +1,8 @@
 #ifndef ZIGZAG_LINE_TRACE_BRAIN
 #define ZIGZAG_LINE_TRACE_BRAIN
 
-#include "core/brain.h"
+#include "core/logic/brain.h"
+#include "custom/car/line_trace_car_state.h"
 
 enum ZigZagLineTraceState {
     READY,
@@ -17,19 +18,21 @@ enum LastInstruction {
     TorqueLeft, TorqueRight, Other,
 };
 
-class ZigZagLineTraceBrain : public Brain {
+class LineTraceBrain : public Brain {
 public:
-    ZigZagLineTraceBrain(int run_speed, int torque_force);
+    LineTraceBrain(int run_speed, int torque_force);
 
-    Instruction *CalculateNextInstruction(CarState state) override;
+    void SetCurrentCarState(LineTraceCarState car_state);
+
+    Instruction *CalculateNextInstruction() override;
 
 private:
+    LineTraceCarState current_car_state_;
     int run_speed_;
     int torque_force_;
     ZigZagLineTraceState state_ = READY;
     unsigned long trace_start_time_;
     LastInstruction last_instruction_ = Other;
-    CarState prev_state_;
 };
 
 #endif // ZIGZAG_LINE_TRACE_BRAIN

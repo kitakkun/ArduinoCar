@@ -1,8 +1,7 @@
 #ifndef BRAIN_H
 #define BRAIN_H
 
-#include "car_state.h"
-#include "core/instruction.h"
+#include "instruction.h"
 
 /**
  * 車の頭脳に相当するクラス
@@ -16,9 +15,9 @@ public:
     virtual ~Brain() = default;
 
     /**
-     * 現在の車の情報を元に指令を返す
+     * 次の行動を決定
      */
-    virtual Instruction *CalculateNextInstruction(CarState state) = 0;
+    virtual Instruction *CalculateNextInstruction() = 0;
 };
 
 #endif //BRAIN_H

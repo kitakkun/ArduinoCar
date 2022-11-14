@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FORCE_SPEED_UPDATE_INSTRUCTION_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FORCE_SPEED_UPDATE_INSTRUCTION_H
 
-#include "core/instruction.h"
+#include "core/logic/instruction.h"
 
 class ForceSpeedUpdateInstruction: public Instruction {
 public:

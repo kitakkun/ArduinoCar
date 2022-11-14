@@ -1,43 +1,28 @@
-#ifndef CAR_BUILDER_H
-#define CAR_BUILDER_H
+#ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CAR_BUILDER_H
+#define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CAR_BUILDER_H
 
-#include "core/wheel.h"
-#include "photo_reflector.h"
-#include "core/brain.h"
+#include "core/logic/brain.h"
+#include "car.h"
 
 class Car;
 
 class CarBuilder {
 public:
-    void SetBrain(Brain *brain);
-    void SetLeftWheel(Wheel *wheel);
-    void SetRightWheel(Wheel *wheel);
-    void SetFrontLeftReflector(PhotoReflector *reflector);
-    void SetFrontRightReflector(PhotoReflector *reflector);
-    void SetFrontMidReflector(PhotoReflector *reflector);
-    void SetBackLeftReflector(PhotoReflector *reflector);
-    void SetBackMidReflector(PhotoReflector *reflector);
-    void SetBackRightReflector(PhotoReflector *reflector);
-    Brain *GetBrain();
+
+    void SetLeftWheel(Wheel *left_wheel);
+
+    void SetRightWheel(Wheel *right_wheel);
+
     Wheel *GetLeftWheel();
+
     Wheel *GetRightWheel();
-    PhotoReflector *GetFrontLeftReflector();
-    PhotoReflector *GetFrontRightReflector();
-    PhotoReflector *GetFrontMidReflector();
-    PhotoReflector *GetBackRightReflector();
-    PhotoReflector *GetBackLeftReflector();
-    PhotoReflector *GetBackMidReflector();
-    Car * Build();
-private:
-    Brain *brain_;
+
+    virtual Car *Build() = 0;
+
+protected:
     Wheel *left_wheel_;
     Wheel *right_wheel_;
-    PhotoReflector *front_left_reflector_;
-    PhotoReflector *front_right_reflector_;
-    PhotoReflector *front_mid_reflector_;
-    PhotoReflector *back_left_reflector_;
-    PhotoReflector *back_right_reflector_;
-    PhotoReflector *back_mid_reflector_;
 };
 
-#endif //CAR_BUILDER_H
+
+#endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CAR_BUILDER_H
