@@ -42,6 +42,7 @@ public:
 
     /**
      * 変更内容の反映
+     * @deprecated UpdateDirection, UpdateSpeedで即座に更新してしまいますので、不要です。
      */
     void Apply();
 
