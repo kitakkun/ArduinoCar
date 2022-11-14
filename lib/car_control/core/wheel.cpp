@@ -7,6 +7,9 @@ Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin) {
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
     this->speed_ = 0;
+    pinMode(this->plus_pin_, OUTPUT);
+    pinMode(this->minus_pin_, OUTPUT);
+    pinMode(this->pwm_pin_, OUTPUT);
 }
 
 // 現在の進行方向を返す

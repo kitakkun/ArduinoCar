@@ -12,6 +12,5 @@
 #include "core/photo_reflector.h"
 #include "core/sensor.h"
 #include "core/wheel.h"
-#include "config/pin_configurator.h"
 
 #endif //CAR_CONTROL_H

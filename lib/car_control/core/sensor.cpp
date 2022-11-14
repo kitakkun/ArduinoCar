@@ -5,6 +5,7 @@
 Sensor::Sensor(int pin) {
     this->pin_ = pin;
     this->value_ = 0;
+    pinMode(this->pin_, INPUT);
 }
 
 // センサーの更新

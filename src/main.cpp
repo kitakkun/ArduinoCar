@@ -10,8 +10,6 @@ void setup() {
     Serial.begin(9600);
     Log.begin(LOG_LEVEL_VERBOSE, &Serial);
 
-    PinConfigurator::Config();
-
     CarBuilder builder = CarBuilder();
     builder.SetBrain(new ZigZagLineTraceBrain(105, 45));
     builder.SetLeftWheel(new Wheel(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN));
