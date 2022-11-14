@@ -4,41 +4,32 @@
 #include "core/logic/brain.h"
 #include "custom/data_model/line_trace_car_state.h"
 
-enum ZigZagLineTraceState {
+enum LineTraceActivityState {
     ready,
     searching,
     tracing,
     readyBack,
     searchingBack,
     tracingBack,
-    FINISHED
-};
-
-enum LastInstruction {
-    TorqueLeft, TorqueRight, Other,
+    finished
 };
 
 class LineTraceBrain : public Brain {
 public:
-    LineTraceBrain(int base_speed, int torque_force);
-
     void SetCurrentCarState(LineTraceCarState car_state);
 
     Instruction *CalculateNextInstruction() override;
 
-private:
-    Instruction* Ready();
-    Instruction* Search();
-    Instruction* Trace();
-    Instruction* ReadyBack();
-    Instruction* SearchBack();
-    Instruction* TraceBack();
+protected:
+    virtual Instruction* Ready() = 0;
+    virtual Instruction* Search() = 0;
+    virtual Instruction* Trace() = 0;
+    virtual Instruction* ReadyBack() = 0;
+    virtual Instruction* SearchBack() = 0;
+    virtual Instruction* TraceBack() = 0;
     LineTraceCarState current_car_state_;
-    int base_speed_;
-    int torque_force_;
-    ZigZagLineTraceState state_ = ready;
+    LineTraceActivityState activity_state_ = ready;
     unsigned long last_time_on_black_;
-    LastInstruction last_instruction_ = Other;
 };
 
 #endif // ZIGZAG_LINE_TRACE_BRAIN

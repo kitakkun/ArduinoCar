@@ -25,7 +25,7 @@ private:
     PhotoReflector *back_mid_reflector_;
     PhotoReflector *back_left_reflector_;
     PhotoReflector *back_right_reflector_;
-    Instruction* instruction_{};
+    Instruction* instruction_;
 
     LineTraceCarState CollectCarState();
 };
