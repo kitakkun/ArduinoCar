@@ -1,5 +1,5 @@
 #include "line_trace_car.h"
-#include "line_trace_car_state.h"
+#include "custom/data_model/line_trace_car_state.h"
 
 LineTraceCar::LineTraceCar(LineTraceCarBuilder *builder) : Car(builder) {
     this->front_mid_reflector_ = builder->GetFrontMidReflector();

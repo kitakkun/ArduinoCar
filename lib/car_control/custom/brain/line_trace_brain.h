@@ -2,7 +2,7 @@
 #define ZIGZAG_LINE_TRACE_BRAIN
 
 #include "core/logic/brain.h"
-#include "custom/car/line_trace_car_state.h"
+#include "custom/data_model/line_trace_car_state.h"
 
 enum ZigZagLineTraceState {
     READY,

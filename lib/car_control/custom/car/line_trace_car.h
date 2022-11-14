@@ -5,7 +5,7 @@
 #include "core/car.h"
 #include "core/component/photo_reflector.h"
 #include "line_trace_car_builder.h"
-#include "line_trace_car_state.h"
+#include "custom/data_model/line_trace_car_state.h"
 #include "custom/brain/line_trace_brain.h"
 
 class LineTraceCarBuilder;
