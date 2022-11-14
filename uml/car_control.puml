@@ -72,6 +72,12 @@ abstract class LineTraceBrain {
 + SetCurrentCarState(car_state: LineTraceCarState)
 # current_car_state_: LineTraceCarState
 # activity_state_: LineTraceActivityState
+# Ready(): Instruction*
+# Search(): Instruction*
+# Trace(): Instruction*
+# ReadyBack(): Instruction*
+# SearchBack(): Instruction*
+# TraceBack(): Instruction*
 }
 
 enum LineTraceActivityState {
@@ -85,10 +91,46 @@ enum LineTraceActivityState {
 }
 
 class LineTraceCarBuilder {
+- brain_: LineTraceBrain*
+- front_mid_reflector_: PhotoReflector*
+- front_left_reflector_: PhotoReflector*
+- front_right_reflector_: PhotoReflector*
+- back_mid_reflector_: PhotoReflector*
+- back_left_reflector_: PhotoReflector*
+- back_right_reflector_: PhotoReflector*
++ SetBrain(brain: LineTraceBrain*)
++ SetFrontMidReflector(reflector: PhotoReflector*)
++ SetFrontLeftReflector(reflector: PhotoReflector*)
++ SetFrontRightReflector(reflector: PhotoReflector*)
++ SetBackMidReflector(reflector: PhotoReflector*)
++ SetBackLeftReflector(reflector: PhotoReflector*)
++ SetBackRightReflector(reflector: PhotoReflector*)
++ GetBrain(): LineTraceBrain*
++ GetFrontMidReflector(): PhotoReflector*
++ GetFrontLeftReflector(): PhotoReflector*
++ GetFrontRightReflector(): PhotoReflector*
++ GetBackMidReflector(): PhotoReflector*
++ GetBackLeftReflector(): PhotoReflector*
++ GetBackRightReflector(): PhotoReflector*
 }
 
+class LineTraceGoAndBackBrain {
++ LineTraceGoAndBackBrain(base_speed: int, torque_force: int)
+- base_speed_: int
+- torque_force_: int
+}
+
+LineTraceGoAndBackBrain --|> LineTraceBrain
 LineTraceCar --|> Car
 LineTraceCar ..> LineTraceCarState
+LineTraceCar ..> LineTraceBrain
+LineTraceCar ..> PhotoReflector
+LineTraceCar ..> Instruction
+LineTraceBrain ..|> Brain
+LineTraceBrain ..> LineTraceActivityState
+LineTraceCarBuilder ..> PhotoReflector
+LineTraceCarBuilder ..> LineTraceBrain
+LineTraceCarBuilder --|> CarBuilder
 
 Car ..> Wheel
 
