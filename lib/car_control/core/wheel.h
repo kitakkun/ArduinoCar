@@ -19,15 +19,15 @@ public:
     /**
      * 加速する
      * @param amount 加速する量
-     * @deprecated UpdateSpeedを使ってください。
      */
+    [[deprecated("UpdateSpeedを使ってください。")]]
     void Accelerate(signed int amount);
 
     /**
      * 減速する
      * @param amount 減速する量
-     * @deprecated UpdateSpeedを使ってください。
      */
+    [[deprecated("UpdateSpeedを使ってください。")]]
     void Decelerate(signed int amount);
 
     /**
@@ -44,8 +44,8 @@ public:
 
     /**
      * 変更内容の反映
-     * @deprecated UpdateDirection, UpdateSpeedで即座に更新してしまいますので、不要です。
      */
+    [[deprecated("UpdateDirection, UpdateSpeedで即座に更新してしまいますので、不要です。")]]
     void Apply();
 
     /**
@@ -68,6 +68,7 @@ private:
     int speed_;     /// 速度
 
     void ApplySpeed() const;
+
     void ApplyDirection();
 };
 
