@@ -27,12 +27,6 @@ void Wheel::UpdateSpeed(signed int speed) {
     ApplySpeed();
 }
 
-// 減速
-void Wheel::Decelerate(signed int amount) {
-    this->speed_ -= amount;
-    if (speed_ < 0) speed_ = 0;
-}
-
 void Wheel::Apply() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);

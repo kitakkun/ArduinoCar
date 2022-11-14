@@ -12,8 +12,8 @@ int StopInstruction::runCoroutine() {
     right_unit_decelerate_amount_ = (double)start_right_speed_ / duration_millis_;  /// 右車輪の減速量
 
     while (left_wheel_->Speed() > 0 || right_wheel_->Speed() > 0) {
-        left_wheel_->Decelerate(left_unit_decelerate_amount_);
-        right_wheel_->Decelerate(right_unit_decelerate_amount_);
+        left_wheel_->UpdateDeltaSpeed(-left_unit_decelerate_amount_);
+        right_wheel_->UpdateDeltaSpeed(-right_unit_decelerate_amount_);
         COROUTINE_DELAY(1);
     }
     COROUTINE_END();

@@ -17,13 +17,6 @@ public:
     Wheel(int plus_pin, int minus_pin, int pwm_pin);
 
     /**
-     * 減速する
-     * @param amount 減速する量
-     */
-    [[deprecated("UpdateSpeedを使ってください。")]]
-    void Decelerate(signed int amount);
-
-    /**
      * 速度の更新
      * @param speed 速度
      */

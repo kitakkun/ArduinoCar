@@ -6,7 +6,6 @@
 #include "custom/instruction/wait_instruction.h"
 #include "ArduinoLog.h"
 #include "custom/instruction/update_direction_instruction.h"
-#include "custom/instruction/decelerate_instruction.h"
 #include "custom/instruction/delta_speed_update_instruction.h"
 
 #define THRESHOLD 10
@@ -63,7 +62,7 @@ Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
                 state_ = READY_FOR_BACK;
                 return new ForceStopInstruction();
             }
-            return new DecelerateInstruction(5);
+            return new DeltaSpeedUpdateInstruction(-5);
         }
 
         // 左が黒なら左へ曲がる
@@ -118,7 +117,7 @@ Instruction *ZigZagLineTraceBrain::CalculateNextInstruction(CarState state) {
                     last_instruction_ = TorqueLeft;
                     return new TorqueLeftInstruction(torque_force_, 30);
                 }
-                return new DecelerateInstruction(5);
+                return new DeltaSpeedUpdateInstruction(-5);
             }
         }
 
