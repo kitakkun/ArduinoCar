@@ -48,9 +48,9 @@ class CarState <<struct>>  {
 + int rw_speed
 + MoveDirection lw_direction
 + MoveDirection rw_direction
-+ PaperColor mid_color
-+ PaperColor left_color
-+ PaperColor right_color
++ BinaryColor mid_color
++ BinaryColor left_color
++ BinaryColor right_color
 + int mid_raw
 + int left_raw
 + int right_raw
@@ -117,7 +117,7 @@ class PhotoReflector {
 - int black_theta_
 - int white_theta_
 + PhotoReflector(int pin, int black_theta, int white_theta)
-+ PaperColor Value()
++ BinaryColor Value()
 }
 
 
