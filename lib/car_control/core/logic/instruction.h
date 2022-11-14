@@ -3,6 +3,7 @@
 
 #include "core/component/wheel.h"
 #include "ace_routine/Coroutine.h"
+#include "instruction_mode.h"
 
 /**
  * 車に対する指令を表す抽象クラス
@@ -18,9 +19,14 @@ public:
     int runCoroutine() override { return 0; };
 
     void Setup(Wheel *left_wheel, Wheel *right_wheel);
+
+    InstructionMode Mode();
+
+    void SetMode(InstructionMode mode);
 protected:
     Wheel *left_wheel_;
     Wheel *right_wheel_;
+    InstructionMode mode_ = none;
 };
 
 #endif //INSTRUCTION_H

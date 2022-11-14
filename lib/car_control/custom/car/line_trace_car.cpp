@@ -21,7 +21,17 @@ void LineTraceCar::UpdateSensors() {
 
 void LineTraceCar::Think() {
     brain_->SetCurrentCarState(CollectCarState());
-    instruction_ = brain_->CalculateNextInstruction();
+    Instruction *instruction = brain_->CalculateNextInstruction();
+    if (instruction_ == nullptr) {
+        instruction_ = instruction;
+        return;
+    }
+    if (instruction->Mode() == interrupt) {
+        delete instruction_;
+        instruction_ = instruction;
+    } else {
+        delete instruction;
+    }
 }
 
 void LineTraceCar::Act() {
@@ -37,21 +47,21 @@ void LineTraceCar::Act() {
 
 LineTraceCarState LineTraceCar::CollectCarState() {
     return {
-        left_wheel_->Speed(),
-        right_wheel_->Speed(),
-        left_wheel_->Direction(),
-        right_wheel_->Direction(),
-        front_mid_reflector_->Value(),
-        front_left_reflector_->Value(),
-        front_right_reflector_->Value(),
-        back_mid_reflector_->Value(),
-        back_left_reflector_->Value(),
-        back_right_reflector_->Value(),
-        front_mid_reflector_->RawValue(),
-        front_left_reflector_->RawValue(),
-        front_right_reflector_->RawValue(),
-        back_mid_reflector_->RawValue(),
-        back_left_reflector_->RawValue(),
-        back_right_reflector_->RawValue(),
+            left_wheel_->Speed(),
+            right_wheel_->Speed(),
+            left_wheel_->Direction(),
+            right_wheel_->Direction(),
+            front_mid_reflector_->Value(),
+            front_left_reflector_->Value(),
+            front_right_reflector_->Value(),
+            back_mid_reflector_->Value(),
+            back_left_reflector_->Value(),
+            back_right_reflector_->Value(),
+            front_mid_reflector_->RawValue(),
+            front_left_reflector_->RawValue(),
+            front_right_reflector_->RawValue(),
+            back_mid_reflector_->RawValue(),
+            back_left_reflector_->RawValue(),
+            back_right_reflector_->RawValue(),
     };
 }
