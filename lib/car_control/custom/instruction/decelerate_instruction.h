@@ -8,7 +8,9 @@
  */
 class DecelerateInstruction : public Instruction {
 public:
+    [[deprecated("DeltaSpeedUpdateInstructionを使ってください")]]
     explicit DecelerateInstruction(int amount);
+
     int runCoroutine() override;
 private:
     int amount_;    /// 減速量

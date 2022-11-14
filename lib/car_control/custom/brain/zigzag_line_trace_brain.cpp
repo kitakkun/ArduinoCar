@@ -7,7 +7,7 @@
 #include "ArduinoLog.h"
 #include "custom/instruction/update_direction_instruction.h"
 #include "custom/instruction/decelerate_instruction.h"
-#include "custom/instruction/accelerate_instruction.h"
+#include "custom/instruction/delta_speed_update_instruction.h"
 
 #define THRESHOLD 10
 

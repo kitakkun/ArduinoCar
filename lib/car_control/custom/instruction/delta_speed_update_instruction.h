@@ -4,12 +4,12 @@
 #include "core/instruction.h"
 
 /*
- * 加速指令
+ * スピード差分調整指令
  */
-class AccelerateInstruction : public Instruction {
+class DeltaSpeedUpdateInstruction : public Instruction {
 public:
-    explicit AccelerateInstruction(int amount);
-    AccelerateInstruction(int l_amount, int r_amount);
+    explicit DeltaSpeedUpdateInstruction(int amount);
+    DeltaSpeedUpdateInstruction(int l_amount, int r_amount);
     int runCoroutine() override;
 private:
     int l_amount_;
