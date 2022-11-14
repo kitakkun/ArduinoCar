@@ -9,9 +9,7 @@ TorqueLeftInstruction::TorqueLeftInstruction(int force, int duration_millis){
 int TorqueLeftInstruction::runCoroutine() {
     COROUTINE_BEGIN();
     left_wheel_->UpdateSpeed(right_wheel_->Speed() - force_);
-    left_wheel_->Apply();
     COROUTINE_DELAY(duration_millis_);
     left_wheel_->UpdateSpeed(right_wheel_->Speed());
-    left_wheel_->Apply();
     COROUTINE_END();
 }
