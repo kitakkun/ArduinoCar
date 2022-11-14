@@ -25,8 +25,6 @@ void setup() {
 
 void loop() {
      car->UpdateSensors();
-     CarState state = car->CollectCarState();
-     Instruction *instruction = car->Think(state);
-     car->SetInstruction(instruction);
+     car->Think();
      car->Act();
 }
