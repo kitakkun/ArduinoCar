@@ -7,7 +7,7 @@
 #include "config.h"
 #include "core/instruction.h"
 #include "core/move_direction.h"
-#include "core/paper_color.h"
+#include "core/binary_color.h"
 #include "core/photo_reflector.h"
 #include "core/sensor.h"
 #include "core/wheel.h"

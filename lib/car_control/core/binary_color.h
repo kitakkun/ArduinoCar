@@ -2,7 +2,7 @@
 #define PAPER_COLOR_H
 
 // 紙面の色（黒・白）
-enum PaperColor {
+enum BinaryColor {
     black, white
 };
 

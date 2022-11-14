@@ -2,7 +2,7 @@
 #define LINE_SENSOR_ADAPTER_H
 
 #include "sensor.h"
-#include "paper_color.h"
+#include "binary_color.h"
 
 /**
  * フォトリフレクタに対応するセンサークラス
@@ -20,7 +20,7 @@ public:
      * センサーが認識した色を取得
      * @return 認識した色（白・黒）
      */
-    PaperColor Value() const;
+    BinaryColor Value() const;
 
 private:
     int theta_;      /// 白か黒か判定する閾値
