@@ -1,13 +1,13 @@
 #include "zigzag_line_trace_brain.h"
-#include "control/instruction/implementation/torque_left_instruction.h"
-#include "control/instruction/implementation/torque_right_instruction.h"
-#include "control/instruction/implementation/force_speed_update_instruction.h"
-#include "control/instruction/implementation/force_stop_instruction.h"
-#include "control/instruction/implementation/WaitInstruction.h"
+#include "custom/instruction/torque_left_instruction.h"
+#include "custom/instruction/torque_right_instruction.h"
+#include "custom/instruction/force_speed_update_instruction.h"
+#include "custom/instruction/force_stop_instruction.h"
+#include "custom/instruction/WaitInstruction.h"
 #include "ArduinoLog.h"
-#include "control/instruction/implementation/update_direction_instruction.h"
-#include "control/instruction/implementation/decelerate_instruction.h"
-#include "control/instruction/implementation/accelerate_instruction.h"
+#include "custom/instruction/update_direction_instruction.h"
+#include "custom/instruction/decelerate_instruction.h"
+#include "custom/instruction/accelerate_instruction.h"
 
 #define THRESHOLD 10
 

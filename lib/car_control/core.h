@@ -2,7 +2,6 @@
 #define CAR_CONTROL_H
 
 #include "core/brain.h"
-#include "control/brain/zigzag_line_trace_brain.h"
 #include "core/car.h"
 #include "core/car_builder.h"
 #include "config.h"

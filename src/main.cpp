@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include <car_control.h>
-#include <config.h>
+#include <core.h>
+#include "config.h"
+#include "custom/brain/zigzag_line_trace_brain.h"
 #include <ArduinoLog.h>
-#include "control/brain/dummy_brain.h"
 
 Car *car;
 
