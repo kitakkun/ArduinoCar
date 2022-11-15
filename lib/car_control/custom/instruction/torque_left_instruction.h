@@ -8,9 +8,10 @@
  */
 class TorqueLeftInstruction : public Instruction {
 public:
-    explicit TorqueLeftInstruction(int force, int duration_millis);
+    explicit TorqueLeftInstruction(int base_speed, int force, int duration_millis);
     int runCoroutine() override;
 private:
+    int base_speed_;
     int force_;     /// 加えるトルクの強さ
     int duration_millis_;     /// トルクを加える時間
 };

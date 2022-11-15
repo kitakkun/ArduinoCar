@@ -21,12 +21,18 @@ public:
     Instruction *CalculateNextInstruction() override;
 
 protected:
-    virtual Instruction* Ready() = 0;
-    virtual Instruction* Search() = 0;
-    virtual Instruction* Trace() = 0;
-    virtual Instruction* ReadyBack() = 0;
-    virtual Instruction* SearchBack() = 0;
-    virtual Instruction* TraceBack() = 0;
+    virtual Instruction *Ready() = 0;
+
+    virtual Instruction *Search() = 0;
+
+    virtual Instruction *Trace() = 0;
+
+    virtual Instruction *ReadyBack() = 0;
+
+    virtual Instruction *SearchBack() = 0;
+
+    virtual Instruction *TraceBack() = 0;
+
     LineTraceCarState current_car_state_;
     LineTraceActivityState activity_state_ = ready;
 };
