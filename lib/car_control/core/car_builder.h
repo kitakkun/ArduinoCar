@@ -1,27 +1,21 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CAR_BUILDER_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CAR_BUILDER_H
 
-#include "core/logic/brain.h"
 #include "car.h"
 
 class Car;
 
 class CarBuilder {
 public:
+    virtual void SetLeftWheel(Wheel *left_wheel) = 0;
 
-    void SetLeftWheel(WheelImpl *left_wheel);
+    virtual void SetRightWheel(Wheel *right_wheel) = 0;
 
-    void SetRightWheel(WheelImpl *right_wheel);
+    virtual Wheel *GetLeftWheel() = 0;
 
-    WheelImpl *GetLeftWheel();
-
-    WheelImpl *GetRightWheel();
+    virtual Wheel *GetRightWheel() = 0;
 
     virtual Car *Build() = 0;
-
-protected:
-    WheelImpl *left_wheel_;
-    WheelImpl *right_wheel_;
 };
 
 

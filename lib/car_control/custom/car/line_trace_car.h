@@ -22,12 +22,14 @@ public:
 
 private:
     LineTraceBrain *brain_;
-    PhotoReflectorImpl *front_mid_reflector_;
-    PhotoReflectorImpl *front_left_reflector_;
-    PhotoReflectorImpl *front_right_reflector_;
-    PhotoReflectorImpl *back_mid_reflector_;
-    PhotoReflectorImpl *back_left_reflector_;
-    PhotoReflectorImpl *back_right_reflector_;
+    Wheel *left_wheel_;
+    Wheel *right_wheel_;
+    PhotoReflector *front_mid_reflector_;
+    PhotoReflector *front_left_reflector_;
+    PhotoReflector *front_right_reflector_;
+    PhotoReflector *back_mid_reflector_;
+    PhotoReflector *back_left_reflector_;
+    PhotoReflector *back_right_reflector_;
     Instruction *instruction_;
 
     LineTraceCarState CollectCarState();
