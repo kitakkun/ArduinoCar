@@ -3,6 +3,9 @@
 
 #include "line_trace_brain.h"
 
+/**
+ * 直線をトレースして、バックで戻ってくるアルゴリズム
+ */
 class LineTraceGoAndBackBrain : public LineTraceBrain {
 public:
     LineTraceGoAndBackBrain(int base_speed, int torque_force);
@@ -11,10 +14,14 @@ protected:
     Instruction *Ready() override;
 
     Instruction *Search() override;
-    Instruction * Trace() override;
-    Instruction * ReadyBack() override;
-    Instruction * SearchBack() override;
-    Instruction * TraceBack() override;
+
+    Instruction *Trace() override;
+
+    Instruction *ReadyBack() override;
+
+    Instruction *SearchBack() override;
+
+    Instruction *TraceBack() override;
 
 private:
     int base_speed_;

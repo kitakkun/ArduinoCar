@@ -64,33 +64,35 @@ Instruction *LineTraceGoAndBackBrain::ReadyBack() {
 }
 
 Instruction *LineTraceGoAndBackBrain::SearchBack() {
-
+    if (current_car_state_.IsAnyBackBlack()) {
+        last_time_on_black_ = millis();
+        activity_state_ = tracing;
+        return new ForceStopInstruction();
+    }
+    return new ForceSpeedUpdateInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::TraceBack() {
     unsigned long current_time = millis();
+
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
         return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
     }
 
-    if (current_car_state_.front_mid_reflector_color_ == white &&
-        current_car_state_.front_left_reflector_color_ == white &&
-        current_car_state_.front_right_reflector_color_ == white) {
-        if (current_time - last_time_on_black_ > 1000) {
+    if (current_car_state_.IsAllBackWhite() && current_time - last_time_on_black_ > 1000) {
             activity_state_ = finished;
             return new ForceStopInstruction();
-        }
     }
 
-    if (current_car_state_.front_right_reflector_color_ == black) {
+    if (current_car_state_.back_left_reflector_color_ == black) {
         last_time_on_black_ = millis();
         return new TorqueRightInstruction(base_speed_, torque_force_ - 15, 30, interrupt);
     }
-    if (current_car_state_.front_left_reflector_color_ == black) {
+    if (current_car_state_.back_right_reflector_color_ == black) {
         last_time_on_black_ = millis();
         return new TorqueLeftInstruction(base_speed_, torque_force_ - 15, 30, interrupt);
     }
-    if (current_car_state_.front_mid_reflector_color_ == black) {
+    if (current_car_state_.back_mid_reflector_color_ == black) {
         last_time_on_black_ = millis();
         return new ForceSpeedUpdateInstruction(base_speed_ - 15, base_speed_);
     }
