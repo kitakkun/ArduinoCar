@@ -7,15 +7,15 @@ ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(
     this->right_speed_ = right_speed;
 }
 
+ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed, InstructionMode mode, String tag)
+        : Instruction(mode, tag) {
+    this->left_speed_ = speed;
+    this->right_speed_ = speed;
+}
+
 int ForceSpeedUpdateInstruction::runCoroutine() {
     COROUTINE_BEGIN();
     left_wheel_->UpdateSpeed(this->left_speed_);
     right_wheel_->UpdateSpeed(this->right_speed_);
     COROUTINE_END();
-}
-
-ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed, InstructionMode mode, String tag)
-        : Instruction(mode, tag) {
-    this->left_speed_ = speed;
-    this->right_speed_ = speed;
 }

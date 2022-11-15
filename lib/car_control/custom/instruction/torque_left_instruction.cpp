@@ -1,8 +1,9 @@
 #include "torque_left_instruction.h"
 #include "ArduinoLog.h"
 
-TorqueLeftInstruction::TorqueLeftInstruction(int base_speed, int force, int duration_millis, InstructionMode mode, String tag)
-        : Instruction(mode, tag) {
+TorqueLeftInstruction::TorqueLeftInstruction(
+        int base_speed, int force, int duration_millis, InstructionMode mode, String tag
+) : Instruction(mode, tag) {
     base_speed_ = base_speed;
     force_ = force;
     duration_millis_ = duration_millis;

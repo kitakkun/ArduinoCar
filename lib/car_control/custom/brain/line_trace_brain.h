@@ -16,7 +16,7 @@ enum LineTraceActivityState {
 
 class LineTraceBrain : public Brain {
 public:
-    LineTraceBrain(String tag = "LineTraceBrain");
+    explicit LineTraceBrain(String tag = "LineTraceBrain");
 
     void SetCurrentCarState(LineTraceCarState car_state);
 

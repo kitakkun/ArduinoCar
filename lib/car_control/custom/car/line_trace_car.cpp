@@ -1,7 +1,8 @@
 #include "line_trace_car.h"
 #include "custom/data_model/line_trace_car_state.h"
+#include "core/debug/logger.h"
 
-LineTraceCar::LineTraceCar(LineTraceCarBuilder *builder) : Car(builder) {
+LineTraceCar::LineTraceCar(LineTraceCarBuilder *builder, String tag) : Car(builder), Debuggable(tag) {
     this->brain_ = builder->GetBrain();
     this->front_mid_reflector_ = builder->GetFrontMidReflector();
     this->front_left_reflector_ = builder->GetFrontLeftReflector();
@@ -30,6 +31,7 @@ void LineTraceCar::Think() {
         return;
     }
     if (instruction->Mode() == interrupt) {
+        instruction_->reset();
         delete instruction_;
         instruction_ = instruction;
         instruction_->Setup(left_wheel_, right_wheel_);
@@ -42,6 +44,7 @@ void LineTraceCar::Act() {
     if (this->instruction_ == nullptr) return;
 
     instruction_->runCoroutine();
+    Logger::Verboseln(this, "running %s", instruction_->Tag().c_str());
 
     if (instruction_->isDone()) {
         delete instruction_;

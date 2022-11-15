@@ -24,4 +24,4 @@ Instruction *LineTraceBrain::CalculateNextInstruction() {
     }
 }
 
-LineTraceBrain::LineTraceBrain(String tag) : Brain(tag) {}
+LineTraceBrain::LineTraceBrain(String tag) : Brain(tag) { }

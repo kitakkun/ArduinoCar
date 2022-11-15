@@ -7,7 +7,7 @@ class ForceSpeedUpdateInstruction: public Instruction {
 public:
     int runCoroutine() override;
     ForceSpeedUpdateInstruction(int left_speed, int right_speed, InstructionMode mode = none, String tag="ForceSpeedUpdateInstruction");
-    ForceSpeedUpdateInstruction(int speed, InstructionMode mode = none, String tag="ForceSpeedUpdateInstruction");
+    explicit ForceSpeedUpdateInstruction(int speed, InstructionMode mode = none, String tag="ForceSpeedUpdateInstruction");
 private:
     int left_speed_;
     int right_speed_;

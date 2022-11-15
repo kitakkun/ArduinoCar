@@ -10,13 +10,16 @@
 
 class LineTraceCarBuilder;
 
-class LineTraceCar : public Car {
+class LineTraceCar : public Car, public Debuggable {
 public:
-    LineTraceCar(LineTraceCarBuilder *builder);
+    explicit LineTraceCar(LineTraceCarBuilder *builder, String tag = "LineTraceCar");
 
     void UpdateSensors() override;
+
     void Think() override;
+
     void Act() override;
+
 private:
     LineTraceBrain *brain_;
     PhotoReflector *front_mid_reflector_;
@@ -25,7 +28,7 @@ private:
     PhotoReflector *back_mid_reflector_;
     PhotoReflector *back_left_reflector_;
     PhotoReflector *back_right_reflector_;
-    Instruction* instruction_;
+    Instruction *instruction_;
 
     LineTraceCarState CollectCarState();
 };

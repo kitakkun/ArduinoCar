@@ -3,16 +3,23 @@
 
 #include "serstream"
 
+/**
+ * Loggerクラスによるデバッグを可能にするクラス
+ */
 class Debuggable {
 public:
-    explicit Debuggable(String tag) {
+    explicit Debuggable(String tag, bool enable_debug = true) {
         this->tag_ = tag;
+        this->enable_debug = enable_debug;
     }
 
-    virtual String Tag() { return this->tag_; }
+    String Tag() const { return this->tag_; }
+
+    bool EnableDebug() const { return this->enable_debug; }
 
 private:
     String tag_;
+    bool enable_debug;
 };
 
 
