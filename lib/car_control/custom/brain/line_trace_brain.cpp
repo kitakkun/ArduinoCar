@@ -23,6 +23,6 @@ Instruction *LineTraceBrain::CalculateNextInstruction() {
             return TraceBack();
         case finished:
         default:
-            return new ForceStopInstruction();
+            return Finish();
     }
 }

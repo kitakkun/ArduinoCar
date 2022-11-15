@@ -33,6 +33,8 @@ protected:
 
     virtual Instruction *TraceBack() = 0;
 
+    virtual Instruction *Finish() = 0;
+
     LineTraceCarState current_car_state_;
     LineTraceActivityState activity_state_ = ready;
 };

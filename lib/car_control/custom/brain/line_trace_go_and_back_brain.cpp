@@ -99,3 +99,7 @@ Instruction *LineTraceGoAndBackBrain::TraceBack() {
 
     return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
 }
+
+Instruction *LineTraceGoAndBackBrain::Finish() {
+    return new ForceStopInstruction();
+}

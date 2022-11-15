@@ -23,6 +23,8 @@ protected:
 
     Instruction *TraceBack() override;
 
+    Instruction * Finish() override;
+
 private:
     int base_speed_;
     int torque_force_;
