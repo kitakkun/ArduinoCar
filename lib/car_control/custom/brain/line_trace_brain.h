@@ -29,7 +29,6 @@ protected:
     virtual Instruction* TraceBack() = 0;
     LineTraceCarState current_car_state_;
     LineTraceActivityState activity_state_ = ready;
-    unsigned long last_time_on_black_;
 };
 
 #endif // ZIGZAG_LINE_TRACE_BRAIN
