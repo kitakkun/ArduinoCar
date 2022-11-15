@@ -5,7 +5,7 @@
 
 class ForceStopInstruction : public Instruction {
 public:
-    explicit ForceStopInstruction();
+    explicit ForceStopInstruction(InstructionMode mode = none);
     int runCoroutine() override;
 };
 

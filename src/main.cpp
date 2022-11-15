@@ -13,7 +13,7 @@ void setup() {
 
     Log.verboseln("Building a Car instance...");
     LineTraceCarBuilder builder = LineTraceCarBuilder();
-    builder.SetBrain(new LineTraceBrain(105, 45));
+    builder.SetBrain(new LineTraceGoAndBackBrain(105, 45));
     builder.SetLeftWheel(new Wheel(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN));
     builder.SetRightWheel(new Wheel(RIGHT_MOTOR_PLUS_PIN, RIGHT_MOTOR_MINUS_PIN, RIGHT_MOTOR_PWM_PIN));
     builder.SetFrontMidReflector(new PhotoReflector(FRONT_MID_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
@@ -23,7 +23,7 @@ void setup() {
     builder.SetBackRightReflector(new PhotoReflector(BACK_RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     builder.SetBackLeftReflector(new PhotoReflector(BACK_LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD));
     car = builder.Build();
-    Log.verboseln("Done!");
+    Log.verboseln("Done! Started Program Lifecycle.");
 }
 
 void loop() {
