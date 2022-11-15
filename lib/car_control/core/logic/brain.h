@@ -10,6 +10,11 @@
 class Brain {
 public:
     /**
+     * デストラクタ
+     */
+    virtual ~Brain() = default;
+
+    /**
      * 次の行動を決定
      */
     virtual Instruction *CalculateNextInstruction() = 0;

@@ -11,6 +11,8 @@
  */
 class Instruction : public ace_routine::Coroutine {
 public:
+    virtual ~Instruction() = default;
+
     explicit Instruction(InstructionMode mode = none);
 
     int runCoroutine() override { return 0; };
