@@ -6,8 +6,7 @@
 
 class UpdateDirectionInstruction : public InstructionImpl {
 public:
-    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none,
-                                        String tag = "UpdateDirectionInstruction");
+    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none, String tag = "UpdateDirectionInstruction");
 
     int runCoroutine() override;
 

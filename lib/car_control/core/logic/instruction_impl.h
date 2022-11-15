@@ -7,8 +7,10 @@
 #include "core/debug/debuggable.h"
 #include "instruction.h"
 
-class InstructionImpl : public Instruction {
+class InstructionImpl : public Instruction, public Debuggable {
 public:
+    explicit InstructionImpl(InstructionMode mode, String tag);
+
     void Setup(Wheel *left_wheel, Wheel *right_wheel) override;
 
     InstructionMode Mode() override;

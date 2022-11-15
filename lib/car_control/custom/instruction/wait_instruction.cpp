@@ -1,6 +1,6 @@
 #include "wait_instruction.h"
 
-WaitInstruction::WaitInstruction(int duration_millis, InstructionMode mode, String tag) {
+WaitInstruction::WaitInstruction(int duration_millis, InstructionMode mode, String tag) : InstructionImpl(mode, tag) {
     duration_millis_ = duration_millis;
 }
 
