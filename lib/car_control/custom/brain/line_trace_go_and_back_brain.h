@@ -8,7 +8,7 @@
  */
 class LineTraceGoAndBackBrain : public LineTraceBrain {
 public:
-    LineTraceGoAndBackBrain(int base_speed, int torque_force);
+    LineTraceGoAndBackBrain(int base_speed, int torque_force, String tag = "LineTraceGoAndBackBrain");
 
 protected:
     Instruction *Ready() override;
@@ -23,7 +23,7 @@ protected:
 
     Instruction *TraceBack() override;
 
-    Instruction * Finish() override;
+    Instruction *Finish() override;
 
 private:
     int base_speed_;

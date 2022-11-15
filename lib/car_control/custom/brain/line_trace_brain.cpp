@@ -1,5 +1,4 @@
 #include "line_trace_brain.h"
-#include "custom/instructions.h"
 
 void LineTraceBrain::SetCurrentCarState(LineTraceCarState car_state) {
     current_car_state_ = car_state;
@@ -24,3 +23,5 @@ Instruction *LineTraceBrain::CalculateNextInstruction() {
             return Finish();
     }
 }
+
+LineTraceBrain::LineTraceBrain(String tag) : Brain(tag) {}
