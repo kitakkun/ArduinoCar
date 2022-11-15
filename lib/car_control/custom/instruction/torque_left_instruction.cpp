@@ -10,8 +10,13 @@ TorqueLeftInstruction::TorqueLeftInstruction(int base_speed, int force, int dura
 
 int TorqueLeftInstruction::runCoroutine() {
     COROUTINE_BEGIN();
-    left_wheel_->UpdateSpeed(base_speed_ - force_);
-    right_wheel_->UpdateSpeed(base_speed_);
+    if (left_wheel_->Direction() == forward) {
+        left_wheel_->UpdateSpeed(base_speed_ - force_);
+        right_wheel_->UpdateSpeed(base_speed_);
+    } else {
+        left_wheel_->UpdateSpeed(base_speed_);
+        right_wheel_->UpdateSpeed(base_speed_ - force_);
+    }
     COROUTINE_DELAY(duration_millis_);
     left_wheel_->UpdateSpeed(base_speed_);
     right_wheel_->UpdateSpeed(base_speed_);
