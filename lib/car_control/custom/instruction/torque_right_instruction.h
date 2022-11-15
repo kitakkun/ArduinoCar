@@ -8,7 +8,10 @@
  */
 class TorqueRightInstruction : public Instruction {
 public:
-    explicit TorqueRightInstruction(int base_speed, int force, int duration_millis, InstructionMode mode = none);
+    explicit TorqueRightInstruction(
+            int base_speed, int force, int duration_millis,
+            InstructionMode mode = none, String tag = "TorqueRightInstruction");
+
     int runCoroutine() override;
 
 private:
