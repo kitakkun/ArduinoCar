@@ -8,8 +8,10 @@
  */
 class TurnInstruction : public Instruction {
 public:
-    explicit TurnInstruction(int speed, int duration, InstructionMode mode = none);
+    explicit TurnInstruction(int speed, int duration, InstructionMode mode = none, String tag = "TurnInstruction");
+
     int runCoroutine() override;
+
 private:
     int speed_;
     int duration_;

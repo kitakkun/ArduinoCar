@@ -6,8 +6,11 @@
 
 class UpdateDirectionInstruction : public Instruction {
 public:
-    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none);
+    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none,
+                                        String tag = "UpdateDirectionInstruction");
+
     int runCoroutine() override;
+
 private:
     MoveDirection direction_;
 };

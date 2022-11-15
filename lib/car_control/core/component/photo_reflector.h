@@ -16,6 +16,8 @@ public:
      */
     explicit PhotoReflector(int pin, int theta, String tag="PhotoReflector");
 
+    void Update() override;
+
     /**
      * センサーが認識した色を取得
      * @return 認識した色（白・黒）

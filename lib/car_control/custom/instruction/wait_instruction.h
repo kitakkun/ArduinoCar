@@ -5,8 +5,10 @@
 
 class WaitInstruction : public Instruction {
 public:
-    explicit WaitInstruction(int duration_millis, InstructionMode mode = none);
+    explicit WaitInstruction(int duration_millis, InstructionMode mode = none, String tag = "WaitInstruction");
+
     int runCoroutine() override;
+
 private:
     int duration_millis_;
 };

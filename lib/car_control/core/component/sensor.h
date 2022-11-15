@@ -18,7 +18,7 @@ public:
     /**
      * センサー値を更新
      */
-    void Update();
+    virtual void Update();
 
     /**
      * センサー値の取得（生のデータ）

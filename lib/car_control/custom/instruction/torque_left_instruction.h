@@ -8,8 +8,12 @@
  */
 class TorqueLeftInstruction : public Instruction {
 public:
-    explicit TorqueLeftInstruction(int base_speed, int force, int duration_millis, InstructionMode mode = none);
+    explicit TorqueLeftInstruction(
+            int base_speed, int force, int duration_millis,
+            InstructionMode mode = none, String tag = "TorqueLeftInstruction");
+
     int runCoroutine() override;
+
 private:
     int base_speed_;
     int force_;     /// 加えるトルクの強さ

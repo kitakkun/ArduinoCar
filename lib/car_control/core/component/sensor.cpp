@@ -3,16 +3,17 @@
 #include <Arduino.h>
 
 // センサーの初期化
-Sensor::Sensor(int pin, String tag) : Debuggable(tag) {
+Sensor::Sensor(int pin, String tag) : Debuggable(tag, true) {
     this->pin_ = pin;
     this->raw_value_ = 0;
     pinMode(this->pin_, INPUT);
+    Logger::Verboseln(this, F("Instantiated"));
 }
 
 // センサーの更新
 void Sensor::Update() {
     this->raw_value_ = analogRead(this->pin_);
-    Logger::Verboseln(this, "Updated. New value is %d", raw_value_);
+    Logger::Verboseln(this, F("Updated. New value is %d"), raw_value_);
 }
 
 // センサーの現在の値を取得

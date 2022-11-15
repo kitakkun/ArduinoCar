@@ -15,19 +15,19 @@ public:
      * @param minus_pin マイナスのピン
      * @param pwm_pin 速度調整用PWMのピン
      */
-    Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag="Wheel");
+    Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag = "Wheel");
 
     /**
      * 速度の更新
      * @param speed 速度
      */
-    void UpdateSpeed(signed int speed);
+    void UpdateSpeed(int speed);
 
     /**
      * 速度の更新（差分）
      * @param delta_speed 速度差分
      */
-    void UpdateDeltaSpeed(signed int delta_speed);
+    void UpdateDeltaSpeed(int delta_speed);
 
     /**
      * 回転方向の転換
@@ -51,10 +51,10 @@ private:
     int plus_pin_;      /// プラスピン
     int minus_pin_;     /// マイナスピン
     int pwm_pin_;       /// PWMのピン
-    MoveDirection direction_ = forward;     /// 進行方向
+    MoveDirection direction_;     /// 進行方向
     int speed_;     /// 速度
 
-    void ApplySpeed() const;
+    void ApplySpeed();
 
     void ApplyDirection();
 };

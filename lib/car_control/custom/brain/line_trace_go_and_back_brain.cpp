@@ -1,7 +1,8 @@
 #include "line_trace_go_and_back_brain.h"
 #include "custom/instructions.h"
+#include "core/debug/logger.h"
 
-LineTraceGoAndBackBrain::LineTraceGoAndBackBrain(int base_speed, int torque_force) {
+LineTraceGoAndBackBrain::LineTraceGoAndBackBrain(int base_speed, int torque_force, String tag) : LineTraceBrain(tag) {
     this->base_speed_ = base_speed;
     this->torque_force_ = torque_force;
     this->last_time_on_black_ = 0;
@@ -9,12 +10,15 @@ LineTraceGoAndBackBrain::LineTraceGoAndBackBrain(int base_speed, int torque_forc
 
 Instruction *LineTraceGoAndBackBrain::Ready() {
     // 発進してライン探索モードに移行
+    Logger::Verboseln(this, F("READY... STARTING SEARCH MODE"));
     this->activity_state_ = searching;
     return new ForceSpeedUpdateInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::Search() {
+    Logger::Verboseln(this, F("SEARCHING LINE..."));
     if (current_car_state_.IsAnyFrontBlack()) {
+        Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE MODE..."));
         last_time_on_black_ = millis();
         activity_state_ = tracing;
         return new ForceStopInstruction();
@@ -37,6 +41,7 @@ Instruction *LineTraceGoAndBackBrain::Trace() {
 
     // 前後全部白で一定時間経過したらトレース完了とみなしバックモードへ（一旦停止）
     if (current_car_state_.IsAllWhite() && current_time - last_time_on_black_ > 500) {
+        Logger::Verboseln(this, F("TRACING COMPLETED! STARTING READY_BACK MODE..."));
         activity_state_ = readyBack;
         return new ForceStopInstruction(interrupt);
     }
@@ -58,15 +63,18 @@ Instruction *LineTraceGoAndBackBrain::Trace() {
 }
 
 Instruction *LineTraceGoAndBackBrain::ReadyBack() {
+    Logger::Verboseln(this, F("READY BACKING... STARTING SEARCH_BACK MODE"));
     last_time_on_black_ = millis();
     this->activity_state_ = searchingBack;
     return new UpdateDirectionInstruction(backward);
 }
 
 Instruction *LineTraceGoAndBackBrain::SearchBack() {
+    Logger::Verboseln(this, F("SEARCHING BACK LINE..."));
     if (current_car_state_.IsAnyBackBlack()) {
+        Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE_BACK MODE"));
         last_time_on_black_ = millis();
-        activity_state_ = tracing;
+        activity_state_ = tracingBack;
         return new ForceStopInstruction();
     }
     return new ForceSpeedUpdateInstruction(base_speed_);
@@ -80,8 +88,10 @@ Instruction *LineTraceGoAndBackBrain::TraceBack() {
     }
 
     if (current_car_state_.IsAllBackWhite() && current_time - last_time_on_black_ > 1000) {
-            activity_state_ = finished;
-            return new ForceStopInstruction();
+        Logger::Verboseln(this, F("TRACING COMPLETED!"));
+        Logger::Verboseln(this, F("FINISHED LINE TRACE TASK."));
+        activity_state_ = finished;
+        return new ForceStopInstruction();
     }
 
     if (current_car_state_.back_left_reflector_color_ == black) {

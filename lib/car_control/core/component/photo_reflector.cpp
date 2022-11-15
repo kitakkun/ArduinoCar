@@ -8,10 +8,15 @@ PhotoReflector::PhotoReflector(int pin, int theta, String tag) : Sensor(pin, tag
 
 // フォトリフレクタの値取得（黒か白）
 BinaryColor PhotoReflector::Value() const {
-    int value = this->RawValue();
-    if (value > this->theta_) {
-        return black;
+    return value_;
+}
+
+void PhotoReflector::Update() {
+    Sensor::Update();
+    int raw = RawValue();
+    if (raw > this->theta_) {
+        value_ = black;
     } else {
-        return white;
+        value_ = white;
     }
 }

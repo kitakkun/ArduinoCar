@@ -7,12 +7,11 @@
  * 車の頭脳に相当するクラス
  * 様々な状況に応じた制御はこのクラスが行う
  */
-class Brain {
+class Brain : public Debuggable {
 public:
-    /**
-     * デストラクタ
-     */
     virtual ~Brain() = default;
+
+    explicit Brain(String tag);
 
     /**
      * 次の行動を決定

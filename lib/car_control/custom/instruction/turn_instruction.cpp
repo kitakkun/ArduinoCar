@@ -1,6 +1,6 @@
 #include "turn_instruction.h"
 
-TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode) : Instruction(mode) {
+TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode, String tag) : Instruction(mode, tag) {
     speed_ = speed;
     duration_ = duration;
 }
