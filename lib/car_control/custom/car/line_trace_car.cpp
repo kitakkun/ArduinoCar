@@ -1,6 +1,5 @@
 #include "line_trace_car.h"
 #include "custom/data_model/line_trace_car_state.h"
-#include "core/debug/logger.h"
 
 LineTraceCar::LineTraceCar(LineTraceCarBuilder *builder, String tag) : Car(builder), Debuggable(tag) {
     this->brain_ = builder->GetBrain();
@@ -44,7 +43,6 @@ void LineTraceCar::Act() {
     if (this->instruction_ == nullptr) return;
 
     instruction_->runCoroutine();
-    Logger::Verboseln(this, F("running %s"), instruction_->Tag().c_str());
 
     if (instruction_->isDone()) {
         delete instruction_;

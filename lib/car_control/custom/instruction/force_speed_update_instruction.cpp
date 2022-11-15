@@ -1,14 +1,13 @@
 #include "force_speed_update_instruction.h"
 
 ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(
-        int left_speed, int right_speed, InstructionMode mode, String tag)
-        : Instruction(mode, tag) {
+        int left_speed, int right_speed, InstructionMode mode, String tag
+) {
     this->left_speed_ = left_speed;
     this->right_speed_ = right_speed;
 }
 
-ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed, InstructionMode mode, String tag)
-        : Instruction(mode, tag) {
+ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed, InstructionMode mode, String tag) {
     this->left_speed_ = speed;
     this->right_speed_ = speed;
 }

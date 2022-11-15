@@ -1,33 +1,23 @@
-#ifndef INSTRUCTION_H
-#define INSTRUCTION_H
+#ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_INSTRUCTION_H
+#define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_INSTRUCTION_H
 
-#include "core/component/wheel_impl.h"
 #include "ace_routine/Coroutine.h"
+#include "core/component/wheel.h"
 #include "instruction_mode.h"
-#include "core/debug/debuggable.h"
 
 /**
  * 車に対する指令を表す抽象クラス
  * 継承して中身を実装することで様々な制御を作れる
  */
-class Instruction : public ace_routine::Coroutine, public Debuggable {
+class Instruction : public ace_routine::Coroutine {
 public:
-    virtual ~Instruction();
+    virtual ~Instruction() = default;
 
-    explicit Instruction(InstructionMode mode = none, String tag="Instruction");
+    int runCoroutine() override = 0;
 
-    int runCoroutine() override { return 0; };
+    virtual void Setup(Wheel *left_wheel, Wheel *right_wheel) = 0;
 
-    void Setup(WheelImpl *left_wheel, WheelImpl *right_wheel);
-
-    InstructionMode Mode();
-
-    void SetMode(InstructionMode mode);
-
-protected:
-    WheelImpl *left_wheel_;
-    WheelImpl *right_wheel_;
-    InstructionMode mode_;
+    virtual InstructionMode Mode() = 0;
 };
 
-#endif //INSTRUCTION_H
+#endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_INSTRUCTION_H

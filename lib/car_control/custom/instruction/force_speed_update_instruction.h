@@ -1,9 +1,9 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FORCE_SPEED_UPDATE_INSTRUCTION_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FORCE_SPEED_UPDATE_INSTRUCTION_H
 
-#include "core/logic/instruction.h"
+#include "core/logic/instruction_impl.h"
 
-class ForceSpeedUpdateInstruction: public Instruction {
+class ForceSpeedUpdateInstruction: public InstructionImpl {
 public:
     int runCoroutine() override;
     ForceSpeedUpdateInstruction(int left_speed, int right_speed, InstructionMode mode = none, String tag="ForceSpeedUpdateInstruction");

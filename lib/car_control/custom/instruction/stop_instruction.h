@@ -1,14 +1,14 @@
 #ifndef STOP_INSTRUCTION_H
 #define STOP_INSTRUCTION_H
 
-#include "core/logic/instruction.h"
+#include "core/logic/instruction_impl.h"
 #include <Arduino.h>
 
 /**
  * 一定時間かけて減速，停止する指令
  @deprecated とりあえず使わない方針で。無限ループに入る恐れあり。
  */
-class StopInstruction : public Instruction {
+class StopInstruction : public InstructionImpl {
 public:
     explicit StopInstruction(int duration_millis);
     int runCoroutine() override;

@@ -1,17 +1,15 @@
 #ifndef BRAIN_H
 #define BRAIN_H
 
-#include "instruction.h"
+#include "instruction_impl.h"
 
 /**
  * 車の頭脳に相当するクラス
  * 様々な状況に応じた制御はこのクラスが行う
  */
-class Brain : public Debuggable {
+class Brain {
 public:
     virtual ~Brain() = default;
-
-    explicit Brain(String tag);
 
     /**
      * 次の行動を決定
