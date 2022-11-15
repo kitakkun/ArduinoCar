@@ -14,7 +14,7 @@ public:
      * @param pin ピン番号
      * @param theta 白黒の閾値
      */
-    PhotoReflector(int pin, int theta);
+    explicit PhotoReflector(int pin, int theta, String tag="PhotoReflector");
 
     /**
      * センサーが認識した色を取得
@@ -24,6 +24,7 @@ public:
 
 private:
     int theta_;      /// 白か黒か判定する閾値
+    BinaryColor value_;
 };
 
 #endif
