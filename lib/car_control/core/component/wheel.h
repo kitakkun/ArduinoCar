@@ -15,7 +15,7 @@ public:
      * @param minus_pin マイナスのピン
      * @param pwm_pin 速度調整用PWMのピン
      */
-    Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag="Wheel");
+    Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag = "Wheel");
 
     /**
      * 速度の更新
@@ -54,7 +54,7 @@ private:
     MoveDirection direction_ = forward;     /// 進行方向
     int speed_;     /// 速度
 
-    void ApplySpeed() const;
+    void ApplySpeed();
 
     void ApplyDirection();
 };

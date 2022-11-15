@@ -1,4 +1,5 @@
 #include "wheel.h"
+#include "core/debug/logger.h"
 #include <Arduino.h>
 
 // タイヤのコンストラクタ
@@ -32,17 +33,20 @@ void Wheel::UpdateDirection(MoveDirection direction) {
     ApplyDirection();
 }
 
-void Wheel::ApplySpeed() const {
+void Wheel::ApplySpeed() {
     analogWrite(this->pwm_pin_, this->speed_);
+    Logger::Verboseln(this, "Speed Updated. New speed is %d", this->speed_);
 }
 
 void Wheel::ApplyDirection() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);
         digitalWrite(this->minus_pin_, LOW);
+        Logger::Verboseln(this, "Direction Updated. New Direction is forward");
     } else {
         digitalWrite(this->plus_pin_, LOW);
         digitalWrite(this->minus_pin_, HIGH);
+        Logger::Verboseln(this, "Direction Updated. New Direction is backward");
     }
 }
 
