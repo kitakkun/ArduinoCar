@@ -1,32 +1,14 @@
-#ifndef LINE_SENSOR_ADAPTER_H
-#define LINE_SENSOR_ADAPTER_H
+#ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PHOTO_REFLECTOR_H
+#define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PHOTO_REFLECTOR_H
+
 
 #include "sensor.h"
 #include "core/data_model/binary_color.h"
 
-/**
- * フォトリフレクタに対応するセンサークラス
- */
 class PhotoReflector : public Sensor {
 public:
-    /**
-     * コンストラクタ
-     * @param pin ピン番号
-     * @param theta 白黒の閾値
-     */
-    explicit PhotoReflector(int pin, int theta, String tag="PhotoReflector");
-
-    void Update() override;
-
-    /**
-     * センサーが認識した色を取得
-     * @return 認識した色（白・黒）
-     */
-    BinaryColor Value() const;
-
-private:
-    int theta_;      /// 白か黒か判定する閾値
-    BinaryColor value_;
+    virtual BinaryColor Value() = 0;
 };
 
-#endif
+
+#endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PHOTO_REFLECTOR_H

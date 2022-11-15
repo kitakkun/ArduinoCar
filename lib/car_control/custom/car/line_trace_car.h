@@ -3,7 +3,7 @@
 
 
 #include "core/car.h"
-#include "core/component/photo_reflector.h"
+#include "core/component/photo_reflector_impl.h"
 #include "line_trace_car_builder.h"
 #include "custom/data_model/line_trace_car_state.h"
 #include "custom/brain/line_trace_brain.h"
@@ -22,6 +22,8 @@ public:
 
 private:
     LineTraceBrain *brain_;
+    Wheel *left_wheel_;
+    Wheel *right_wheel_;
     PhotoReflector *front_mid_reflector_;
     PhotoReflector *front_left_reflector_;
     PhotoReflector *front_right_reflector_;

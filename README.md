@@ -48,7 +48,7 @@ Arduino IDEでも可能ではありますが、セットアップが面倒なの
 - `Sensor`: センサー値の更新・提供を行うクラスです。
 - `PhotoReflector`: `Sensor`クラスを拡張し2値(`BinaryColor`)でデータを取得できるようにしたクラスです。
 - `Brain`: アルゴリズム実装部のクラスとなります。
-- `Instruction`: `Brain`クラスは必ずこの`Instruction`のインスタンスを命令として返します。
+- `InstructionImpl`: `Brain`クラスは必ずこの`InstructionImpl`のインスタンスを命令として返します。
 - `InstructionMode`: 割り込み実行の可否を決定します。`none`→空きがあれば実行, `interrupt`→割り込み実行（強制実行）
 
 ### アプリケーションのライフサイクル

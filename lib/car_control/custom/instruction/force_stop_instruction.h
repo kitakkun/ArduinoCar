@@ -1,9 +1,9 @@
 #ifndef FORCE_STOP_INSTRUCTION
 #define FORCE_STOP_INSTRUCTION
 
-#include "core/logic/instruction.h"
+#include "core/logic/instruction_impl.h"
 
-class ForceStopInstruction : public Instruction {
+class ForceStopInstruction : public InstructionImpl {
 public:
     explicit ForceStopInstruction(InstructionMode mode = none, String tag = "ForceStopInstruction");
 

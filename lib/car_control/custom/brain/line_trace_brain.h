@@ -14,7 +14,7 @@ enum LineTraceActivityState {
     finished
 };
 
-class LineTraceBrain : public Brain {
+class LineTraceBrain : public Brain, public Debuggable {
 public:
     explicit LineTraceBrain(String tag = "LineTraceBrain");
 

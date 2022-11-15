@@ -1,7 +1,6 @@
 #include "update_direction_instruction.h"
 
-UpdateDirectionInstruction::UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode, String tag)
-        : Instruction(mode, tag) {
+UpdateDirectionInstruction::UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode, String tag) : InstructionImpl(mode, tag) {
     direction_ = direction;
 }
 

@@ -1,12 +1,12 @@
 #ifndef TORQUE_LEFT_INSTRUCTION_H
 #define TORQUE_LEFT_INSTRUCTION_H
 
-#include "core/logic/instruction.h"
+#include "core/logic/instruction_impl.h"
 
 /**
  * 左に曲がる指令
  */
-class TorqueLeftInstruction : public Instruction {
+class TorqueLeftInstruction : public InstructionImpl {
 public:
     explicit TorqueLeftInstruction(
             int base_speed, int force, int duration_millis,

@@ -1,9 +1,9 @@
-#include "wheel.h"
+#include "wheel_impl.h"
 #include "core/debug/logger.h"
 #include <Arduino.h>
 
 // タイヤのコンストラクタ
-Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(tag, true) {
+WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(tag, true) {
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
@@ -16,36 +16,36 @@ Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(
 }
 
 // 現在の進行方向を返す
-MoveDirection Wheel::Direction() {
+MoveDirection WheelImpl::Direction() {
     return this->direction_;
 }
 
 // 現在のスピードを返す
-int Wheel::Speed() const {
+int WheelImpl::Speed() {
     return this->speed_;
 }
 
-void Wheel::UpdateSpeed(int speed) {
+void WheelImpl::UpdateSpeed(int speed) {
     this->speed_ = speed;
     ApplySpeed();
 }
 
-void Wheel::UpdateDeltaSpeed(int delta_speed) {
+void WheelImpl::UpdateDeltaSpeed(int delta_speed) {
     this->speed_ += delta_speed;
     ApplySpeed();
 }
 
-void Wheel::UpdateDirection(MoveDirection direction) {
+void WheelImpl::UpdateDirection(MoveDirection direction) {
     this->direction_ = direction;
     ApplyDirection();
 }
 
-void Wheel::ApplySpeed() {
+void WheelImpl::ApplySpeed() {
     Logger::Verboseln(this, F("Speed Updated. New speed is %d"), this->speed_);
     analogWrite(this->pwm_pin_, this->speed_);
 }
 
-void Wheel::ApplyDirection() {
+void WheelImpl::ApplyDirection() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);
         digitalWrite(this->minus_pin_, LOW);

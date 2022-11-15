@@ -61,4 +61,20 @@ void LineTraceCarBuilder::SetBrain(LineTraceBrain *brain) {
     this->brain_ = brain;
 }
 
+void LineTraceCarBuilder::SetLeftWheel(Wheel *wheel) {
+    this->left_wheel_ = wheel;
+}
+
+void LineTraceCarBuilder::SetRightWheel(Wheel *wheel) {
+    this->right_wheel_ = wheel;
+}
+
+Wheel *LineTraceCarBuilder::GetLeftWheel() {
+    return this->left_wheel_;
+}
+
+Wheel *LineTraceCarBuilder::GetRightWheel() {
+    return this->right_wheel_;
+}
+
 

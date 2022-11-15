@@ -1,12 +1,12 @@
 #ifndef ACCELERATEINSTRUCTION_H
 #define ACCELERATEINSTRUCTION_H
 
-#include "core/logic/instruction.h"
+#include "core/logic/instruction_impl.h"
 
 /*
  * スピード差分調整指令
  */
-class DeltaSpeedUpdateInstruction : public Instruction {
+class DeltaSpeedUpdateInstruction : public InstructionImpl {
 public:
     explicit DeltaSpeedUpdateInstruction(int amount, InstructionMode mode = none, String tag="DeltaSpeedUpdateInstruction");
     DeltaSpeedUpdateInstruction(int l_amount, int r_amount, InstructionMode mode = none, String tag="DeltaSpeedUpdateInstruction");

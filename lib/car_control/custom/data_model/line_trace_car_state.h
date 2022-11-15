@@ -3,8 +3,8 @@
 
 #include "core/data_model/binary_color.h"
 #include "core/data_model/move_direction.h"
-#include "core/component/wheel.h"
-#include "core/component/photo_reflector.h"
+#include "core/component/wheel_impl.h"
+#include "core/component/photo_reflector_impl.h"
 
 class LineTraceCarState {
 public:
