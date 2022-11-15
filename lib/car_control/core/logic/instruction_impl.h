@@ -9,6 +9,8 @@
 
 class InstructionImpl : public Instruction, public Debuggable {
 public:
+    ~InstructionImpl() override;
+
     explicit InstructionImpl(InstructionMode mode, String tag);
 
     void Setup(Wheel *left_wheel, Wheel *right_wheel) override;
