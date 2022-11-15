@@ -1,5 +1,10 @@
 #include "turn_instruction.h"
 
+TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode) : Instruction(mode) {
+    speed_ = speed;
+    duration_ = duration;
+}
+
 int TurnInstruction::runCoroutine() {
     COROUTINE_BEGIN();
     left_wheel_->UpdateDirection(backward); /// 左車輪を後ろ方向に回転させる
@@ -10,11 +15,6 @@ int TurnInstruction::runCoroutine() {
     left_wheel_->UpdateSpeed(0);
     right_wheel_->UpdateSpeed(0);
     COROUTINE_END();
-}
-
-TurnInstruction::TurnInstruction(int speed, int duration) {
-    speed_ = speed;
-    duration_ = duration;
 }
 
 /* TODO: 走行時間を指定し，180度回転するようにする */

@@ -1,6 +1,6 @@
 #include "force_speed_update_instruction.h"
 
-ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int left_speed, int right_speed) {
+ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int left_speed, int right_speed, InstructionMode mode) : Instruction(mode) {
     this->left_speed_ = left_speed;
     this->right_speed_ = right_speed;
 }
@@ -12,7 +12,7 @@ int ForceSpeedUpdateInstruction::runCoroutine() {
     COROUTINE_END();
 }
 
-ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed) {
+ForceSpeedUpdateInstruction::ForceSpeedUpdateInstruction(int speed, InstructionMode mode) : Instruction(mode) {
     this->left_speed_ = speed;
     this->right_speed_ = speed;
 }

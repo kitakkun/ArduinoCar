@@ -11,10 +11,9 @@
  */
 class Instruction : public ace_routine::Coroutine {
 public:
-    /**
-     * デストラクタ
-     */
     virtual ~Instruction() = default;
+
+    explicit Instruction(InstructionMode mode = none);
 
     int runCoroutine() override { return 0; };
 
@@ -23,10 +22,11 @@ public:
     InstructionMode Mode();
 
     void SetMode(InstructionMode mode);
+
 protected:
     Wheel *left_wheel_;
     Wheel *right_wheel_;
-    InstructionMode mode_ = none;
+    InstructionMode mode_;
 };
 
 #endif //INSTRUCTION_H

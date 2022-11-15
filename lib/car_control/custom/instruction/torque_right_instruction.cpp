@@ -1,15 +1,24 @@
 #include "torque_right_instruction.h"
 #include "ArduinoLog.h"
 
-TorqueRightInstruction::TorqueRightInstruction(int force, int duration_millis) {
+TorqueRightInstruction::TorqueRightInstruction(int base_speed, int force, int duration_millis, InstructionMode mode)
+        : Instruction(mode) {
+    base_speed_ = base_speed;
     force_ = force;
     duration_millis_ = duration_millis;
 }
 
 int TorqueRightInstruction::runCoroutine() {
     COROUTINE_BEGIN();
-    right_wheel_->UpdateSpeed(left_wheel_->Speed() - force_);
+    if (left_wheel_->Direction() == forward) {
+        left_wheel_->UpdateSpeed(base_speed_);
+        right_wheel_->UpdateSpeed(base_speed_ - force_);
+    } else {
+        left_wheel_->UpdateSpeed(base_speed_ - force_);
+        right_wheel_->UpdateSpeed(base_speed_);
+    }
     COROUTINE_DELAY(duration_millis_);
-    right_wheel_->UpdateSpeed(left_wheel_->Speed());
+    left_wheel_->UpdateSpeed(base_speed_);
+    right_wheel_->UpdateSpeed(base_speed_);
     COROUTINE_END();
 }

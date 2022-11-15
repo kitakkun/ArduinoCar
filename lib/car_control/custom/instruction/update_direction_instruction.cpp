@@ -1,6 +1,7 @@
 #include "update_direction_instruction.h"
 
-UpdateDirectionInstruction::UpdateDirectionInstruction(MoveDirection direction) {
+UpdateDirectionInstruction::UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode)
+        : Instruction(mode) {
     direction_ = direction;
 }
 

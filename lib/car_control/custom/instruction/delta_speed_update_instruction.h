@@ -8,8 +8,8 @@
  */
 class DeltaSpeedUpdateInstruction : public Instruction {
 public:
-    explicit DeltaSpeedUpdateInstruction(int amount);
-    DeltaSpeedUpdateInstruction(int l_amount, int r_amount);
+    explicit DeltaSpeedUpdateInstruction(int amount, InstructionMode mode = none);
+    DeltaSpeedUpdateInstruction(int l_amount, int r_amount, InstructionMode mode = none);
     int runCoroutine() override;
 private:
     int l_amount_;
