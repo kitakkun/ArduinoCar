@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "photo_reflector_impl.h"
+#include "core/debug/logger.h"
 
 // フォトリフレクタのコンストラクタ
 PhotoReflectorImpl::PhotoReflectorImpl(int pin, int theta, String tag) : Debuggable(tag) {
@@ -17,6 +18,7 @@ BinaryColor PhotoReflectorImpl::Value() {
 
 void PhotoReflectorImpl::Update() {
     raw_value_ = analogRead(pin_);
+    Logger::Verboseln(this, F("Updated. New value is %d"), raw_value_);
     if (raw_value_ > this->theta_) {
         value_ = black;
     } else {
