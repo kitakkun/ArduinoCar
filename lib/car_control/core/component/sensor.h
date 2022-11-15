@@ -26,8 +26,6 @@ public:
      */
     int RawValue() const;
 
-    String Tag() override;
-
 private:
     int pin_;       /// センサーのピン番号
     int raw_value_;     /// センサーの値

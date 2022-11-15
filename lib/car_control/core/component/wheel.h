@@ -2,11 +2,12 @@
 #define WHEEL_H
 
 #include "core/data_model/move_direction.h"
+#include "core/debug/debuggable.h"
 
 /**
  * 車輪の速度制御や回転方向制御を行うクラス
  */
-class Wheel {
+class Wheel : public Debuggable {
 public:
     /**
      * コンストラクタ
@@ -14,7 +15,7 @@ public:
      * @param minus_pin マイナスのピン
      * @param pwm_pin 速度調整用PWMのピン
      */
-    Wheel(int plus_pin, int minus_pin, int pwm_pin);
+    Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag="Wheel");
 
     /**
      * 速度の更新

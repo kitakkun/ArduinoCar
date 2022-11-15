@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 // タイヤのコンストラクタ
-Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin) {
+Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(tag) {
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
@@ -50,3 +50,4 @@ void Wheel::UpdateDeltaSpeed(int delta_speed) {
     this->speed_ += delta_speed;
     ApplySpeed();
 }
+

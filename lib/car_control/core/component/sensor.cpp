@@ -3,10 +3,9 @@
 #include <Arduino.h>
 
 // センサーの初期化
-Sensor::Sensor(int pin, String tag) {
+Sensor::Sensor(int pin, String tag) : Debuggable(tag) {
     this->pin_ = pin;
     this->raw_value_ = 0;
-    this->tag_ = tag;
     pinMode(this->pin_, INPUT);
 }
 
@@ -19,9 +18,5 @@ void Sensor::Update() {
 // センサーの現在の値を取得
 int Sensor::RawValue() const {
     return this->raw_value_;
-}
-
-String Sensor::Tag() {
-    return this->tag_;
 }
 

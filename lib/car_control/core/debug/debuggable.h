@@ -5,7 +5,14 @@
 
 class Debuggable {
 public:
-    virtual String Tag() = 0;
+    explicit Debuggable(String tag) {
+        this->tag_ = tag;
+    }
+
+    virtual String Tag() { return this->tag_; }
+
+private:
+    String tag_;
 };
 
 
