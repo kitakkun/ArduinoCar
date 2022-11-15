@@ -1,6 +1,6 @@
 #include "force_stop_instruction.h"
 
-ForceStopInstruction::ForceStopInstruction() = default;
+ForceStopInstruction::ForceStopInstruction(InstructionMode mode) : Instruction(mode) { }
 
 int ForceStopInstruction::runCoroutine() {
     COROUTINE_BEGIN();

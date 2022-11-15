@@ -1,8 +1,14 @@
 #include "delta_speed_update_instruction.h"
 
-DeltaSpeedUpdateInstruction::DeltaSpeedUpdateInstruction(int amount) {
+DeltaSpeedUpdateInstruction::DeltaSpeedUpdateInstruction(int amount, InstructionMode mode) : Instruction(mode) {
     this->l_amount_ = amount;
     this->r_amount_ = amount;
+}
+
+DeltaSpeedUpdateInstruction::DeltaSpeedUpdateInstruction(int l_amount, int r_amount, InstructionMode mode)
+        : Instruction(mode) {
+    l_amount_ = l_amount;
+    r_amount_ = r_amount;
 }
 
 int DeltaSpeedUpdateInstruction::runCoroutine() {
@@ -10,9 +16,4 @@ int DeltaSpeedUpdateInstruction::runCoroutine() {
     left_wheel_->UpdateDeltaSpeed(l_amount_);
     right_wheel_->UpdateDeltaSpeed(r_amount_);
     COROUTINE_END();
-}
-
-DeltaSpeedUpdateInstruction::DeltaSpeedUpdateInstruction(int l_amount, int r_amount) {
-    l_amount_ = l_amount;
-    r_amount_ = r_amount;
 }

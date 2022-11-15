@@ -6,7 +6,7 @@
 
 class UpdateDirectionInstruction : public Instruction {
 public:
-    explicit UpdateDirectionInstruction(MoveDirection direction);
+    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none);
     int runCoroutine() override;
 private:
     MoveDirection direction_;

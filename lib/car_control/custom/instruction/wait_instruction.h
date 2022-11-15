@@ -5,7 +5,7 @@
 
 class WaitInstruction : public Instruction {
 public:
-    explicit WaitInstruction(int duration_millis);
+    explicit WaitInstruction(int duration_millis, InstructionMode mode = none);
     int runCoroutine() override;
 private:
     int duration_millis_;

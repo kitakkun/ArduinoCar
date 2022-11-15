@@ -8,7 +8,7 @@
  */
 class TurnInstruction : public Instruction {
 public:
-    explicit TurnInstruction(int speed, int duration);
+    explicit TurnInstruction(int speed, int duration, InstructionMode mode = none);
     int runCoroutine() override;
 private:
     int speed_;
