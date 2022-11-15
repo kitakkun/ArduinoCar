@@ -1,17 +1,19 @@
 #ifndef SENSOR_DATA_H
 #define SENSOR_DATA_H
 
+#include "core/debug/debuggable.h"
+
 /**
  * センサークラス
  * センサー値の更新・保持・提供を行う
  */
-class Sensor {
+class Sensor : public Debuggable {
 public:
     /**
      * コンストラクタ
      * @param pin ピン番号
      */
-    explicit Sensor(int pin);
+    explicit Sensor(int pin, String tag="Sensor");
 
     /**
      * センサー値を更新
@@ -26,7 +28,8 @@ public:
 
 private:
     int pin_;       /// センサーのピン番号
-    int value_;     /// センサーの値
+    int raw_value_;     /// センサーの値
+    String tag_;
 };
 
 #endif

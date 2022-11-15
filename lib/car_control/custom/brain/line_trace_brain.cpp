@@ -1,9 +1,7 @@
 #include "line_trace_brain.h"
 #include "custom/instructions.h"
-#include "custom/debug/logger.h"
 
 void LineTraceBrain::SetCurrentCarState(LineTraceCarState car_state) {
-    Logger::LogLineTraceCarState(car_state);
     current_car_state_ = car_state;
 }
 
