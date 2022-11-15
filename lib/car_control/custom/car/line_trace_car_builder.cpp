@@ -1,51 +1,51 @@
 #include "line_trace_car_builder.h"
 #include "custom/brain/line_trace_brain.h"
 
-void LineTraceCarBuilder::SetFrontLeftReflector(PhotoReflector *reflector) {
+void LineTraceCarBuilder::SetFrontLeftReflector(PhotoReflectorImpl *reflector) {
     this->front_left_reflector_ = reflector;
 }
 
-void LineTraceCarBuilder::SetFrontRightReflector(PhotoReflector *reflector) {
+void LineTraceCarBuilder::SetFrontRightReflector(PhotoReflectorImpl *reflector) {
     this->front_right_reflector_ = reflector;
 }
 
-void LineTraceCarBuilder::SetFrontMidReflector(PhotoReflector *reflector) {
+void LineTraceCarBuilder::SetFrontMidReflector(PhotoReflectorImpl *reflector) {
     this->front_mid_reflector_ = reflector;
 }
 
-void LineTraceCarBuilder::SetBackLeftReflector(PhotoReflector *reflector) {
+void LineTraceCarBuilder::SetBackLeftReflector(PhotoReflectorImpl *reflector) {
     this->back_left_reflector_ = reflector;
 }
 
-void LineTraceCarBuilder::SetBackRightReflector(PhotoReflector *reflector) {
+void LineTraceCarBuilder::SetBackRightReflector(PhotoReflectorImpl *reflector) {
     this->back_right_reflector_ = reflector;
 }
 
-void LineTraceCarBuilder::SetBackMidReflector(PhotoReflector *reflector) {
+void LineTraceCarBuilder::SetBackMidReflector(PhotoReflectorImpl *reflector) {
     this->back_mid_reflector_ = reflector;
 }
 
-PhotoReflector *LineTraceCarBuilder::GetFrontRightReflector() {
+PhotoReflectorImpl *LineTraceCarBuilder::GetFrontRightReflector() {
     return this->front_right_reflector_;
 }
 
-PhotoReflector *LineTraceCarBuilder::GetFrontLeftReflector() {
+PhotoReflectorImpl *LineTraceCarBuilder::GetFrontLeftReflector() {
     return front_left_reflector_;
 }
 
-PhotoReflector *LineTraceCarBuilder::GetFrontMidReflector() {
+PhotoReflectorImpl *LineTraceCarBuilder::GetFrontMidReflector() {
     return front_mid_reflector_;
 }
 
-PhotoReflector *LineTraceCarBuilder::GetBackLeftReflector() {
+PhotoReflectorImpl *LineTraceCarBuilder::GetBackLeftReflector() {
     return back_left_reflector_;
 }
 
-PhotoReflector *LineTraceCarBuilder::GetBackRightReflector() {
+PhotoReflectorImpl *LineTraceCarBuilder::GetBackRightReflector() {
     return back_right_reflector_;
 }
 
-PhotoReflector *LineTraceCarBuilder::GetBackMidReflector() {
+PhotoReflectorImpl *LineTraceCarBuilder::GetBackMidReflector() {
     return back_mid_reflector_;
 }
 

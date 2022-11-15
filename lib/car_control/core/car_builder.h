@@ -9,19 +9,19 @@ class Car;
 class CarBuilder {
 public:
 
-    void SetLeftWheel(Wheel *left_wheel);
+    void SetLeftWheel(WheelImpl *left_wheel);
 
-    void SetRightWheel(Wheel *right_wheel);
+    void SetRightWheel(WheelImpl *right_wheel);
 
-    Wheel *GetLeftWheel();
+    WheelImpl *GetLeftWheel();
 
-    Wheel *GetRightWheel();
+    WheelImpl *GetRightWheel();
 
     virtual Car *Build() = 0;
 
 protected:
-    Wheel *left_wheel_;
-    Wheel *right_wheel_;
+    WheelImpl *left_wheel_;
+    WheelImpl *right_wheel_;
 };
 
 

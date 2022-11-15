@@ -1,8 +1,8 @@
 #ifndef CAR_BUILDER_H
 #define CAR_BUILDER_H
 
-#include "core/component/wheel.h"
-#include "core/component/photo_reflector.h"
+#include "core/component/wheel_impl.h"
+#include "core/component/photo_reflector_impl.h"
 #include "core/logic/brain.h"
 #include "line_trace_car.h"
 #include "custom/brain/line_trace_brain.h"
@@ -11,42 +11,42 @@ class LineTraceCarBuilder : public CarBuilder {
 public:
     void SetBrain(LineTraceBrain *brain);
 
-    void SetFrontLeftReflector(PhotoReflector *reflector);
+    void SetFrontLeftReflector(PhotoReflectorImpl *reflector);
 
-    void SetFrontRightReflector(PhotoReflector *reflector);
+    void SetFrontRightReflector(PhotoReflectorImpl *reflector);
 
-    void SetFrontMidReflector(PhotoReflector *reflector);
+    void SetFrontMidReflector(PhotoReflectorImpl *reflector);
 
-    void SetBackLeftReflector(PhotoReflector *reflector);
+    void SetBackLeftReflector(PhotoReflectorImpl *reflector);
 
-    void SetBackMidReflector(PhotoReflector *reflector);
+    void SetBackMidReflector(PhotoReflectorImpl *reflector);
 
-    void SetBackRightReflector(PhotoReflector *reflector);
+    void SetBackRightReflector(PhotoReflectorImpl *reflector);
 
     LineTraceBrain *GetBrain();
 
-    PhotoReflector *GetFrontLeftReflector();
+    PhotoReflectorImpl *GetFrontLeftReflector();
 
-    PhotoReflector *GetFrontRightReflector();
+    PhotoReflectorImpl *GetFrontRightReflector();
 
-    PhotoReflector *GetFrontMidReflector();
+    PhotoReflectorImpl *GetFrontMidReflector();
 
-    PhotoReflector *GetBackRightReflector();
+    PhotoReflectorImpl *GetBackRightReflector();
 
-    PhotoReflector *GetBackLeftReflector();
+    PhotoReflectorImpl *GetBackLeftReflector();
 
-    PhotoReflector *GetBackMidReflector();
+    PhotoReflectorImpl *GetBackMidReflector();
 
     Car* Build() override;
 
 private:
     LineTraceBrain *brain_;
-    PhotoReflector *front_left_reflector_;
-    PhotoReflector *front_right_reflector_;
-    PhotoReflector *front_mid_reflector_;
-    PhotoReflector *back_left_reflector_;
-    PhotoReflector *back_right_reflector_;
-    PhotoReflector *back_mid_reflector_;
+    PhotoReflectorImpl *front_left_reflector_;
+    PhotoReflectorImpl *front_right_reflector_;
+    PhotoReflectorImpl *front_mid_reflector_;
+    PhotoReflectorImpl *back_left_reflector_;
+    PhotoReflectorImpl *back_right_reflector_;
+    PhotoReflectorImpl *back_mid_reflector_;
 };
 
 #endif //CAR_BUILDER_H

@@ -7,29 +7,18 @@
  * センサークラス
  * センサー値の更新・保持・提供を行う
  */
-class Sensor : public Debuggable {
+class Sensor {
 public:
-    /**
-     * コンストラクタ
-     * @param pin ピン番号
-     */
-    explicit Sensor(int pin, String tag="Sensor");
-
     /**
      * センサー値を更新
      */
-    virtual void Update();
+    virtual void Update() = 0;
 
     /**
      * センサー値の取得（生のデータ）
      * @return 生のセンサー値
      */
-    int RawValue() const;
-
-private:
-    int pin_;       /// センサーのピン番号
-    int raw_value_;     /// センサーの値
-    String tag_;
+    virtual int RawValue() = 0;
 };
 
 #endif

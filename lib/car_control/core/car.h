@@ -1,7 +1,7 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include "core/component/wheel.h"
+#include "core/component/wheel_impl.h"
 #include "core/logic/brain.h"
 #include "core/logic/instruction.h"
 #include "car_builder.h"
@@ -29,8 +29,8 @@ public:
     virtual void Act() = 0;
 
 protected:
-    Wheel *left_wheel_;     /// 左の車輪
-    Wheel *right_wheel_;    /// 右の車輪
+    WheelImpl *left_wheel_;     /// 左の車輪
+    WheelImpl *right_wheel_;    /// 右の車輪
 };
 
 #endif

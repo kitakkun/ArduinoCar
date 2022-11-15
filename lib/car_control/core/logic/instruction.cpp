@@ -7,7 +7,7 @@ Instruction::Instruction(InstructionMode mode, String tag) : Debuggable(tag, tru
     this->right_wheel_ = nullptr;
 }
 
-void Instruction::Setup(Wheel *left_wheel, Wheel *right_wheel) {
+void Instruction::Setup(WheelImpl *left_wheel, WheelImpl *right_wheel) {
     this->left_wheel_ = left_wheel;
     this->right_wheel_ = right_wheel;
     Logger::Verboseln(this, F("Setup..."));

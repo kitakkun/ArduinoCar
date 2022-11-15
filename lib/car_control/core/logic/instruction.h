@@ -1,7 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include "core/component/wheel.h"
+#include "core/component/wheel_impl.h"
 #include "ace_routine/Coroutine.h"
 #include "instruction_mode.h"
 #include "core/debug/debuggable.h"
@@ -18,15 +18,15 @@ public:
 
     int runCoroutine() override { return 0; };
 
-    void Setup(Wheel *left_wheel, Wheel *right_wheel);
+    void Setup(WheelImpl *left_wheel, WheelImpl *right_wheel);
 
     InstructionMode Mode();
 
     void SetMode(InstructionMode mode);
 
 protected:
-    Wheel *left_wheel_;
-    Wheel *right_wheel_;
+    WheelImpl *left_wheel_;
+    WheelImpl *right_wheel_;
     InstructionMode mode_;
 };
 
