@@ -12,7 +12,7 @@ Wheel::Wheel(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(
     pinMode(this->plus_pin_, OUTPUT);
     pinMode(this->minus_pin_, OUTPUT);
     pinMode(this->pwm_pin_, OUTPUT);
-    Logger::Verboseln(this, "Instantiated");
+    Logger::Verboseln(this, F("Instantiated"));
 }
 
 // 現在の進行方向を返す
@@ -41,8 +41,7 @@ void Wheel::UpdateDirection(MoveDirection direction) {
 }
 
 void Wheel::ApplySpeed() {
-    // コルーチンから呼び出される関数でLog出力するとバグる（？）ので特別な場合を除きコメントアウトしておく
-//    Logger::Verboseln(this, "Speed Updated. New speed is %d", this->speed_);
+    Logger::Verboseln(this, F("Speed Updated. New speed is %d"), this->speed_);
     analogWrite(this->pwm_pin_, this->speed_);
 }
 
@@ -50,11 +49,11 @@ void Wheel::ApplyDirection() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);
         digitalWrite(this->minus_pin_, LOW);
-//        Logger::Verboseln(this, "Direction Updated. New Direction is forward");
+        Logger::Verboseln(this, F("Direction Updated. New Direction is forward"));
     } else {
         digitalWrite(this->plus_pin_, LOW);
         digitalWrite(this->minus_pin_, HIGH);
-//        Logger::Verboseln(this, "Direction Updated. New Direction is backward");
+        Logger::Verboseln(this, F("Direction Updated. New Direction is backward"));
     }
 }
 

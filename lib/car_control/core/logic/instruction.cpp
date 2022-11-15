@@ -10,7 +10,7 @@ Instruction::Instruction(InstructionMode mode, String tag) : Debuggable(tag, tru
 void Instruction::Setup(Wheel *left_wheel, Wheel *right_wheel) {
     this->left_wheel_ = left_wheel;
     this->right_wheel_ = right_wheel;
-    Logger::Verboseln(this, "Setup...");
+    Logger::Verboseln(this, F("Setup..."));
 }
 
 InstructionMode Instruction::Mode() {
@@ -22,6 +22,6 @@ void Instruction::SetMode(InstructionMode mode) {
 }
 
 Instruction::~Instruction() {
-    Logger::Verboseln(this, "Deleted");
+    Logger::Verboseln(this, F("Deleted"));
 }
 

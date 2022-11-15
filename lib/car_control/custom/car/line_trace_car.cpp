@@ -44,7 +44,7 @@ void LineTraceCar::Act() {
     if (this->instruction_ == nullptr) return;
 
     instruction_->runCoroutine();
-    Logger::Verboseln(this, "running %s", instruction_->Tag().c_str());
+    Logger::Verboseln(this, F("running %s"), instruction_->Tag().c_str());
 
     if (instruction_->isDone()) {
         delete instruction_;
