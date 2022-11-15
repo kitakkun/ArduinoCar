@@ -38,16 +38,16 @@ Instruction *LineTraceGoAndBackBrain::Trace() {
     // 前後全部白で一定時間経過したらトレース完了とみなしバックモードへ（一旦停止）
     if (current_car_state_.IsAllWhite() && current_time - last_time_on_black_ > 500) {
         activity_state_ = readyBack;
-        return new ForceStopInstruction();
+        return new ForceStopInstruction(interrupt);
     }
 
     // 左が黒なら左へ曲がる
     if (current_car_state_.front_left_reflector_color_ == black) {
-        return new TorqueLeftInstruction(base_speed_, torque_force_, 30);
+        return new TorqueLeftInstruction(base_speed_, torque_force_, 30, interrupt);
     }
     // 右が黒なら右へ曲がる
     if (current_car_state_.front_right_reflector_color_ == black) {
-        return new TorqueRightInstruction(base_speed_, torque_force_, 30);
+        return new TorqueRightInstruction(base_speed_, torque_force_, 30, interrupt);
     }
     // 真ん中が黒なら直進
     if (current_car_state_.front_mid_reflector_color_ == black) {
@@ -84,11 +84,11 @@ Instruction *LineTraceGoAndBackBrain::TraceBack() {
 
     if (current_car_state_.front_right_reflector_color_ == black) {
         last_time_on_black_ = millis();
-        return new TorqueRightInstruction(base_speed_, torque_force_ - 15, 30);
+        return new TorqueRightInstruction(base_speed_, torque_force_ - 15, 30, interrupt);
     }
     if (current_car_state_.front_left_reflector_color_ == black) {
         last_time_on_black_ = millis();
-        return new TorqueLeftInstruction(base_speed_, torque_force_ - 15, 30);
+        return new TorqueLeftInstruction(base_speed_, torque_force_ - 15, 30, interrupt);
     }
     if (current_car_state_.front_mid_reflector_color_ == black) {
         last_time_on_black_ = millis();
