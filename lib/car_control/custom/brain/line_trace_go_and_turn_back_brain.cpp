@@ -89,6 +89,10 @@ Instruction *LineTraceGoAndTurnBackBrain::SearchBack() {
 
 Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
 
+    if (current_car_state_.left_wheel_direction_ != current_car_state_.right_wheel_direction_) {
+        return new UpdateDirectionInstruction(forward);
+    }
+
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
         return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
     }
