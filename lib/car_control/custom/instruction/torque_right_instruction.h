@@ -9,8 +9,8 @@
 class TorqueRightInstruction : public InstructionImpl {
 public:
     explicit TorqueRightInstruction(
-            int base_speed, int force, int duration_millis,
-            InstructionMode mode = none, String tag = "TorqueRightInstruction");
+            int base_speed, int force, InstructionMode mode = none, String tag = "TorqueRightInstruction"
+    );
 
     int runCoroutine() override;
 

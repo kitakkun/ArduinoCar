@@ -43,11 +43,11 @@ Instruction *LineTraceGoAndBackBrain::Trace() {
 
     // 左が黒なら左へ曲がる
     if (current_car_state_.front_left_reflector_color_ == black) {
-        return new TorqueLeftInstruction(base_speed_, forward_torque_force_, 30, interrupt);
+        return new TorqueLeftInstruction(base_speed_, forward_torque_force_, interrupt);
     }
     // 右が黒なら右へ曲がる
     if (current_car_state_.front_right_reflector_color_ == black) {
-        return new TorqueRightInstruction(base_speed_, forward_torque_force_, 30, interrupt);
+        return new TorqueRightInstruction(base_speed_, forward_torque_force_, interrupt);
     }
     // 真ん中が黒なら直進
     if (current_car_state_.front_mid_reflector_color_ == black) {
@@ -87,10 +87,10 @@ Instruction *LineTraceGoAndBackBrain::TraceBack() {
     }
 
     if (current_car_state_.back_left_reflector_color_ == black) {
-        return new TorqueRightInstruction(base_speed_, backward_torque_force_, 30, interrupt);
+        return new TorqueRightInstruction(base_speed_, backward_torque_force_, interrupt);
     }
     if (current_car_state_.back_right_reflector_color_ == black) {
-        return new TorqueLeftInstruction(base_speed_, backward_torque_force_, 30, interrupt);
+        return new TorqueLeftInstruction(base_speed_, backward_torque_force_, interrupt);
     }
     if (current_car_state_.back_mid_reflector_color_ == black) {
         return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
