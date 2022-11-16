@@ -85,9 +85,6 @@ void run_trace_to_ready_back_test() {
     back_right->SetRawValue(WHITE_VAL);
     back_mid->SetRawValue(WHITE_VAL);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(tracing, brain->ActivityState());
-    delay(2000);
-    run_life_cycle();
     TEST_ASSERT_EQUAL(readyBack, brain->ActivityState());
 }
 
