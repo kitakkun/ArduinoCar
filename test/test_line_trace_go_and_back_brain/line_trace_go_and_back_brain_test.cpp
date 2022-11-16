@@ -12,12 +12,12 @@
 #define FORWARD_TORQUE 20
 
 Car *car;
-FakePhotoReflector *front_mid = new FakePhotoReflector(500);
-FakePhotoReflector *front_left = new FakePhotoReflector(500);
-FakePhotoReflector *front_right = new FakePhotoReflector(500);
-FakePhotoReflector *back_mid = new FakePhotoReflector(500);
-FakePhotoReflector *back_left = new FakePhotoReflector(500);
-FakePhotoReflector *back_right = new FakePhotoReflector(500);
+FakePhotoReflector *front_mid;
+FakePhotoReflector *front_left;
+FakePhotoReflector *front_right;
+FakePhotoReflector *back_mid;
+FakePhotoReflector *back_left;
+FakePhotoReflector *back_right;
 LineTraceBrain *brain;
 Wheel *left_wheel;
 Wheel *right_wheel;
