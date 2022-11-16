@@ -30,7 +30,6 @@ private:
     int base_speed_;
     int forward_torque_force_;
     int backward_torque_force_;
-    unsigned long last_time_on_black_;
 };
 
 
