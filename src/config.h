@@ -3,6 +3,10 @@
 
 #include <Arduino.h>
 
+#define BASE_SPEED 110
+#define FORWARD_TORQUE 20
+#define BACKWARD_TORQUE 10
+
 #define RIGHT_MOTOR_PLUS_PIN 2
 #define RIGHT_MOTOR_MINUS_PIN 3
 #define RIGHT_MOTOR_PWM_PIN 10

@@ -1,5 +1,6 @@
 #include "torque_left_instruction.h"
 #include "ArduinoLog.h"
+#include "core/debug/logger.h"
 
 TorqueLeftInstruction::TorqueLeftInstruction(
         int base_speed, int force, int duration_millis, InstructionMode mode, String tag
@@ -18,8 +19,5 @@ int TorqueLeftInstruction::runCoroutine() {
         left_wheel_->UpdateSpeed(base_speed_);
         right_wheel_->UpdateSpeed(base_speed_ - force_);
     }
-    COROUTINE_DELAY(duration_millis_);
-    left_wheel_->UpdateSpeed(base_speed_);
-    right_wheel_->UpdateSpeed(base_speed_);
     COROUTINE_END();
 }

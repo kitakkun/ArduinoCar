@@ -18,8 +18,5 @@ int TorqueRightInstruction::runCoroutine() {
         left_wheel_->UpdateSpeed(base_speed_ - force_);
         right_wheel_->UpdateSpeed(base_speed_);
     }
-    COROUTINE_DELAY(duration_millis_);
-    left_wheel_->UpdateSpeed(base_speed_);
-    right_wheel_->UpdateSpeed(base_speed_);
     COROUTINE_END();
 }

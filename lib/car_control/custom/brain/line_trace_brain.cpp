@@ -25,3 +25,7 @@ Instruction *LineTraceBrain::CalculateNextInstruction() {
             return Finish();
     }
 }
+
+LineTraceActivityState LineTraceBrain::ActivityState() {
+    return activity_state_;
+}

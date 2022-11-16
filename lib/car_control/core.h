@@ -4,6 +4,7 @@
 #include "core/logic/brain.h"
 #include "core/car.h"
 #include "config.h"
+#include "core/logic/instruction.h"
 #include "core/logic/instruction_impl.h"
 #include "core/data_model/move_direction.h"
 #include "core/data_model/binary_color.h"
