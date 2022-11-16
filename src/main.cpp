@@ -13,7 +13,7 @@ void setup() {
 
     Log.verboseln("Building a Car instance...");
     LineTraceCarBuilder builder = LineTraceCarBuilder();
-    builder.SetBrain(new LineTraceGoAndBackBrain(105, 45));
+    builder.SetBrain(new LineTraceGoAndBackBrain(BASE_SPEED, FORWARD_TORQUE, BACKWARD_TORQUE));
     builder.SetLeftWheel(new WheelImpl(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN, "LeftWheel"));
     builder.SetRightWheel(new WheelImpl(RIGHT_MOTOR_PLUS_PIN, RIGHT_MOTOR_MINUS_PIN, RIGHT_MOTOR_PWM_PIN, "RightWheel"));
     builder.SetFrontMidReflector(new PhotoReflectorImpl(FRONT_MID_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "FrontMid"));

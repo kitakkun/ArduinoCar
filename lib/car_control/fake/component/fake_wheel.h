@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_WHEEL_H
 
 
-#include "wheel.h"
+#include "core/component/wheel.h"
 
 class FakeWheel : public Wheel {
 public:

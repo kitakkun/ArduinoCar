@@ -22,6 +22,8 @@ public:
 
     Instruction *CalculateNextInstruction() override;
 
+    LineTraceActivityState ActivityState();
+
 protected:
     virtual Instruction *Ready() = 0;
 
