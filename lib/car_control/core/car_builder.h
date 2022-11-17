@@ -7,9 +7,9 @@ class Car;
 
 class CarBuilder {
 public:
-    virtual void SetLeftWheel(Wheel *left_wheel) = 0;
+    virtual CarBuilder& SetLeftWheel(Wheel *left_wheel) = 0;
 
-    virtual void SetRightWheel(Wheel *right_wheel) = 0;
+    virtual CarBuilder& SetRightWheel(Wheel *right_wheel) = 0;
 
     virtual Wheel *GetLeftWheel() = 0;
 

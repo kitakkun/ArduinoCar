@@ -1,28 +1,34 @@
 #include "line_trace_car_builder.h"
 #include "custom/brain/line_trace_brain.h"
 
-void LineTraceCarBuilder::SetFrontLeftReflector(PhotoReflector *reflector) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetFrontLeftReflector(PhotoReflector *reflector) {
     this->front_left_reflector_ = reflector;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetFrontRightReflector(PhotoReflector *reflector) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetFrontRightReflector(PhotoReflector *reflector) {
     this->front_right_reflector_ = reflector;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetFrontMidReflector(PhotoReflector *reflector) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetFrontMidReflector(PhotoReflector *reflector) {
     this->front_mid_reflector_ = reflector;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetBackLeftReflector(PhotoReflector *reflector) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetBackLeftReflector(PhotoReflector *reflector) {
     this->back_left_reflector_ = reflector;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetBackRightReflector(PhotoReflector *reflector) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetBackRightReflector(PhotoReflector *reflector) {
     this->back_right_reflector_ = reflector;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetBackMidReflector(PhotoReflector *reflector) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetBackMidReflector(PhotoReflector *reflector) {
     this->back_mid_reflector_ = reflector;
+    return *this;
 }
 
 PhotoReflector *LineTraceCarBuilder::GetFrontRightReflector() {
@@ -57,16 +63,19 @@ LineTraceBrain *LineTraceCarBuilder::GetBrain() {
     return this->brain_;
 }
 
-void LineTraceCarBuilder::SetBrain(LineTraceBrain *brain) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetBrain(LineTraceBrain *brain) {
     this->brain_ = brain;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetLeftWheel(Wheel *wheel) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetLeftWheel(Wheel *wheel) {
     this->left_wheel_ = wheel;
+    return *this;
 }
 
-void LineTraceCarBuilder::SetRightWheel(Wheel *wheel) {
+LineTraceCarBuilder& LineTraceCarBuilder::SetRightWheel(Wheel *wheel) {
     this->right_wheel_ = wheel;
+    return *this;
 }
 
 Wheel *LineTraceCarBuilder::GetLeftWheel() {

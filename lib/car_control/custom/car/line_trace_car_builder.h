@@ -9,23 +9,23 @@
 
 class LineTraceCarBuilder : public CarBuilder {
 public:
-    void SetLeftWheel(Wheel *wheel) override;
+    LineTraceCarBuilder& SetLeftWheel(Wheel *wheel) override;
 
-    void SetRightWheel(Wheel *wheel) override;
+    LineTraceCarBuilder& SetRightWheel(Wheel *wheel) override;
 
-    void SetBrain(LineTraceBrain *brain);
+    LineTraceCarBuilder& SetBrain(LineTraceBrain *brain);
 
-    void SetFrontLeftReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetFrontLeftReflector(PhotoReflector *reflector);
 
-    void SetFrontRightReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetFrontRightReflector(PhotoReflector *reflector);
 
-    void SetFrontMidReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetFrontMidReflector(PhotoReflector *reflector);
 
-    void SetBackLeftReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetBackLeftReflector(PhotoReflector *reflector);
 
-    void SetBackMidReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetBackMidReflector(PhotoReflector *reflector);
 
-    void SetBackRightReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetBackRightReflector(PhotoReflector *reflector);
 
     LineTraceBrain *GetBrain();
 

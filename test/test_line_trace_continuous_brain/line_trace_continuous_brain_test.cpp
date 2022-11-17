@@ -129,27 +129,27 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
 
+    brain = new LineTraceContinuousBrain(BASE_SPEED, FORWARD_TORQUE);
     front_mid = new FakePhotoReflector(500);
     front_left = new FakePhotoReflector(500);
     front_right = new FakePhotoReflector(500);
     back_mid = new FakePhotoReflector(500);
     back_left = new FakePhotoReflector(500);
     back_right = new FakePhotoReflector(500);
-    brain = new LineTraceContinuousBrain(BASE_SPEED, FORWARD_TORQUE);
     left_wheel = new FakeWheel();
     right_wheel = new FakeWheel();
 
-    LineTraceCarBuilder builder = LineTraceCarBuilder();
-    builder.SetBrain(brain);
-    builder.SetLeftWheel(left_wheel);
-    builder.SetRightWheel(right_wheel);
-    builder.SetFrontMidReflector(front_mid);
-    builder.SetFrontRightReflector(front_right);
-    builder.SetFrontLeftReflector(front_left);
-    builder.SetBackMidReflector(back_mid);
-    builder.SetBackRightReflector(back_right);
-    builder.SetBackLeftReflector(back_left);
-    car = builder.Build();
+    car = LineTraceCarBuilder()
+            .SetBrain(brain)
+            .SetLeftWheel(left_wheel)
+            .SetRightWheel(right_wheel)
+            .SetFrontMidReflector(front_mid)
+            .SetFrontRightReflector(front_right)
+            .SetFrontLeftReflector(front_left)
+            .SetBackMidReflector(back_mid)
+            .SetBackRightReflector(back_right)
+            .SetBackLeftReflector(back_left)
+            .Build();
 
     // 全部白にしておく
     front_mid->SetRawValue(0);
