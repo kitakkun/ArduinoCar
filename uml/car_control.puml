@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title "プログラムの全体設計"
+!include core.puml
+!include custom.puml
+
+@enduml
