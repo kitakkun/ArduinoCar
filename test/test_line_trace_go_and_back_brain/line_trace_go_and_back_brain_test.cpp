@@ -5,11 +5,11 @@
 #include "custom.h"
 #include <Arduino.h>
 
-#define WHITE_VAL 0
-#define BLACK_VAL 1000
-#define BASE_SPEED 120
-#define BACKWARD_TORQUE 10
-#define FORWARD_TORQUE 20
+const int white_val = 0;
+const int black_val = 1000;
+const int base_speed = 120;
+const int forward_torque = 20;
+const int backward_torque = 10;
 
 Car *car;
 FakePhotoReflector *front_mid;
@@ -51,11 +51,11 @@ void run_search_test() {
     }
     TEST_ASSERT_EQUAL(searching, brain->ActivityState());
     // 後ろのセンサーを変えても状態遷移しないことを確認
-    back_mid->SetRawValue(BLACK_VAL);
+    back_mid->SetRawValue(black_val);
     run_life_cycle();
     TEST_ASSERT_EQUAL(searching, brain->ActivityState());
     // 前のセンサーを変えたら状態遷移することを確認
-    front_mid->SetRawValue(BLACK_VAL);
+    front_mid->SetRawValue(black_val);
     run_life_cycle();
     TEST_ASSERT_EQUAL(0, left_wheel->Speed());
     TEST_ASSERT_EQUAL(0, right_wheel->Speed());
@@ -65,52 +65,52 @@ void run_search_test() {
 void run_trace_test() {
     TEST_ASSERT_EQUAL(tracing, brain->ActivityState());
     // 発進チェック
-    set_all_sensor(WHITE_VAL);
-    front_mid->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_mid->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(BASE_SPEED, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 前面センサーのテスト ===============================================
     // 直進することを確認
-    set_all_sensor(WHITE_VAL);
-    front_mid->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_mid->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(BASE_SPEED, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 左に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    front_left->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_left->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - FORWARD_TORQUE, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(right_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - forward_torque, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(right_wheel->Speed(), base_speed);
     // 右に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    front_right->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_right->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - FORWARD_TORQUE, right_wheel->Speed());
-    TEST_ASSERT_EQUAL(left_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - forward_torque, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(left_wheel->Speed(), base_speed);
     // 背面センサーのテスト ===============================================
     // 直進することを確認
-    set_all_sensor(WHITE_VAL);
-    back_mid->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    back_mid->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(BASE_SPEED, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 左に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    back_left->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    back_left->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - FORWARD_TORQUE, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(right_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - forward_torque, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(right_wheel->Speed(), base_speed);
     // 右に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    back_right->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    back_right->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - FORWARD_TORQUE, right_wheel->Speed());
-    TEST_ASSERT_EQUAL(left_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - forward_torque, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(left_wheel->Speed(), base_speed);
     // 全部白にして状態遷移
     TEST_ASSERT_EQUAL(tracing, brain->ActivityState());
-    set_all_sensor(WHITE_VAL);
+    set_all_sensor(white_val);
     run_life_cycle();
     TEST_ASSERT_EQUAL(readyBack, brain->ActivityState());
 }
@@ -126,18 +126,18 @@ void run_readyBack_test() {
 
 void run_searchingBack_test() {
     TEST_ASSERT_EQUAL(searchingBack, brain->ActivityState());
-    set_all_sensor(WHITE_VAL);
+    set_all_sensor(white_val);
     // 10回分ライフサイクルまわして状態遷移していないことを確認
     for (int i = 0; i < 10; i++) {
         run_life_cycle();
     }
     TEST_ASSERT_EQUAL(searchingBack, brain->ActivityState());
     // 前のセンサーを変えても状態遷移しないことを確認
-    front_mid->SetRawValue(BLACK_VAL);
+    front_mid->SetRawValue(black_val);
     run_life_cycle();
     TEST_ASSERT_EQUAL(searchingBack, brain->ActivityState());
     // 後ろのセンサーを変えたら状態遷移することを確認
-    back_mid->SetRawValue(BLACK_VAL);
+    back_mid->SetRawValue(black_val);
     run_life_cycle();
     TEST_ASSERT_EQUAL(0, left_wheel->Speed());
     TEST_ASSERT_EQUAL(0, right_wheel->Speed());
@@ -148,49 +148,49 @@ void run_traceBack_test() {
     TEST_ASSERT_EQUAL(tracingBack, brain->ActivityState());
     // 発進
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(BASE_SPEED, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 背面センサーのテスト ===============================================
     // 直進することを確認
-    set_all_sensor(WHITE_VAL);
-    back_mid->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    back_mid->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(BASE_SPEED, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 右に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    back_left->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    back_left->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - BACKWARD_TORQUE, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(right_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - backward_torque, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(right_wheel->Speed(), base_speed);
     // 左に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    back_right->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    back_right->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - BACKWARD_TORQUE, right_wheel->Speed());
-    TEST_ASSERT_EQUAL(left_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - backward_torque, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(left_wheel->Speed(), base_speed);
     // 前面センサーのテスト ===============================================
     // 直進することを確認
-    set_all_sensor(WHITE_VAL);
-    front_mid->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_mid->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(BASE_SPEED, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 右に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    front_left->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_left->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - BACKWARD_TORQUE, left_wheel->Speed());
-    TEST_ASSERT_EQUAL(right_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - backward_torque, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(right_wheel->Speed(), base_speed);
     // 左に曲がることを確認
-    set_all_sensor(WHITE_VAL);
-    front_right->SetRawValue(BLACK_VAL);
+    set_all_sensor(white_val);
+    front_right->SetRawValue(black_val);
     run_life_cycle();
-    TEST_ASSERT_EQUAL(BASE_SPEED - BACKWARD_TORQUE, right_wheel->Speed());
-    TEST_ASSERT_EQUAL(left_wheel->Speed(), BASE_SPEED);
+    TEST_ASSERT_EQUAL(base_speed - backward_torque, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(left_wheel->Speed(), base_speed);
     // 全部白にして状態遷移
     TEST_ASSERT_EQUAL(tracingBack, brain->ActivityState());
-    set_all_sensor(WHITE_VAL);
+    set_all_sensor(white_val);
     run_life_cycle();
     TEST_ASSERT_EQUAL(finished, brain->ActivityState());
 }
@@ -222,7 +222,7 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
 
-    brain = new LineTraceGoAndBackBrain(BASE_SPEED, FORWARD_TORQUE, BACKWARD_TORQUE);
+    brain = new LineTraceGoAndBackBrain(base_speed, forward_torque, backward_torque);
     left_wheel = new FakeWheel();
     right_wheel = new FakeWheel();
     front_mid = new FakePhotoReflector(500);
