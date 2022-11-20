@@ -6,12 +6,12 @@
 class PidLineTraceBrain : public LineTraceBrain {
 public:
     /**
-     * @param p
-     * @param i
-     * @param d
-     * @param lr_sensor_diff (左のセンサ値 - 右のセンサ値)の値
+     * @param p p制御の重み（比例制御 普通の調整）
+     * @param i i制御の重み（積分制御 今の所使わない）
+     * @param d d制御の重み（微分制御 急なカーブへの対応など）
+     * @param lr_sensor_diff 望ましい位置にあるときの(左のセンサ値 - 右のセンサ値)の値。個体値を吸収する役割。
      */
-    PidLineTraceBrain(int base_speed, float p, float i, float d, int left_target_value, int right_target_value, int lr_sensor_diff, int max_deviation);
+    PidLineTraceBrain(int base_speed, float p, float i, float d, int lr_sensor_diff, int max_deviation);
 
 protected:
     Instruction *Ready() override;
@@ -30,13 +30,12 @@ protected:
 
 private:
     int base_speed_;
-    int left_target_value_;
-    int right_target_value_;
     float p_;
     float i_;
     float d_;
     int lr_sensor_diff_;
-    int max_deviation_; // 最大の
+    int max_manipulation_;
+    int prev_deviation_;
 };
 
 
