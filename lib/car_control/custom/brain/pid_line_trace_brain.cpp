@@ -55,11 +55,10 @@ Instruction *PidLineTraceBrain::Finish() {
     return nullptr;
 }
 
-PidLineTraceBrain::PidLineTraceBrain(int base_speed, float p, float i, float d, int lr_sensor_diff, int max_deviation) {
+PidLineTraceBrain::PidLineTraceBrain(int base_speed, float p, float d, int lr_sensor_diff, int max_manipulation) {
     this->base_speed_ = base_speed;
     this->p_ = p;
-    this->i_ = i;
     this->d_ = d;
     this->lr_sensor_diff_ = lr_sensor_diff;
-    this->max_manipulation_ = max_deviation;
+    this->max_manipulation_ = max_manipulation;
 }
