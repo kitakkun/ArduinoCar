@@ -6,6 +6,7 @@
 #include "custom/brain/line_trace_go_and_back_brain.h"
 #include "custom/brain/line_trace_go_and_turn_back_brain.h"
 #include "custom/brain/line_trace_continuous_brain.h"
+#include "custom/brain/pid_line_trace_brain.h"
 #include "custom/instructions.h"
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CUSTOM_H
