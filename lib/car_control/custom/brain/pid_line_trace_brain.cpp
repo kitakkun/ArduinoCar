@@ -36,7 +36,7 @@ Instruction *PidLineTraceBrain::Trace() {
     prev_deviation_ = deviation;
 
     /* TODO: ここの数値の与え方がよくわかってない */
-    return new ForceSpeedUpdateInstruction(base_speed_ - manipulation, -base_speed_ + manipulation);
+    return new ForceSpeedUpdateInstruction(base_speed_ - manipulation, base_speed_ + manipulation);
 }
 
 Instruction *PidLineTraceBrain::ReadyBack() {
