@@ -9,24 +9,26 @@ void LineTraceBrain::SetCurrentCarState(LineTraceCarState car_state) {
 }
 
 Instruction *LineTraceBrain::CalculateNextInstruction() {
+    Instruction *instruction;
     switch (activity_state_) {
         case ready:
-            return Ready();
+            instruction = Ready();
         case searching:
-            return Search();
+            instruction = Search();
         case tracing:
-            return Trace();
+            instruction = Trace();
         case readyBack:
-            return ReadyBack();
+            instruction = ReadyBack();
         case searchingBack:
-            return SearchBack();
+            instruction = SearchBack();
         case tracingBack:
-            return TraceBack();
+            instruction = TraceBack();
         case finished:
         default:
-            return Finish();
+            instruction = Finish();
     }
     last_time_called_ = millis();
+    return instruction;
 }
 
 LineTraceActivityState LineTraceBrain::ActivityState() {
