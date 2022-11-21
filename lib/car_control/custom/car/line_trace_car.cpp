@@ -26,6 +26,9 @@ void LineTraceCar::UpdateSensors() {
 void LineTraceCar::Think() {
     brain_->SetCurrentCarState(CollectCarState());
     Instruction *instruction = brain_->CalculateNextInstruction();
+    if (instruction == nullptr) {
+        return;
+    }
     if (instruction_ == nullptr) {
         instruction_ = instruction;
         instruction_->Setup(left_wheel_, right_wheel_);
