@@ -2,6 +2,8 @@
 #include "custom/instruction/force_speed_update_instruction.h"
 
 Instruction *PidLineTraceBrain::Ready() {
+    this->activity_state_ = tracing;
+    last_time_called_ = millis();
     return nullptr;
 }
 
@@ -32,8 +34,9 @@ Instruction *PidLineTraceBrain::Trace() {
     // 操作量の範囲を制限
     manipulation = constrain(manipulation, -max_manipulation_, max_manipulation_);
 
-    // deviationの上書き（次回の準備）
+    // deviationの上書きと時間更新（次回の準備）
     prev_deviation_ = deviation;
+    last_time_called_ = millis();
 
     /* TODO: ここの数値の与え方がよくわかってない */
     return new ForceSpeedUpdateInstruction(base_speed_ - manipulation, base_speed_ + manipulation);

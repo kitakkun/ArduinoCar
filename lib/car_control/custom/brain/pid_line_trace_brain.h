@@ -36,6 +36,7 @@ private:
     int lr_sensor_diff_;
     int max_manipulation_;
     int prev_deviation_;
+    unsigned long last_time_called_;
 };
 
 

@@ -1,7 +1,6 @@
 #include "line_trace_brain.h"
 
 LineTraceBrain::LineTraceBrain(String tag) : Debuggable(tag) {
-    last_time_called_ = millis();
 }
 
 void LineTraceBrain::SetCurrentCarState(LineTraceCarState car_state) {
@@ -9,26 +8,23 @@ void LineTraceBrain::SetCurrentCarState(LineTraceCarState car_state) {
 }
 
 Instruction *LineTraceBrain::CalculateNextInstruction() {
-    Instruction *instruction;
     switch (activity_state_) {
         case ready:
-            instruction = Ready();
+            return Ready();
         case searching:
-            instruction = Search();
+            return Search();
         case tracing:
-            instruction = Trace();
+            return Trace();
         case readyBack:
-            instruction = ReadyBack();
+            return ReadyBack();
         case searchingBack:
-            instruction = SearchBack();
+            return SearchBack();
         case tracingBack:
-            instruction = TraceBack();
+            return TraceBack();
         case finished:
         default:
-            instruction = Finish();
+            return Finish();
     }
-    last_time_called_ = millis();
-    return instruction;
 }
 
 LineTraceActivityState LineTraceBrain::ActivityState() {
