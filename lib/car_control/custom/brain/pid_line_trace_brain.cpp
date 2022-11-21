@@ -37,8 +37,7 @@ Instruction *PidLineTraceBrain::Trace() {
     // deviationの上書きと時間更新（次回の準備）
     prev_deviation_ = deviation;
     last_time_called_ = millis();
-
-    /* TODO: ここの数値の与え方がよくわかってない */
+    
     return new ForceSpeedUpdateInstruction(base_speed_ - manipulation, base_speed_ + manipulation);
 }
 
