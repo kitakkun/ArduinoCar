@@ -4,6 +4,9 @@
 
 #include "core/logic/instruction.h"
 
+/**
+ * 方向更新命令
+ */
 class UpdateDirectionInstruction : public Instruction {
 public:
     explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none);

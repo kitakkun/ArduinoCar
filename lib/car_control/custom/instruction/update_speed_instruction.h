@@ -3,6 +3,9 @@
 
 #include "core/logic/instruction.h"
 
+/**
+ * 速度更新命令
+ */
 class UpdateSpeedInstruction : public Instruction {
 public:
     UpdateSpeedInstruction(int left_speed, int right_speed, InstructionMode mode = none);

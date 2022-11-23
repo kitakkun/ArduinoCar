@@ -4,7 +4,7 @@
 #include "core/logic/instruction.h"
 
 /*
- * 180度回転する指令
+ * 回転命令
  */
 class TurnInstruction : public Instruction {
 public:
@@ -17,4 +17,4 @@ private:
     int duration_;
 };
 
-#endif //ACCELERATEINSTRUCTION_H
+#endif // TURN_INSTRUCTION_H
