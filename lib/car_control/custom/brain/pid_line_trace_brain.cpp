@@ -1,21 +1,19 @@
 #include "pid_line_trace_brain.h"
-#include "custom/instruction/force_speed_update_instruction.h"
-#include "custom/instruction/update_direction_instruction.h"
-#include "custom/instruction/wait_instruction.h"
+#include "custom/instructions.h"
 
 Instruction *PidLineTraceBrain::Ready() {
     this->activity_state_ = searching;
     last_time_called_ = millis();
-    return new ForceSpeedUpdateInstruction(0);
+    return new UpdateSpeedInstruction(0);
 }
 
 Instruction *PidLineTraceBrain::Search() {
     // 黒を発見するまで直進
     if (current_car_state_.IsAnyBlack()) {
         this->activity_state_ = tracing;
-        return new ForceSpeedUpdateInstruction(0);
+        return new UpdateSpeedInstruction(0);
     }
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *PidLineTraceBrain::Trace() {
@@ -23,7 +21,7 @@ Instruction *PidLineTraceBrain::Trace() {
     // 全部白になったらトレース完了
     if (current_car_state_.IsAllWhite()) {
         this->activity_state_ = readyBack;
-        return new ForceSpeedUpdateInstruction(0);
+        return new UpdateSpeedInstruction(0);
     }
 
     /**
@@ -52,7 +50,7 @@ Instruction *PidLineTraceBrain::Trace() {
     prev_deviation_ = deviation;
     last_time_called_ = millis();
     
-    return new ForceSpeedUpdateInstruction(base_speed_ - manipulation, base_speed_ + manipulation);
+    return new UpdateSpeedInstruction(base_speed_ - manipulation, base_speed_ + manipulation);
 }
 
 Instruction *PidLineTraceBrain::ReadyBack() {
@@ -64,9 +62,9 @@ Instruction *PidLineTraceBrain::ReadyBack() {
 Instruction *PidLineTraceBrain::SearchBack() {
     if (this->current_car_state_.IsAnyBlack()) {
         this->activity_state_ = tracingBack;
-        return new ForceSpeedUpdateInstruction(0);
+        return new UpdateSpeedInstruction(0);
     } else {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 }
 
@@ -77,7 +75,7 @@ Instruction *PidLineTraceBrain::TraceBack() {
     // 全部白になったらトレース完了
     if (current_car_state_.IsAllWhite()) {
         this->activity_state_ = finished;
-        return new ForceSpeedUpdateInstruction(0);
+        return new UpdateSpeedInstruction(0);
     }
 
     /**
@@ -106,7 +104,7 @@ Instruction *PidLineTraceBrain::TraceBack() {
     prev_deviation_ = deviation;
     last_time_called_ = millis();
 
-    return new ForceSpeedUpdateInstruction(base_speed_ + manipulation, base_speed_ - manipulation);
+    return new UpdateSpeedInstruction(base_speed_ + manipulation, base_speed_ - manipulation);
 }
 
 Instruction *PidLineTraceBrain::Finish() {
