@@ -28,14 +28,12 @@ void LineTraceCar::Think() {
     Instruction *instruction = brain_->CalculateNextInstruction();
     if (instruction_ == nullptr) {
         instruction_ = instruction;
-        instruction_->Setup(left_wheel_, right_wheel_);
         return;
     }
     if (instruction->Mode() == interrupt) {
         instruction_->reset();
         delete instruction_;
         instruction_ = instruction;
-        instruction_->Setup(left_wheel_, right_wheel_);
     } else {
         delete instruction;
     }
@@ -44,7 +42,7 @@ void LineTraceCar::Think() {
 void LineTraceCar::Act() {
     if (this->instruction_ == nullptr) return;
 
-    instruction_->runCoroutine();
+    instruction_->Run(this->left_wheel_, this->right_wheel_);
 
     if (instruction_->isDone()) {
         delete instruction_;
