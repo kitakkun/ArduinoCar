@@ -4,7 +4,7 @@
 #include "core/logic/instruction.h"
 
 /**
- * 右へ曲がる指令
+ * 右折命令
  */
 class TorqueRightInstruction : public Instruction {
 public:

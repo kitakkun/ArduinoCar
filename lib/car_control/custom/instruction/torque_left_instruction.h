@@ -5,7 +5,7 @@
 #include "core/logic/instruction.h"
 
 /**
- * 左に曲がる指令
+ * 左折命令
  */
 class TorqueLeftInstruction : public Instruction {
 public:

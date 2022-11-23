@@ -3,6 +3,9 @@
 
 #include "core/logic/instruction.h"
 
+/**
+ * 待機命令
+ */
 class WaitInstruction : public Instruction {
 public:
     explicit WaitInstruction(int duration_millis, InstructionMode mode = none);
