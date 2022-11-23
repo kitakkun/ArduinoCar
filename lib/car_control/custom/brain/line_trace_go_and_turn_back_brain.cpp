@@ -13,7 +13,7 @@ Instruction *LineTraceGoAndTurnBackBrain::Ready() {
     // 発進してライン探索モードに移行
     Logger::Verboseln(this, F("READY... STARTING SEARCH MODE"));
     this->activity_state_ = searching;
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndTurnBackBrain::Search() {
@@ -23,14 +23,14 @@ Instruction *LineTraceGoAndTurnBackBrain::Search() {
         activity_state_ = tracing;
         return new ForceStopInstruction();
     }
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndTurnBackBrain::Trace() {
 
     // スピードが0なら発進
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
     // 前後全部白になったらトレース完了とみなしバックモードへ（一旦停止）
@@ -50,7 +50,7 @@ Instruction *LineTraceGoAndTurnBackBrain::Trace() {
     }
     // 真ん中が黒なら直進
     if (current_car_state_.front_mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
     // 前方が使えないとき、後方のセンサーで判断する
@@ -64,10 +64,10 @@ Instruction *LineTraceGoAndTurnBackBrain::Trace() {
     }
     // 真ん中が黒なら直進
     if (current_car_state_.back_mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndTurnBackBrain::ReadyBack() {
@@ -84,7 +84,7 @@ Instruction *LineTraceGoAndTurnBackBrain::SearchBack() {
         activity_state_ = tracingBack;
         return new ForceStopInstruction(interrupt);
     }
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
@@ -94,7 +94,7 @@ Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
     }
 
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
-        return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
+        return new UpdateSpeedInstruction(base_speed_, base_speed_);
     }
 
     if (current_car_state_.IsAllWhite()) {
@@ -114,7 +114,7 @@ Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
     }
     // 真ん中が黒なら直進
     if (current_car_state_.front_mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
     // 前方が使えないとき、後方のセンサーで判断する
@@ -128,10 +128,10 @@ Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
     }
     // 真ん中が黒なら直進
     if (current_car_state_.back_mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
-    return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
+    return new UpdateSpeedInstruction(base_speed_, base_speed_);
 }
 
 Instruction *LineTraceGoAndTurnBackBrain::Finish() {
