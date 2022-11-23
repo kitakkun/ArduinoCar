@@ -61,14 +61,8 @@ LineTraceCarState LineTraceCar::CollectCarState() {
             front_mid_reflector_->Value(),
             front_left_reflector_->Value(),
             front_right_reflector_->Value(),
-            back_mid_reflector_->Value(),
-            back_left_reflector_->Value(),
-            back_right_reflector_->Value(),
             front_mid_reflector_->RawValue(),
             front_left_reflector_->RawValue(),
             front_right_reflector_->RawValue(),
-            back_mid_reflector_->RawValue(),
-            back_left_reflector_->RawValue(),
-            back_right_reflector_->RawValue(),
     };
 }
