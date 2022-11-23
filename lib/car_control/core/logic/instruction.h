@@ -13,11 +13,11 @@ class Instruction : public ace_routine::Coroutine {
 public:
     virtual ~Instruction() = default;
 
-    int runCoroutine() override = 0;
+    virtual int Run(Wheel *left_wheel, Wheel *right_wheel) = 0;
 
-    virtual void Setup(Wheel *left_wheel, Wheel *right_wheel) = 0;
+    int runCoroutine() override { return 0; }
 
-    virtual InstructionMode Mode() = 0;
+    virtual InstructionMode Mode() { return none; }
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_INSTRUCTION_H

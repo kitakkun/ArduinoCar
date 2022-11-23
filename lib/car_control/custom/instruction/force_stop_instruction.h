@@ -1,13 +1,14 @@
 #ifndef FORCE_STOP_INSTRUCTION
 #define FORCE_STOP_INSTRUCTION
 
-#include "core/logic/instruction_impl.h"
 
-class ForceStopInstruction : public InstructionImpl {
+#include "core/logic/instruction.h"
+
+class ForceStopInstruction : public Instruction {
 public:
     explicit ForceStopInstruction(InstructionMode mode = none, String tag = "ForceStopInstruction");
 
-    int runCoroutine() override;
+    int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 };
 
-#endif //FORCESTOPINSTRUCTION_H
+#endif //FORCE_STOP_INSTRUCTION

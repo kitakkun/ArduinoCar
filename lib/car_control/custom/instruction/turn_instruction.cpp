@@ -1,19 +1,19 @@
 #include "turn_instruction.h"
 
-TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode, String tag) : InstructionImpl(mode, tag) {
+TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode, String tag) {
     speed_ = speed;
     duration_ = duration;
 }
 
-int TurnInstruction::runCoroutine() {
+int TurnInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {
     COROUTINE_BEGIN();
-    left_wheel_->UpdateDirection(backward); /// 左車輪を後ろ方向に回転させる
-    left_wheel_->UpdateSpeed(speed_);
-    right_wheel_->UpdateDirection(forward); /// 右車輪を前方向に回転させる
-    right_wheel_->UpdateSpeed(speed_);
+    left_wheel->UpdateDirection(backward); /// 左車輪を後ろ方向に回転させる
+    left_wheel->UpdateSpeed(speed_);
+    right_wheel->UpdateDirection(forward); /// 右車輪を前方向に回転させる
+    right_wheel->UpdateSpeed(speed_);
     COROUTINE_DELAY(duration_);
-    left_wheel_->UpdateSpeed(0);
-    right_wheel_->UpdateSpeed(0);
+    left_wheel->UpdateSpeed(0);
+    right_wheel->UpdateSpeed(0);
     COROUTINE_END();
 }
 

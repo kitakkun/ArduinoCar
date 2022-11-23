@@ -1,18 +1,18 @@
 #ifndef TORQUE_RIGHT_INSTRUCTION_H
 #define TORQUE_RIGHT_INSTRUCTION_H
 
-#include "core/logic/instruction_impl.h"
+#include "core/logic/instruction.h"
 
 /**
  * 右へ曲がる指令
  */
-class TorqueRightInstruction : public InstructionImpl {
+class TorqueRightInstruction : public Instruction {
 public:
     explicit TorqueRightInstruction(
             int base_speed, int force, InstructionMode mode = none, String tag = "TorqueRightInstruction"
     );
 
-    int runCoroutine() override;
+    int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 
 private:
     int base_speed_;
