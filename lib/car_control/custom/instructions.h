@@ -3,7 +3,7 @@
 
 #include "instruction/update_delta_speed_instruction.h"
 #include "instruction/update_speed_instruction.h"
-#include "instruction/force_stop_instruction.h"
+#include "instruction/stop_instruction.h"
 #include "instruction/torque_left_instruction.h"
 #include "instruction/torque_right_instruction.h"
 #include "instruction/wait_instruction.h"

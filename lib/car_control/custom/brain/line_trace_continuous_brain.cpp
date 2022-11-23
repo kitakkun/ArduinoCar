@@ -21,7 +21,7 @@ Instruction *LineTraceContinuousBrain::Search() {
     if (current_car_state_.IsAnyFrontBlack()) {
         Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE MODE..."));
         activity_state_ = tracing;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
     return new UpdateSpeedInstruction(base_speed_);
 }

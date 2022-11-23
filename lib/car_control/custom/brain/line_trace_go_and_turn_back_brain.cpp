@@ -21,7 +21,7 @@ Instruction *LineTraceGoAndTurnBackBrain::Search() {
     if (current_car_state_.IsAnyFrontBlack()) {
         Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE MODE..."));
         activity_state_ = tracing;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
     return new UpdateSpeedInstruction(base_speed_);
 }
@@ -37,7 +37,7 @@ Instruction *LineTraceGoAndTurnBackBrain::Trace() {
     if (current_car_state_.IsAllWhite()) {
         Logger::Verboseln(this, F("TRACING COMPLETED! STARTING READY_BACK MODE..."));
         activity_state_ = readyBack;
-        return new ForceStopInstruction(interrupt);
+        return new StopInstruction(interrupt);
     }
 
     // 左が黒なら左へ曲がる
@@ -82,7 +82,7 @@ Instruction *LineTraceGoAndTurnBackBrain::SearchBack() {
     if (current_car_state_.IsAnyFrontBlack()) {
         Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE_BACK MODE"));
         activity_state_ = tracingBack;
-        return new ForceStopInstruction(interrupt);
+        return new StopInstruction(interrupt);
     }
     return new UpdateSpeedInstruction(base_speed_);
 }
@@ -101,7 +101,7 @@ Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
         Logger::Verboseln(this, F("TRACING COMPLETED!"));
         Logger::Verboseln(this, F("FINISHED LINE TRACE TASK."));
         activity_state_ = finished;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
 
     // 左が黒なら左へ曲がる
@@ -135,5 +135,5 @@ Instruction *LineTraceGoAndTurnBackBrain::TraceBack() {
 }
 
 Instruction *LineTraceGoAndTurnBackBrain::Finish() {
-    return new ForceStopInstruction();
+    return new StopInstruction();
 }
