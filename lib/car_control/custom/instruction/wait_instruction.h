@@ -5,7 +5,7 @@
 
 class WaitInstruction : public Instruction {
 public:
-    explicit WaitInstruction(int duration_millis, InstructionMode mode = none, String tag = "WaitInstruction");
+    explicit WaitInstruction(int duration_millis, InstructionMode mode = none);
 
     int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 

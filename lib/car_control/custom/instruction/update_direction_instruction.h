@@ -6,7 +6,7 @@
 
 class UpdateDirectionInstruction : public Instruction {
 public:
-    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none, String tag = "UpdateDirectionInstruction");
+    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none);
 
     int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 

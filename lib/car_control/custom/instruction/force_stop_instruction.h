@@ -6,7 +6,7 @@
 
 class ForceStopInstruction : public Instruction {
 public:
-    explicit ForceStopInstruction(InstructionMode mode = none, String tag = "ForceStopInstruction");
+    explicit ForceStopInstruction(InstructionMode mode = none);
 
     int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 };

@@ -1,6 +1,8 @@
 #include "force_stop_instruction.h"
 
-ForceStopInstruction::ForceStopInstruction(InstructionMode mode, String tag) {}
+ForceStopInstruction::ForceStopInstruction(InstructionMode mode) {
+    this->mode_ = mode;
+}
 
 int ForceStopInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {
     COROUTINE_BEGIN();

@@ -1,7 +1,8 @@
 #include "update_direction_instruction.h"
 
-UpdateDirectionInstruction::UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode, String tag) {
-    direction_ = direction;
+UpdateDirectionInstruction::UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode) {
+    this->direction_ = direction;
+    this->mode_ = mode;
 }
 
 int UpdateDirectionInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {

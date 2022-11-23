@@ -17,7 +17,10 @@ public:
 
     int runCoroutine() override { return 0; }
 
-    virtual InstructionMode Mode() { return none; }
+    virtual InstructionMode Mode() { return mode_; }
+
+protected:
+    InstructionMode mode_ = none;
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_INSTRUCTION_H

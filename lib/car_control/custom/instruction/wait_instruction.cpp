@@ -1,7 +1,8 @@
 #include "wait_instruction.h"
 
-WaitInstruction::WaitInstruction(int duration_millis, InstructionMode mode, String tag) {
-    duration_millis_ = duration_millis;
+WaitInstruction::WaitInstruction(int duration_millis, InstructionMode mode) {
+    this->duration_millis_ = duration_millis;
+    this->mode_ = mode;
 }
 
 int WaitInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {

@@ -1,8 +1,9 @@
 #include "turn_instruction.h"
 
-TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode, String tag) {
-    speed_ = speed;
-    duration_ = duration;
+TurnInstruction::TurnInstruction(int speed, int duration, InstructionMode mode) {
+    this->speed_ = speed;
+    this->duration_ = duration;
+    this->mode_ = mode;
 }
 
 int TurnInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {

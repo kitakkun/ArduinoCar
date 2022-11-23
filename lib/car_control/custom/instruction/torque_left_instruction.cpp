@@ -2,9 +2,10 @@
 #include "ArduinoLog.h"
 #include "core/debug/logger.h"
 
-TorqueLeftInstruction::TorqueLeftInstruction(int base_speed, int force, InstructionMode mode, String tag) {
-    base_speed_ = base_speed;
-    force_ = force;
+TorqueLeftInstruction::TorqueLeftInstruction(int base_speed, int force, InstructionMode mode) {
+    this->base_speed_ = base_speed;
+    this->force_ = force;
+    this->mode_ = mode;
 }
 
 int TorqueLeftInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {

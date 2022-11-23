@@ -5,9 +5,9 @@
 
 class ForceSpeedUpdateInstruction : public Instruction {
 public:
-    ForceSpeedUpdateInstruction(int left_speed, int right_speed, InstructionMode mode = none, String tag = "ForceSpeedUpdateInstruction");
+    ForceSpeedUpdateInstruction(int left_speed, int right_speed, InstructionMode mode = none);
 
-    explicit ForceSpeedUpdateInstruction(int speed, InstructionMode mode = none, String tag = "ForceSpeedUpdateInstruction");
+    explicit ForceSpeedUpdateInstruction(int speed, InstructionMode mode = none);
 
     int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 
