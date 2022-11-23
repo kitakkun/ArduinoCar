@@ -142,12 +142,12 @@ void setup() {
             .SetBrain(brain)
             .SetLeftWheel(left_wheel)
             .SetRightWheel(right_wheel)
-            .SetFrontMidReflector(front_mid)
-            .SetFrontRightReflector(front_right)
-            .SetFrontLeftReflector(front_left)
-            .SetBackMidReflector(back_mid)
-            .SetBackRightReflector(back_right)
-            .SetBackLeftReflector(back_left)
+            .SetMidReflector(front_mid)
+            .SetMidReflector(front_right)
+            .SetMidReflector(front_left)
+            .SetMidReflector(back_mid)
+            .SetMidReflector(back_right)
+            .SetMidReflector(back_left)
             .Build();
 
     // 全部白にしておく

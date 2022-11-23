@@ -24,12 +24,9 @@ private:
     LineTraceBrain *brain_;
     Wheel *left_wheel_;
     Wheel *right_wheel_;
-    PhotoReflector *front_mid_reflector_;
-    PhotoReflector *front_left_reflector_;
-    PhotoReflector *front_right_reflector_;
-    PhotoReflector *back_mid_reflector_;
-    PhotoReflector *back_left_reflector_;
-    PhotoReflector *back_right_reflector_;
+    PhotoReflector *mid_reflector_;
+    PhotoReflector *left_reflector_;
+    PhotoReflector *right_reflector_;
     Instruction *instruction_;
 
     LineTraceCarState CollectCarState();

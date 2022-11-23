@@ -5,22 +5,16 @@ LineTraceCar::LineTraceCar(LineTraceCarBuilder *builder, String tag) : Debuggabl
     this->brain_ = builder->GetBrain();
     this->left_wheel_ = builder->GetLeftWheel();
     this->right_wheel_ = builder->GetRightWheel();
-    this->front_mid_reflector_ = builder->GetFrontMidReflector();
-    this->front_left_reflector_ = builder->GetFrontLeftReflector();
-    this->front_right_reflector_ = builder->GetFrontRightReflector();
-    this->back_mid_reflector_ = builder->GetBackMidReflector();
-    this->back_left_reflector_ = builder->GetBackLeftReflector();
-    this->back_right_reflector_ = builder->GetBackRightReflector();
+    this->mid_reflector_ = builder->GetMidReflector();
+    this->left_reflector_ = builder->GetLeftReflector();
+    this->right_reflector_ = builder->GetRightReflector();
     this->instruction_ = nullptr;
 }
 
 void LineTraceCar::UpdateSensors() {
-    this->front_mid_reflector_->Update();
-    this->front_left_reflector_->Update();
-    this->front_right_reflector_->Update();
-    this->back_mid_reflector_->Update();
-    this->back_left_reflector_->Update();
-    this->back_right_reflector_->Update();
+    this->mid_reflector_->Update();
+    this->left_reflector_->Update();
+    this->right_reflector_->Update();
 }
 
 void LineTraceCar::Think() {
@@ -61,17 +55,11 @@ LineTraceCarState LineTraceCar::CollectCarState() {
             right_wheel_->Speed(),
             left_wheel_->Direction(),
             right_wheel_->Direction(),
-            front_mid_reflector_->Value(),
-            front_left_reflector_->Value(),
-            front_right_reflector_->Value(),
-            back_mid_reflector_->Value(),
-            back_left_reflector_->Value(),
-            back_right_reflector_->Value(),
-            front_mid_reflector_->RawValue(),
-            front_left_reflector_->RawValue(),
-            front_right_reflector_->RawValue(),
-            back_mid_reflector_->RawValue(),
-            back_left_reflector_->RawValue(),
-            back_right_reflector_->RawValue(),
+            mid_reflector_->Value(),
+            left_reflector_->Value(),
+            right_reflector_->Value(),
+            mid_reflector_->RawValue(),
+            left_reflector_->RawValue(),
+            right_reflector_->RawValue(),
     };
 }
