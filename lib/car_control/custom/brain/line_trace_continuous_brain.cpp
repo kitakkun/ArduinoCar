@@ -13,7 +13,7 @@ Instruction *LineTraceContinuousBrain::Ready() {
     // 発進してライン探索モードに移行
     Logger::Verboseln(this, F("READY... STARTING SEARCH MODE"));
     this->activity_state_ = searching;
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceContinuousBrain::Search() {
@@ -21,16 +21,16 @@ Instruction *LineTraceContinuousBrain::Search() {
     if (current_car_state_.IsAnyBlack()) {
         Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE MODE..."));
         activity_state_ = tracing;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceContinuousBrain::Trace() {
 
     // スピードが0なら発進
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
     // 左が黒なら左へ曲がる
@@ -43,10 +43,10 @@ Instruction *LineTraceContinuousBrain::Trace() {
     }
     // 真ん中が黒なら直進
     if (current_car_state_.mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceContinuousBrain::ReadyBack() {

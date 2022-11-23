@@ -2,13 +2,16 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_UPDATE_DIRECTION_INSTRUCTION_H
 
 
-#include "core/logic/instruction_impl.h"
+#include "core/logic/instruction.h"
 
-class UpdateDirectionInstruction : public InstructionImpl {
+/**
+ * 方向更新命令
+ */
+class UpdateDirectionInstruction : public Instruction {
 public:
-    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none, String tag = "UpdateDirectionInstruction");
+    explicit UpdateDirectionInstruction(MoveDirection direction, InstructionMode mode = none);
 
-    int runCoroutine() override;
+    int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 
 private:
     MoveDirection direction_;

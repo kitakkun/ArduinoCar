@@ -1,7 +1,7 @@
 #ifndef BRAIN_H
 #define BRAIN_H
 
-#include "instruction_impl.h"
+#include "instruction.h"
 
 /**
  * 車の頭脳に相当するクラス
