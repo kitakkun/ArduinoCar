@@ -62,7 +62,12 @@ Instruction *PidLineTraceBrain::ReadyBack() {
 }
 
 Instruction *PidLineTraceBrain::SearchBack() {
-    return nullptr;
+    if (this->current_car_state_.IsAnyBlack()) {
+        this->activity_state_ = tracingBack;
+        return new ForceSpeedUpdateInstruction(0);
+    } else {
+        return new ForceSpeedUpdateInstruction(base_speed_);
+    }
 }
 
 /**
