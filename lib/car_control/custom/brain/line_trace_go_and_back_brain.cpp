@@ -14,7 +14,7 @@ Instruction *LineTraceGoAndBackBrain::Ready() {
     // 発進してライン探索モードに移行
     Logger::Verboseln(this, F("READY... STARTING SEARCH MODE"));
     this->activity_state_ = searching;
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::Search() {
@@ -22,23 +22,23 @@ Instruction *LineTraceGoAndBackBrain::Search() {
     if (current_car_state_.IsAnyBlack()) {
         Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE MODE..."));
         activity_state_ = tracing;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::Trace() {
 
     // スピードが0なら発進
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
     // 前後全部白になったらトレース完了とみなしバックモードへ（一旦停止）
     if (current_car_state_.IsAllWhite()) {
         Logger::Verboseln(this, F("TRACING COMPLETED! STARTING READY_BACK MODE..."));
         activity_state_ = readyBack;
-        return new ForceStopInstruction(interrupt);
+        return new StopInstruction(interrupt);
     }
 
     // 左が黒なら左へ曲がる
@@ -51,10 +51,10 @@ Instruction *LineTraceGoAndBackBrain::Trace() {
     }
     // 真ん中が黒なら直進
     if (current_car_state_.mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_);
+        return new UpdateSpeedInstruction(base_speed_);
     }
 
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::ReadyBack() {
@@ -68,22 +68,22 @@ Instruction *LineTraceGoAndBackBrain::SearchBack() {
     if (current_car_state_.IsAnyBlack()) {
         Logger::Verboseln(this, F("LINE FOUND! STARTING TRACE_BACK MODE"));
         activity_state_ = tracingBack;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
-    return new ForceSpeedUpdateInstruction(base_speed_);
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::TraceBack() {
 
     if (current_car_state_.left_wheel_speed_ == 0 || current_car_state_.right_wheel_speed_ == 0) {
-        return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
+        return new UpdateSpeedInstruction(base_speed_, base_speed_);
     }
 
     if (current_car_state_.IsAllWhite()) {
         Logger::Verboseln(this, F("TRACING COMPLETED!"));
         Logger::Verboseln(this, F("FINISHED LINE TRACE TASK."));
         activity_state_ = finished;
-        return new ForceStopInstruction();
+        return new StopInstruction();
     }
 
     if (current_car_state_.left_reflector_color_ == black) {
@@ -93,12 +93,12 @@ Instruction *LineTraceGoAndBackBrain::TraceBack() {
         return new TorqueLeftInstruction(base_speed_, backward_torque_force_, interrupt);
     }
     if (current_car_state_.mid_reflector_color_ == black) {
-        return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
+        return new UpdateSpeedInstruction(base_speed_, base_speed_);
     }
 
-    return new ForceSpeedUpdateInstruction(base_speed_, base_speed_);
+    return new UpdateSpeedInstruction(base_speed_, base_speed_);
 }
 
 Instruction *LineTraceGoAndBackBrain::Finish() {
-    return new ForceStopInstruction();
+    return new StopInstruction();
 }
