@@ -17,7 +17,7 @@ Instruction *PidLineTraceBrain::Trace() {
      * deviation < 0 => 右の方が黒に近付いている
      * この差分を用いて単純な比例制御を行う（P制御）
      */
-    int deviation = current_car_state_.front_left_reflector_raw_ - current_car_state_.front_right_reflector_raw_ - lr_sensor_diff_;
+    int deviation = current_car_state_.left_reflector_raw_ - current_car_state_.right_reflector_raw_ - lr_sensor_diff_;
 
     /**
      * 前に計算されたprev_deviation_と今回計算したdeviation、経過時間delta_timeを用いてdeviationの微分(deviation_differential)を計算する。
