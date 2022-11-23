@@ -15,17 +15,11 @@ public:
 
     LineTraceCarBuilder& SetBrain(LineTraceBrain *brain);
 
-    LineTraceCarBuilder& SetFrontLeftReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetLeftReflector(PhotoReflector *reflector);
 
-    LineTraceCarBuilder& SetFrontRightReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetRightReflector(PhotoReflector *reflector);
 
-    LineTraceCarBuilder& SetFrontMidReflector(PhotoReflector *reflector);
-
-    LineTraceCarBuilder& SetBackLeftReflector(PhotoReflector *reflector);
-
-    LineTraceCarBuilder& SetBackMidReflector(PhotoReflector *reflector);
-
-    LineTraceCarBuilder& SetBackRightReflector(PhotoReflector *reflector);
+    LineTraceCarBuilder& SetMidReflector(PhotoReflector *reflector);
 
     LineTraceBrain *GetBrain();
 
@@ -33,17 +27,11 @@ public:
 
     Wheel *GetRightWheel() override;
 
-    PhotoReflector *GetFrontLeftReflector();
+    PhotoReflector *GetLeftReflector();
 
-    PhotoReflector *GetFrontRightReflector();
+    PhotoReflector *GetRightReflector();
 
-    PhotoReflector *GetFrontMidReflector();
-
-    PhotoReflector *GetBackRightReflector();
-
-    PhotoReflector *GetBackLeftReflector();
-
-    PhotoReflector *GetBackMidReflector();
+    PhotoReflector *GetMidReflector();
 
     Car *Build() override;
 
@@ -51,12 +39,9 @@ private:
     LineTraceBrain *brain_;
     Wheel *left_wheel_;
     Wheel *right_wheel_;
-    PhotoReflector *front_left_reflector_;
-    PhotoReflector *front_right_reflector_;
-    PhotoReflector *front_mid_reflector_;
-    PhotoReflector *back_left_reflector_;
-    PhotoReflector *back_right_reflector_;
-    PhotoReflector *back_mid_reflector_;
+    PhotoReflector *left_reflector_;
+    PhotoReflector *right_reflector_;
+    PhotoReflector *mid_reflector_;
 };
 
 #endif //CAR_BUILDER_H

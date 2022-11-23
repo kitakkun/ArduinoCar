@@ -16,12 +16,9 @@ void setup() {
             .SetBrain(new LineTraceGoAndBackBrain(BASE_SPEED, FORWARD_TORQUE, BACKWARD_TORQUE))
             .SetLeftWheel(new WheelImpl(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN, "LeftWheel"))
             .SetRightWheel(new WheelImpl(RIGHT_MOTOR_PLUS_PIN, RIGHT_MOTOR_MINUS_PIN, RIGHT_MOTOR_PWM_PIN, "RightWheel"))
-            .SetFrontMidReflector(new PhotoReflectorImpl(FRONT_MID_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "FrontMid"))
-            .SetFrontRightReflector(new PhotoReflectorImpl(FRONT_RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "FrontRight"))
-            .SetFrontLeftReflector(new PhotoReflectorImpl(FRONT_LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "FrontLeft"))
-            .SetBackMidReflector(new PhotoReflectorImpl(BACK_MID_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "BackMid"))
-            .SetBackRightReflector(new PhotoReflectorImpl(BACK_RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "BackRight"))
-            .SetBackLeftReflector(new PhotoReflectorImpl(BACK_LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "BackLeft"))
+            .SetMidReflector(new PhotoReflectorImpl(MID_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "Mid"))
+            .SetRightReflector(new PhotoReflectorImpl(RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "Right"))
+            .SetLeftReflector(new PhotoReflectorImpl(LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "Left"))
             .Build();
     Log.verboseln("Done! Started Program Lifecycle.");
 
