@@ -3,13 +3,15 @@
 
 #include <Arduino.h>
 
-#define BASE_SPEED 130
+#define BASE_SPEED 120
 #define LR_SENSOR_DIFF -4
-#define TURN_SPEED 140
-#define TRACE_MODE goBack
-#define P 0.05
+#define TURN_SPEED 110
+#define TRACE_MODE continuous
+#define P 0.14
 #define D 0.0
 #define MAX_MANIPULATION 50
+
+#define RIGHT_SPEED_GAIN 10
 
 #define RIGHT_MOTOR_PLUS_PIN 2
 #define RIGHT_MOTOR_MINUS_PIN 3
