@@ -8,5 +8,6 @@
 #include "instruction/torque_right_instruction.h"
 #include "instruction/wait_instruction.h"
 #include "instruction/update_direction_instruction.h"
+#include "instruction/turn_instruction.h"
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_INSTRUCTIONS_H
