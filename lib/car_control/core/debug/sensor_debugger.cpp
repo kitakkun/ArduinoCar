@@ -9,9 +9,10 @@ SensorDebugger::SensorDebugger(Sensor *mid_sensor, Sensor *left_sensor, Sensor *
 
 void SensorDebugger::PrintDebugLog() {
     Log.verboseln(
-            "[SensorDebugger] left: %d, right: %d, mid: %d",
+            "[SensorDebugger] left: %d, right: %d, mid: %d, lr_diff: %d",
             this->left_sensor_->RawValue(),
             this->right_sensor_->RawValue(),
-            this->mid_sensor_->RawValue()
+            this->mid_sensor_->RawValue(),
+            this->left_sensor_->RawValue() - this->right_sensor_->RawValue()
     );
 }
