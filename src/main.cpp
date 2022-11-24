@@ -53,6 +53,6 @@ void loop() {
     car->Think();
     car->Act();
 //    wheel_debugger->PrintDebugLog();
-    sensor_debugger->PrintDebugLog();
-    delay(10);
+//    sensor_debugger->PrintDebugLog();
+    delay(5);
 }
