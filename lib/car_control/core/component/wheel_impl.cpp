@@ -3,7 +3,7 @@
 #include <Arduino.h>
 
 // タイヤのコンストラクタ
-WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(tag, true) {
+WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin) {
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
@@ -12,7 +12,6 @@ WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin, String tag) : Deb
     pinMode(this->plus_pin_, OUTPUT);
     pinMode(this->minus_pin_, OUTPUT);
     pinMode(this->pwm_pin_, OUTPUT);
-    Logger::Verboseln(this, F("Instantiated"));
 }
 
 // 現在の進行方向を返す
@@ -41,7 +40,6 @@ void WheelImpl::UpdateDirection(MoveDirection direction) {
 }
 
 void WheelImpl::ApplySpeed() {
-    Logger::Verboseln(this, F("Speed Updated. New speed is %d"), this->speed_);
     analogWrite(this->pwm_pin_, this->speed_);
 }
 
@@ -49,11 +47,9 @@ void WheelImpl::ApplyDirection() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);
         digitalWrite(this->minus_pin_, LOW);
-        Logger::Verboseln(this, F("Direction Updated. New Direction is forward"));
     } else {
         digitalWrite(this->plus_pin_, LOW);
         digitalWrite(this->minus_pin_, HIGH);
-        Logger::Verboseln(this, F("Direction Updated. New Direction is backward"));
     }
 }
 

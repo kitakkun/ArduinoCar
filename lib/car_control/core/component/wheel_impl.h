@@ -8,7 +8,7 @@
 /**
  * 車輪の速度制御や回転方向制御を行うクラス
  */
-class WheelImpl : public Wheel, public Debuggable {
+class WheelImpl : public Wheel {
 public:
     /**
      * コンストラクタ
@@ -16,7 +16,7 @@ public:
      * @param minus_pin マイナスのピン
      * @param pwm_pin 速度調整用PWMのピン
      */
-    WheelImpl(int plus_pin, int minus_pin, int pwm_pin, String tag = "WheelImpl");
+    WheelImpl(int plus_pin, int minus_pin, int pwm_pin);
 
     void UpdateSpeed(int speed) override;
 
