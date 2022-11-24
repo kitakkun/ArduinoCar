@@ -14,14 +14,14 @@ PidLineTraceBrain::PidLineTraceBrain(TraceMode trace_mode, int base_speed, int t
 Instruction *PidLineTraceBrain::Ready() {
     this->activity_state_ = searching;
     last_time_called_ = millis();
-    return new UpdateSpeedInstruction(0);
+    return new StopInstruction();
 }
 
 Instruction *PidLineTraceBrain::Search() {
     // 黒を発見するまで直進
     if (current_car_state_.IsAnyBlack()) {
         this->activity_state_ = tracing;
-        return new UpdateSpeedInstruction(0);
+        return new StopInstruction(interrupt);
     }
     return new UpdateSpeedInstruction(base_speed_);
 }
@@ -31,7 +31,7 @@ Instruction *PidLineTraceBrain::Trace() {
     // 全部白になったらトレース完了(継続トレースモードのときは完了しない）
     if (current_car_state_.IsAllWhite() && this->trace_mode_ != continuous) {
         this->activity_state_ = readyBack;
-        return new UpdateSpeedInstruction(0);
+        return new StopInstruction(interrupt);
     }
 
     /**
@@ -79,14 +79,14 @@ Instruction *PidLineTraceBrain::SearchBack() {
     if (this->trace_mode_ == goBack) {
         if (this->current_car_state_.IsAnyBlack()) {
             this->activity_state_ = tracingBack;
-            return new UpdateSpeedInstruction(0);
+            return new StopInstruction(interrupt);
         } else {
             return new UpdateSpeedInstruction(base_speed_);
         }
     } else {
         if (this->current_car_state_.mid_reflector_color_ == black) {
             this->activity_state_ = tracingBack;
-            return new UpdateSpeedInstruction(0);
+            return new StopInstruction(interrupt);
         }
         return new TurnInstruction(turn_speed_, 100);
     }
@@ -99,7 +99,7 @@ Instruction *PidLineTraceBrain::TraceBack() {
     // 全部白になったらトレース完了
     if (current_car_state_.IsAllWhite()) {
         this->activity_state_ = finished;
-        return new UpdateSpeedInstruction(0);
+        return new StopInstruction(interrupt);
     }
 
     /**
