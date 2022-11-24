@@ -98,8 +98,7 @@ Instruction *PidLineTraceBrain::SearchBack() {
             this->activity_state_ = tracingBack;
             return new StopInstruction(interrupt);
         } else if (this->current_car_state_.left_wheel_speed_ == 0) {
-//            return new StartUpInstruction(start_up_speed_, base_speed_, start_up_duration_);
-            return new UpdateSpeedInstruction(base_speed_);
+            return new StartUpInstruction(start_up_speed_, base_speed_, start_up_duration_);
         } else {
             return new UpdateSpeedInstruction(base_speed_);
         }
@@ -148,7 +147,7 @@ Instruction *PidLineTraceBrain::TraceBack() {
     prev_deviation_ = deviation;
     last_time_called_ = millis();
 
-    return new UpdateSpeedInstruction(base_speed_ + manipulation, base_speed_ - manipulation);
+    return new UpdateSpeedInstruction(base_speed_ - manipulation, base_speed_ + manipulation);
 }
 
 Instruction *PidLineTraceBrain::Finish() {

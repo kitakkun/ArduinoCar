@@ -6,9 +6,9 @@
 #define BASE_SPEED 70
 #define LR_SENSOR_DIFF -4
 #define TURN_SPEED 110
-#define TRACE_MODE goBack
-#define P 0.068
-#define D 0.020
+#define TRACE_MODE continuous
+#define P 0.062
+#define D 0.022
 //#define D 0.0
 #define MAX_MANIPULATION 30
 
