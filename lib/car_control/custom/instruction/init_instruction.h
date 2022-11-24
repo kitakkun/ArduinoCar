@@ -9,7 +9,7 @@
  */
 class InitInstruction : public Instruction {
 public:
-    InitInstruction(int left_speed, int right_speed, MoveDirection left_direction, MoveDirection right_direction);
+    InitInstruction(int left_speed, int right_speed, MoveDirection left_direction, MoveDirection right_direction, InstructionMode mode);
 
     int Run(Wheel *left_wheel, Wheel *right_wheel) override;
 private:

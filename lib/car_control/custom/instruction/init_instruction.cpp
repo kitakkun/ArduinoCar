@@ -9,7 +9,8 @@ int InitInstruction::Run(Wheel *left_wheel, Wheel *right_wheel) {
     COROUTINE_END();
 }
 
-InitInstruction::InitInstruction(int left_speed, int right_speed, MoveDirection left_direction, MoveDirection right_direction) {
+InitInstruction::InitInstruction(int left_speed, int right_speed, MoveDirection left_direction, MoveDirection right_direction, InstructionMode mode) {
+    this->mode_ = mode;
     this->left_speed_ = left_speed;
     this->right_speed_ = right_speed;
     this->left_direction_ = left_direction;
