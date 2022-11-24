@@ -15,12 +15,9 @@ const int max_manipulation = 50;
 const int forward_torque = 20;
 
 Car *car;
-FakePhotoReflector *front_mid;
-FakePhotoReflector *front_left;
-FakePhotoReflector *front_right;
-FakePhotoReflector *back_mid;
-FakePhotoReflector *back_left;
-FakePhotoReflector *back_right;
+FakePhotoReflector *mid;
+FakePhotoReflector *left;
+FakePhotoReflector *right;
 LineTraceBrain *brain;
 Wheel *left_wheel;
 Wheel *right_wheel;
@@ -32,27 +29,43 @@ void run_life_cycle() {
 }
 
 void set_all_sensor(int value) {
-    front_mid->SetRawValue(value);
-    front_right->SetRawValue(value);
-    front_left->SetRawValue(value);
-    back_mid->SetRawValue(value);
-    back_right->SetRawValue(value);
-    back_left->SetRawValue(value);
+    mid->SetRawValue(value);
+    right->SetRawValue(value);
+    left->SetRawValue(value);
+}
+
+void run_ready_test() {
+    TEST_ASSERT_EQUAL(ready, brain->ActivityState());
+    run_life_cycle();
+    TEST_ASSERT_EQUAL(searching, brain->ActivityState());
+}
+
+void run_search_test() {
+    TEST_ASSERT_EQUAL(searching, brain->ActivityState());
+    // 10回分ライフサイクルまわして状態遷移していないことを確認
+    for (int i = 0; i < 10; i++) {
+        run_life_cycle();
+    }
+    TEST_ASSERT_EQUAL(searching, brain->ActivityState());
+    // 前のセンサーを変えたら状態遷移することを確認
+    mid->SetRawValue(black_val);
+    run_life_cycle();
+    TEST_ASSERT_EQUAL(0, left_wheel->Speed());
+    TEST_ASSERT_EQUAL(0, right_wheel->Speed());
+    TEST_ASSERT_EQUAL(tracing, brain->ActivityState());
 }
 
 void run_trace_test() {
-    run_life_cycle();
-    run_life_cycle();
     TEST_ASSERT_EQUAL(tracing, brain->ActivityState());
     // 左右に差がないとき、速度に変化が起きないことを確認する
-    front_left->SetRawValue(0);
-    front_right->SetRawValue(0);
+    left->SetRawValue(0);
+    right->SetRawValue(0);
     run_life_cycle();
     Log.verboseln("left: %d, right: %d", left_wheel->Speed(), right_wheel->Speed());
     TEST_ASSERT_EQUAL(base_speed, left_wheel->Speed());
     TEST_ASSERT_EQUAL(base_speed, right_wheel->Speed());
     // 右を黒に近づけてみる
-    front_right->SetRawValue(1024);
+    right->SetRawValue(1024);
     run_life_cycle();
     // 左の方が早い
     Log.verboseln("left: %d, right: %d", left_wheel->Speed(), right_wheel->Speed());
@@ -61,6 +74,8 @@ void run_trace_test() {
 
 void run_tests() {
     UNITY_BEGIN();
+    RUN_TEST(run_ready_test);
+    RUN_TEST(run_search_test);
     RUN_TEST(run_trace_test);
     UNITY_END();
 }
@@ -74,32 +89,23 @@ void setup() {
     brain = new PidLineTraceBrain(base_speed, p, d, lr_sensor_diff, max_manipulation);
     left_wheel = new FakeWheel();
     right_wheel = new FakeWheel();
-    front_mid = new FakePhotoReflector(500);
-    front_left = new FakePhotoReflector(500);
-    front_right = new FakePhotoReflector(500);
-    back_mid = new FakePhotoReflector(500);
-    back_left = new FakePhotoReflector(500);
-    back_right = new FakePhotoReflector(500);
+    mid = new FakePhotoReflector(500);
+    left = new FakePhotoReflector(500);
+    right = new FakePhotoReflector(500);
 
     car = LineTraceCarBuilder()
             .SetBrain(brain)
             .SetLeftWheel(left_wheel)
             .SetRightWheel(right_wheel)
-            .SetFrontMidReflector(front_mid)
-            .SetFrontRightReflector(front_right)
-            .SetFrontLeftReflector(front_left)
-            .SetBackMidReflector(back_mid)
-            .SetBackRightReflector(back_right)
-            .SetBackLeftReflector(back_left)
+            .SetMidReflector(mid)
+            .SetRightReflector(right)
+            .SetLeftReflector(left)
             .Build();
 
     // 全部白にしておく
-    front_mid->SetRawValue(0);
-    front_left->SetRawValue(0);
-    front_right->SetRawValue(0);
-    back_mid->SetRawValue(0);
-    back_left->SetRawValue(0);
-    back_right->SetRawValue(0);
+    mid->SetRawValue(0);
+    left->SetRawValue(0);
+    right->SetRawValue(0);
 
     Log.verboseln("Done! Start Testing.");
 
