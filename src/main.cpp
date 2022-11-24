@@ -5,11 +5,13 @@
 #include "ArduinoLog.h"
 #include "core/debug/wheel_debugger.h"
 #include "core/debug/sensor_debugger.h"
+#include "custom/debugger/line_trace_brain_debugger.h"
 
 Car *car;
 Wheel *left_wheel;
 Wheel *right_wheel;
 LineTraceBrain *brain;
+LineTraceBrainDebugger *brain_debugger;
 WheelDebugger *wheel_debugger;
 SensorDebugger *sensor_debugger;
 PhotoReflector *left_reflector;
@@ -30,13 +32,18 @@ void setup() {
     sensor_debugger = new SensorDebugger(mid_reflector, left_reflector, right_reflector);
     brain = new PidLineTraceBrain(
             TRACE_MODE,
+            150,
+            200,
             BASE_SPEED,
             TURN_SPEED,
             P,
             D,
+            0.05,
+            0.01,
             LR_SENSOR_DIFF,
             MAX_MANIPULATION
     );
+    brain_debugger = new LineTraceBrainDebugger(brain);
     car = LineTraceCarBuilder()
             .SetBrain(brain)
             .SetLeftWheel(left_wheel)
@@ -52,6 +59,7 @@ void loop() {
     car->UpdateSensors();
     car->Think();
     car->Act();
+    brain_debugger->PrintDebugLog();
 //    wheel_debugger->PrintDebugLog();
 //    sensor_debugger->PrintDebugLog();
     delay(5);

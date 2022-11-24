@@ -15,7 +15,18 @@ public:
      * @param lr_sensor_diff 望ましい位置にあるときの(左のセンサ値 - 右のセンサ値)の値。個体値を吸収する役割。
      * @param max_manipulation 最大の速度操作量（制限）
      */
-    PidLineTraceBrain(TraceMode trace_mode, int base_speed, int turn_speed, float p, float d, int lr_sensor_diff, int max_manipulation);
+    PidLineTraceBrain(
+            TraceMode trace_mode,
+            int start_up_speed,
+            unsigned long start_up_duration,
+            int base_speed,
+            int turn_speed,
+            float p,
+            float d,
+            float back_p,
+            float back_d,
+            int lr_sensor_diff,
+            int max_manipulation);
 
 protected:
     Instruction *Ready() override;
@@ -38,10 +49,14 @@ private:
     int turn_speed_;
     float p_;
     float d_;
+    float back_p_;
+    float back_d_;
     int lr_sensor_diff_;
     int max_manipulation_;
     int prev_deviation_;
     unsigned long last_time_called_;
+    unsigned long start_up_duration_;
+    int start_up_speed_;
 };
 
 

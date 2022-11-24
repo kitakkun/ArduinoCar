@@ -6,10 +6,11 @@
 #define BASE_SPEED 70
 #define LR_SENSOR_DIFF -4
 #define TURN_SPEED 110
-#define TRACE_MODE continuous
-#define P 0.058
-#define D 0.010
-#define MAX_MANIPULATION 22
+#define TRACE_MODE goBack
+#define P 0.068
+#define D 0.020
+//#define D 0.0
+#define MAX_MANIPULATION 30
 
 #define RIGHT_SPEED_GAIN 20
 
@@ -25,6 +26,6 @@
 #define MID_PHOTO_REFLECTOR_PIN A1
 #define LEFT_PHOTO_REFLECTOR_PIN A2
 
-#define PHOTO_REFLECTOR_THRESHOLD 50
+#define PHOTO_REFLECTOR_THRESHOLD 100
 
 #endif //CONFIG_H
