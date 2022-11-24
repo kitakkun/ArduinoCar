@@ -18,8 +18,9 @@ public:
      * @param plus_pin プラスのピン
      * @param minus_pin マイナスのピン
      * @param pwm_pin 速度調整用PWMのピン
+     * @param speed_gain 速度のゲイン（反映時常にこれが加算される）
      */
-    WheelImpl(int plus_pin, int minus_pin, int pwm_pin);
+    WheelImpl(int plus_pin, int minus_pin, int pwm_pin, int speed_gain = 0);
 
     void UpdateSpeed(int speed) override;
 
@@ -36,9 +37,10 @@ private:
     int minus_pin_;     /// マイナスピン
     int pwm_pin_;       /// PWMのピン
     int speed_;     /// 速度
+    int speed_gain_;    /// 速度のゲイン
     MoveDirection direction_;     /// 進行方向
 
-    void ApplySpeed();
+    void ApplySpeed() const;
 
     void ApplyDirection();
 };

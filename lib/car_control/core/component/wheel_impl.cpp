@@ -3,11 +3,12 @@
 #include <Arduino.h>
 
 // タイヤのコンストラクタ
-WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin) {
+WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin, int speed_gain) {
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
     this->speed_ = 0;
+    this->speed_gain_ = speed_gain;
     this->direction_ = forward;
     pinMode(this->plus_pin_, OUTPUT);
     pinMode(this->minus_pin_, OUTPUT);
@@ -54,8 +55,15 @@ void WheelImpl::UpdateDirection(MoveDirection direction) {
     ApplyDirection();
 }
 
-void WheelImpl::ApplySpeed() {
-    analogWrite(this->pwm_pin_, this->speed_);
+void WheelImpl::ApplySpeed() const {
+    analogWrite(
+            this->pwm_pin_,
+            constrain(
+                    this->speed_ + this->speed_gain_,
+                    WHEEL_MIN_SPEED,
+                    WHEEL_MAX_SPEED
+            )
+    );
 }
 
 void WheelImpl::ApplyDirection() {
