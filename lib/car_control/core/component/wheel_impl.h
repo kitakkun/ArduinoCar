@@ -5,6 +5,9 @@
 #include "core/debug/debuggable.h"
 #include "wheel.h"
 
+#define WHEEL_MAX_SPEED 255
+#define WHEEL_MIN_SPEED 0
+
 /**
  * 車輪の速度制御や回転方向制御を行うクラス
  */
