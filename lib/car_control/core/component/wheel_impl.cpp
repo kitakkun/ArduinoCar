@@ -1,5 +1,5 @@
 #include "wheel_impl.h"
-#include "core/debug/logger.h"
+#include <ArduinoLog.h>
 #include <Arduino.h>
 
 // タイヤのコンストラクタ

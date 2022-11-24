@@ -1,8 +1,6 @@
 #ifndef WHEEL_H
 #define WHEEL_H
 
-#include "core/data_model/move_direction.h"
-#include "core/debug/debuggable.h"
 #include "wheel.h"
 
 #define WHEEL_MAX_SPEED 255
