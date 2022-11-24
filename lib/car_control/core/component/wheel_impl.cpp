@@ -27,26 +27,11 @@ int WheelImpl::Speed() {
 
 void WheelImpl::UpdateSpeed(int speed) {
     this->speed_ = speed;
-    this->speed_ = constrain(this->speed_, WHEEL_MIN_SPEED, WHEEL_MAX_SPEED);
-    if (speed > WHEEL_MAX_SPEED || speed < WHEEL_MIN_SPEED) {
-        Log.warningln(
-                "Specified speed is %d. It must be between %d and %d. "
-                "Automatically limited to %d",
-                speed, WHEEL_MIN_SPEED, WHEEL_MAX_SPEED, this->speed_
-        );
-    }
     ApplySpeed();
 }
 
 void WheelImpl::UpdateDeltaSpeed(int delta_speed) {
     this->speed_ += delta_speed;
-    if (this->speed_ > WHEEL_MAX_SPEED || this->speed_ < WHEEL_MIN_SPEED) {
-        this->speed_ = constrain(this->speed_, WHEEL_MIN_SPEED, WHEEL_MAX_SPEED);
-        Log.warningln(
-                "Speed exceeded its limitation. Automatically limited to %d.",
-                this->speed_
-        );
-    }
     ApplySpeed();
 }
 
@@ -56,14 +41,13 @@ void WheelImpl::UpdateDirection(MoveDirection direction) {
 }
 
 void WheelImpl::ApplySpeed() const {
-    analogWrite(
-            this->pwm_pin_,
-            constrain(
-                    this->speed_ + this->speed_gain_,
-                    WHEEL_MIN_SPEED,
-                    WHEEL_MAX_SPEED
-            )
-    );
+    if (this->speed_ > WHEEL_MAX_SPEED || this->speed_ < WHEEL_MIN_SPEED) {
+        Log.warningln(
+                "Invalid speed. It must be between %d and %d. Automatically fixed.",
+                WHEEL_MIN_SPEED, WHEEL_MAX_SPEED
+        );
+    }
+    analogWrite(this->pwm_pin_, constrain(this->speed_ + this->speed_gain_, WHEEL_MIN_SPEED, WHEEL_MAX_SPEED));
 }
 
 void WheelImpl::ApplyDirection() {
