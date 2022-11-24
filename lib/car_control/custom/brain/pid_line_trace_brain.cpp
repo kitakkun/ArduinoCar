@@ -86,7 +86,7 @@ Instruction *PidLineTraceBrain::SearchBack() {
     } else {
         if (this->current_car_state_.mid_reflector_color_ == black) {
             this->activity_state_ = tracingBack;
-            return new StopInstruction(interrupt);
+            return new InitInstruction(0, 0, forward, forward, interrupt);
         }
         return new TurnInstruction(turn_speed_, 100);
     }
