@@ -1,13 +1,14 @@
 #include "wheel_impl.h"
-#include "core/debug/logger.h"
+#include <ArduinoLog.h>
 #include <Arduino.h>
 
 // タイヤのコンストラクタ
-WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin, String tag) : Debuggable(tag, true) {
+WheelImpl::WheelImpl(int plus_pin, int minus_pin, int pwm_pin, int speed_gain) {
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
     this->speed_ = 0;
+    this->speed_gain_ = speed_gain;
     this->direction_ = forward;
     pinMode(this->plus_pin_, OUTPUT);
     pinMode(this->minus_pin_, OUTPUT);
@@ -41,20 +42,23 @@ void WheelImpl::UpdateDirection(MoveDirection direction) {
     ApplyDirection();
 }
 
-void WheelImpl::ApplySpeed() {
-//    Logger::Verboseln(this, F("Speed Updated. New speed is %d"), this->speed_);
-    analogWrite(this->pwm_pin_, this->speed_);
+void WheelImpl::ApplySpeed() const {
+    if (this->speed_ > WHEEL_MAX_SPEED || this->speed_ < WHEEL_MIN_SPEED) {
+        Log.warningln(
+                "Invalid speed. It must be between %d and %d. Automatically fixed.",
+                WHEEL_MIN_SPEED, WHEEL_MAX_SPEED
+        );
+    }
+    analogWrite(this->pwm_pin_, constrain(this->speed_ + this->speed_gain_, WHEEL_MIN_SPEED, WHEEL_MAX_SPEED));
 }
 
 void WheelImpl::ApplyDirection() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);
         digitalWrite(this->minus_pin_, LOW);
-//        Logger::Verboseln(this, F("Direction Updated. New Direction is forward"));
     } else {
         digitalWrite(this->plus_pin_, LOW);
         digitalWrite(this->minus_pin_, HIGH);
-//        Logger::Verboseln(this, F("Direction Updated. New Direction is backward"));
     }
 }
 
