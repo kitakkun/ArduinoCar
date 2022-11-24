@@ -7,7 +7,7 @@ SensorDebugger::SensorDebugger(Sensor *mid_sensor, Sensor *left_sensor, Sensor *
     this->right_sensor_ = right_sensor;
 }
 
-void SensorDebugger::LogValues() {
+void SensorDebugger::PrintDebugLog() {
     Log.verboseln(
             "[SensorDebugger] left: %d, right: %d, mid: %d",
             this->left_sensor_->RawValue(),

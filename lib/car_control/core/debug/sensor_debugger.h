@@ -3,11 +3,12 @@
 
 
 #include "core/component/sensor.h"
+#include "debugger.h"
 
-class SensorDebugger {
+class SensorDebugger : public Debugger {
 public:
     SensorDebugger(Sensor* mid_sensor, Sensor *left_sensor, Sensor *right_sensor);
-    void LogValues();
+    void PrintDebugLog() override;
 
 private:
     Sensor* mid_sensor_;
