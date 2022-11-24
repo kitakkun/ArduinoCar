@@ -1,5 +1,6 @@
 #include "pid_line_trace_brain.h"
 #include "custom/instructions.h"
+#include "ArduinoLog.h"
 
 PidLineTraceBrain::PidLineTraceBrain(TraceMode trace_mode, int base_speed, int turn_speed, float p, float d, int lr_sensor_diff, int max_manipulation) {
     this->trace_mode_ = trace_mode;
@@ -12,12 +13,15 @@ PidLineTraceBrain::PidLineTraceBrain(TraceMode trace_mode, int base_speed, int t
 }
 
 Instruction *PidLineTraceBrain::Ready() {
-    this->activity_state_ = searching;
-    last_time_called_ = millis();
-    return new StopInstruction();
+    return new UpdateSpeedInstruction(base_speed_);
+    Log.verboseln("ready");
+//    this->activity_state_ = searching;
+//    last_time_called_ = millis();
+//    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *PidLineTraceBrain::Search() {
+    Log.verboseln("search");
     // 黒を発見するまで直進
     if (current_car_state_.IsAnyBlack()) {
         this->activity_state_ = tracing;
@@ -28,6 +32,7 @@ Instruction *PidLineTraceBrain::Search() {
 
 Instruction *PidLineTraceBrain::Trace() {
 
+    Log.verboseln("trace");
     // 全部白になったらトレース完了(継続トレースモードのときは完了しない）
     if (current_car_state_.IsAllWhite() && this->trace_mode_ != continuous) {
         this->activity_state_ = readyBack;
@@ -64,6 +69,7 @@ Instruction *PidLineTraceBrain::Trace() {
 }
 
 Instruction *PidLineTraceBrain::ReadyBack() {
+    Log.verboseln("readyBack");
     // タイヤの回転方向を切り替える
     this->activity_state_ = searchingBack;
     if (this->trace_mode_ == goBack) {
@@ -76,6 +82,7 @@ Instruction *PidLineTraceBrain::ReadyBack() {
 }
 
 Instruction *PidLineTraceBrain::SearchBack() {
+    Log.verboseln("searchBack");
     if (this->trace_mode_ == goBack) {
         if (this->current_car_state_.IsAnyBlack()) {
             this->activity_state_ = tracingBack;
@@ -96,6 +103,7 @@ Instruction *PidLineTraceBrain::SearchBack() {
  * バックのときは各数値（deviationなど）の意味合いが逆になるので注意
  */
 Instruction *PidLineTraceBrain::TraceBack() {
+    Log.verboseln("traceBack");
     // 全部白になったらトレース完了
     if (current_car_state_.IsAllWhite()) {
         this->activity_state_ = finished;
@@ -132,6 +140,7 @@ Instruction *PidLineTraceBrain::TraceBack() {
 }
 
 Instruction *PidLineTraceBrain::Finish() {
+    Log.verboseln("finished");
     // do nothing...
     return new WaitInstruction(10);
 }

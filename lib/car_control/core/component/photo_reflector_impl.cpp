@@ -18,7 +18,7 @@ BinaryColor PhotoReflectorImpl::Value() {
 
 void PhotoReflectorImpl::Update() {
     raw_value_ = analogRead(pin_);
-    Logger::Verboseln(this, F("Updated. New value is %d"), raw_value_);
+//    Logger::Verboseln(this, F("Updated. New value is %d"), raw_value_);
     if (raw_value_ > this->theta_) {
         value_ = black;
     } else {
