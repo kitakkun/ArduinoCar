@@ -13,11 +13,10 @@ PidLineTraceBrain::PidLineTraceBrain(TraceMode trace_mode, int base_speed, int t
 }
 
 Instruction *PidLineTraceBrain::Ready() {
-    return new UpdateSpeedInstruction(base_speed_);
     Log.verboseln("ready");
-//    this->activity_state_ = searching;
-//    last_time_called_ = millis();
-//    return new UpdateSpeedInstruction(base_speed_);
+    this->activity_state_ = searching;
+    last_time_called_ = millis();
+    return new UpdateSpeedInstruction(base_speed_);
 }
 
 Instruction *PidLineTraceBrain::Search() {
