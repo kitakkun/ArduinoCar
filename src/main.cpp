@@ -45,4 +45,44 @@ void runLineTraceControl() {
      *  - モータの回転数制御
      *  - センサー値の参照
      *  */
+    delta = 100;
+    //閾値
+
+    int left_value = left_sensor->GetRawValue();
+    int mid_value = mid_sensor->GetRawValue();
+    int right_value = right_sensor->GetRawValue();
+    //センサーの値
+
+    int nomal_power = 100;
+    int low_power = 120;
+    int high_power = 150;
+
+    if(left_value < delta || right_value > delta){
+        if(mid_value < delta){
+            left_moter->UpdateSpeed(high_power);
+            right_motor->UpdateSpeed(nomal_power);
+        }else{
+            left_moter->UpdateSpeed(low_power);
+            right_motor->UpdateSpeed(nomal_power);
+        }
+        //左が白、右が黒のとき
+    }else if(left_value > delta || right_value < delta){
+         if(mid_value < delta){
+            left_moter->UpdateSpeed(nomal_power);
+            right_motor->UpdateSpeed(high_power);
+        }else{
+            left_moter->UpdateSpeed(nomal_power);
+            right_motor->UpdateSpeed(low_power);
+        }
+        //左が黒、右が白のとき
+    }else if(left_value < delta || right_value < delta){
+        left_moter->UpdateSpeed(nomal_power);
+        right_motor->UpdateSpeed(nomal_power);
+        //左右どちらも白のとき
+    }else{
+        left_moter->UpdateSpeed(low_power);
+        right_motor->UpdateSpeed(nomal_power);
+        //それ以外は左回転
+    }
+
 }
