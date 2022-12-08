@@ -12,6 +12,11 @@ Sensor *right_sensor;
 // loopのdelay値
 unsigned long delayMillis;
 
+//モーターの強さ
+int nomal_power = 100;
+int low_power = 120;
+int high_power = 150;
+
 // センサー更新
 void updateSensors();
 // ライントレース制御
@@ -26,9 +31,6 @@ void setup() {
 
     delayMillis = 10;
 
-    nomal_power = 100;
-    low_power = 120;
-    high_power = 150;
 }
 
 void loop() {
