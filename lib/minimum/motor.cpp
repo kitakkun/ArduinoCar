@@ -26,7 +26,7 @@ void Moter::UpdateSpeed(int speed){
 }
 
 void Moter::UpdateDirection(MoveDirection direction){
-    this->speed_ += direction;
+    this->direction_ = direction;
     ApplyDirection();
 }
 
