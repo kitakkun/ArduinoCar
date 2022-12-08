@@ -3,31 +3,21 @@
 
 title "コア機能の設計図"
 
-abstract class CarBuilder {
+interface CarBuilder {
 + SetLeftWheel(wheel: Wheel*)
 + SetRightWheel(wheel: Wheel*)
 + GetLeftWheel(): Wheel*
 + GetRightWheel(): Wheel*
 + Build(): Car*
-# left_wheel_: Wheel*
-# right_wheel_: Wheel*
 }
 
-abstract class Car {
-# left_wheel_: Wheel*
-# right_wheel_: Wheel*
-+ Car(builder: CarBuilder*)
+interface Car {
 + UpdateSensors()
 + Think()
 + Act()
 }
 
-class Wheel {
-- plus_pin_: int
-- minus_pin_: int
-- pwm_pin_: int
-- speed_: int
-- direction_: MoveDirection
+interface Wheel {
 + UpdateSpeed(speed: int)
 + UpdateDeltaSpeed(speed: int)
 + UpdateDirection(direction: MoveDirection)
@@ -40,17 +30,12 @@ enum MoveDirection {
     backward
 }
 
-class Sensor {
-- pin_: int
-- value_: int
-+ Sensor(pin: int)
+interface Sensor {
 + Update()
 + RawValue(): int
 }
 
-class PhotoReflector {
-- theta_: int
-+ PhotoReflector(pin: int, theta: int)
+interface PhotoReflector {
 + Value(): BinaryColor
 }
 
@@ -63,14 +48,9 @@ interface Brain {
     CalculateNextInstruction(): Instruction*
 }
 
-class Instruction {
-+ runCoroutine(): int
-+ Setup(left_wheel: Wheel*, right_wheel: Wheel*)
-+ SetMode(mode: InstructionMode)
+interface Instruction {
++ Run(left_wheel: Wheel*, right_wheel: Wheel*)
 + Mode(): InstructionMode
-# left_wheel_: Wheel*
-# right_wheel: Wheel*
-# mode_: InstructionMode
 }
 
 enum InstructionMode {
