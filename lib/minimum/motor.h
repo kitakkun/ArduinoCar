@@ -19,6 +19,10 @@ public:
 private:
     int speed_;
     MoveDirection direction_;
+
+    void ApplySpeed();
+
+    void ApplyDirection();
 };
 
 
