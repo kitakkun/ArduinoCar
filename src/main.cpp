@@ -1,32 +1,48 @@
 #include <Arduino.h>
-#include <core.h>
-#include <custom.h>
-#include "config.h"
-#include "ArduinoLog.h"
+#include "sensor.h"
+#include "motor.h"
 
-Car *car;
+// 車の各コンポーネント
+Motor *left_motor;
+Motor *right_motor;
+Sensor *left_sensor;
+Sensor *mid_sensor;
+Sensor *right_sensor;
+
+// loopのdelay値
+unsigned long delayMillis;
+
+// センサー更新
+void updateSensors();
+// ライントレース制御
+void runLineTraceControl();
 
 void setup() {
-    Serial.begin(115200);
-    while (!Serial);
-    Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
+    left_motor = new Motor(4, 5, 11);
+    right_motor= new Motor(2, 3, 10);
+    right_sensor = new Sensor(A0);
+    mid_sensor = new Sensor(A1);
+    left_sensor = new Sensor(A2);
 
-    Log.verboseln("Building a Car instance...");
-    car = LineTraceCarBuilder()
-            .SetBrain(new LineTraceGoAndBackBrain(BASE_SPEED, FORWARD_TORQUE, BACKWARD_TORQUE))
-            .SetLeftWheel(new WheelImpl(LEFT_MOTOR_PLUS_PIN, LEFT_MOTOR_MINUS_PIN, LEFT_MOTOR_PWM_PIN, "LeftWheel"))
-            .SetRightWheel(new WheelImpl(RIGHT_MOTOR_PLUS_PIN, RIGHT_MOTOR_MINUS_PIN, RIGHT_MOTOR_PWM_PIN, "RightWheel"))
-            .SetMidReflector(new PhotoReflectorImpl(MID_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "Mid"))
-            .SetRightReflector(new PhotoReflectorImpl(RIGHT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "Right"))
-            .SetLeftReflector(new PhotoReflectorImpl(LEFT_PHOTO_REFLECTOR_PIN, PHOTO_REFLECTOR_THRESHOLD, "Left"))
-            .Build();
-    Log.verboseln("Done! Started Program Lifecycle.");
-
-    delay(1000);
+    delayMillis = 10;
 }
 
 void loop() {
-    car->UpdateSensors();
-    car->Think();
-    car->Act();
+    updateSensors();
+    runLineTraceControl();
+    delay(delayMillis);
+}
+
+void updateSensors() {
+    left_sensor->Update();
+    mid_sensor->Update();
+    right_sensor->Update();
+}
+
+void runLineTraceControl() {
+    /* TODO: ライントレース制御アルゴリズムを作る
+     * ここでやっていいこと:
+     *  - モータの回転数制御
+     *  - センサー値の参照
+     *  */
 }
