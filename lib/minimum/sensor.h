@@ -6,13 +6,13 @@ class Sensor {
 public:
     explicit Sensor(int pin);
 
-    void Update();
+    virtual void Update();
 
     int GetRawValue();
 
 private:
     int pin_;
-    int value_;
+    int raw_value_;
 };
 
 

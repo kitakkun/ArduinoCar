@@ -5,16 +5,14 @@
 
 class PhotoReflector : public Sensor {
 public:
-    explicit PhotoReflector(int pin, int theta);
+    explicit PhotoReflector(int theta);
 
     bool IsBlack();
 
     bool IsWhite();    
 
 private:
-    int pin_;
     int theta_;     /// 閾値
-    int value_;
 };
 
 #endif

@@ -2,20 +2,12 @@
 #include "photo_reflector.h"
 
 // フォトリフレクタのコンストラクタ
-PhotoReflector::PhotoReflector(int pin, int theta) : Sensor(pin) {
-    this->pin_ = pin;
+PhotoReflector::PhotoReflector(int theta) : Sensor() {
     this->theta_ = theta;
-    this->value_ = 0;
-    pinMode(pin_, INPUT);
 }
 
 bool PhotoReflector::IsBlack() {
-    value_ = this->GetRawValue();
-    if (value_ > this->theta_) {
-        return true;
-    } else {
-        return false;
-    }
+    return this->GetRawValue() > this->theta_;
 }
 
 bool PhotoReflector::IsWhite() {
