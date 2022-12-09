@@ -7,9 +7,9 @@
 /**
  * ライントレース車の各コンポーネントへのアクセスを提供するクラス
  */
-class LineTraceCar {
+class TraceCar {
 public:
-    explicit LineTraceCar(
+    explicit TraceCar(
             Motor *left_motor,
             Motor *right_motor,
             PhotoReflector *mid_reflector,
