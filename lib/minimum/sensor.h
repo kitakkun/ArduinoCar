@@ -6,7 +6,7 @@ class Sensor {
 public:
     explicit Sensor(int pin);
 
-    virtual void Update();
+    void Update();
 
     int GetRawValue();
 
