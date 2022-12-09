@@ -5,7 +5,7 @@
 
 class PhotoReflector : public Sensor {
 public:
-    explicit PhotoReflector(int theta);
+    explicit PhotoReflector(int pin, int theta);
 
     bool IsBlack();
 

@@ -2,7 +2,7 @@
 #include "photo_reflector.h"
 
 // フォトリフレクタのコンストラクタ
-PhotoReflector::PhotoReflector(int theta) : Sensor() {
+PhotoReflector::PhotoReflector(int pin, int theta) : Sensor(pin) {
     this->theta_ = theta;
 }
 
