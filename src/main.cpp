@@ -17,6 +17,9 @@ int nomal_power = 100;
 int low_power = 120;
 int high_power = 150;
 
+//閾値
+int delta = 100;
+
 // センサー更新
 void updateSensors();
 // ライントレース制御
@@ -51,8 +54,6 @@ void runLineTraceControl() {
      *  - モータの回転数制御
      *  - センサー値の参照
      *  */
-    delta = 100;
-    //閾値
 
     int left_value = left_sensor->GetRawValue();
     int mid_value = mid_sensor->GetRawValue();
