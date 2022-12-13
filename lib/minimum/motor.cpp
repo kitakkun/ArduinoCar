@@ -1,7 +1,8 @@
 #include "motor.h"
+#include <Arduino.h>
 
 /* TODO: 各メソッドの実装 */
-Moter::Moter(int plus_pin, int minus_pin, int pwm_pin){
+Motor::Motor(int plus_pin, int minus_pin, int pwm_pin){
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
@@ -12,29 +13,29 @@ Moter::Moter(int plus_pin, int minus_pin, int pwm_pin){
     pinMode(this->pwm_pin_, OUTPUT);
 }
 
-MoterDirection Moter::GetMoveDirection(){
+MoveDirection Motor::GetMoveDirection(){
     return this->direction_;
 }
 
-int Moter::GetSpeed(){
+int Motor::GetSpeed(){
     return this->speed_;
 }
 
-void Moter::UpdateSpeed(int speed){
+void Motor::UpdateSpeed(int speed){
     this->speed_ = speed;
     ApplySpeed();
 }
 
-void Moter::UpdateDirection(MoveDirection direction){
+void Motor::UpdateDirection(MoveDirection direction){
     this->direction_ = direction;
     ApplyDirection();
 }
 
-void Moter::ApplySpeed() {
+void Motor::ApplySpeed() {
     analogWrite(this->pwm_pin_, this->speed_);
 }
 
-void Moter::ApplyDirection() {
+void Motor::ApplyDirection() {
     if (this->direction_ == forward) {
         digitalWrite(this->plus_pin_, HIGH);
         digitalWrite(this->minus_pin_, LOW);
