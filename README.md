@@ -98,3 +98,14 @@ void loop() {
 #### その他クラス
 
 センサーには様々な種類があるので、Sensorクラスを拡張して適宜機能追加をしていくといいと思います。
+
+### アクティビティ図とクラス図
+
+参考までに設計したアーキテクチャを簡単に示す図を紹介します。
+#### アクティビティ図
+<img src="https://user-images.githubusercontent.com/48154936/207234639-1f695bf1-f656-42a7-be8a-f1a5732ef955.png"/>
+
+#### クラス図（仮）
+<img src="https://user-images.githubusercontent.com/48154936/207234621-d91b4d2d-75ac-4974-814a-3b92a6a2b861.png" />
+
+
