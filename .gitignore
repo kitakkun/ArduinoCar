@@ -164,6 +164,7 @@ _deps
 .clang_complete
 .gcc-flags.json
 .pio
+CMakeLists.txt
 CMakeListsPrivate.txt
 
 .vscode
