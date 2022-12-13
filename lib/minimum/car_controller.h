@@ -6,7 +6,7 @@
  */
 class CarController {
 public:
-    virtual void Operate();
+    virtual void Operate() = 0;
 };
 
 
