@@ -18,6 +18,10 @@ PidTraceController::PidTraceController(
 }
 
 void PidTraceController::Operate() {
+    this->Trace();
+}
+
+void PidTraceController::Trace() {
     int deviation = this->car_->GetLeftReflector()->GetRawValue()
                     - this->car_->GetRightReflector()->GetRawValue()
                     - this->lr_sensor_diff_;

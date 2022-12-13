@@ -18,15 +18,18 @@ public:
 
     void Operate() override;
 
-private:
+protected:
     TraceCar *car_;
     int base_speed_;
     int lr_sensor_diff_; // 左右のセンサの個体差
     int max_manipulation_;
     float p_weight_;
     float d_weight_;
-
     unsigned long last_time_called_;
+
+    virtual void Trace();
+
+private:
     float prev_deviation_;
 };
 
