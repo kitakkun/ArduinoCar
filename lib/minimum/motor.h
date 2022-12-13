@@ -17,6 +17,9 @@ public:
     MoveDirection GetMoveDirection();
 
 private:
+    int plus_pin_;
+    int minus_pin_;
+    int pwm_pin_;
     int speed_;
     MoveDirection direction_;
 
