@@ -2,11 +2,11 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_CONTROLLER_H
 
 /**
- * 制御クラスのインタフェース
+ * 車の制御クラスのインタフェース
  */
-class Controller {
+class CarController {
 public:
-    virtual void OperateCar();
+    virtual void Operate();
 };
 
 
