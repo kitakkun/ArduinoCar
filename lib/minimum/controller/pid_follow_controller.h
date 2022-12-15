@@ -9,30 +9,31 @@ class PidFollowController : public CarController {
 public:
     explicit PidFollowController(
         FollowCar *car,
-        int theta,
+        int base_distance,
         int base_speed,
         int ir_sensor_diff,
         int max_manipulation_dist,
-        int max_manipulation_dev,
+        int max_manipulation_torque,
         float p_weight_dist,
         float d_weight_dist,
-        float p_weight_dev,
-        float d_weight_dev
+        float p_weight_torque,
+        float d_weight_torque
     );
 
+    void Update() override;
     void Operate() override;
 
 protected:
     FollowCar *car_;
-    int theta_;
+    int base_distance_;
     int base_speed_;
     int lr_sensor_diff_; // 左右のセンサの個体差
     int max_manipulation_dist_;
-    int max_manipulation_dev_;
+    int max_manipulation_torque_;
     float p_weight_dist_;
     float d_weight_dist_;
-    float p_weight_dev_;
-    float d_weight_dev_;
+    float p_weight_torque_;
+    float d_weight_torque_;
     unsigned long last_time_called_;
 
     virtual void Follow();
