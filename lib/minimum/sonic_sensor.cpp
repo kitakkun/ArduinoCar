@@ -1,7 +1,7 @@
 #include "sonic_sensor.h"
 #include <Arduino.h>
 
-SonicSensor::SonicSensor(int trig_pin, int echo_pin){
+SonicSensor::SonicSensor(int trig_pin, int echo_pin) {
     this->trig_pin_ = trig_pin;
     this->echo_pin_ = echo_pin;
     pinMode(this->trig_pin_, OUTPUT);
@@ -29,6 +29,14 @@ int SonicSensor::Update() {
 }
 
 //センサーの現在の値を取得
-float SonicSensor::GetRawValue(){
+float SonicSensor::GetRawValue() {
     return this->raw_value_;
+}
+
+bool SonicSensor::IsUpdateCompleted() {
+    return this->isDone();
+}
+
+void SonicSensor::InitUpdateTask() {
+    this->reset();
 }

@@ -9,6 +9,10 @@ public:
 
     int Update();
 
+    bool IsUpdateCompleted();
+
+    void InitUpdateTask();
+
     float GetRawValue();
 
 private:
