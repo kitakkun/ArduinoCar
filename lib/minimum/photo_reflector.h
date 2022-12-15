@@ -5,17 +5,9 @@
 
 class PhotoReflector : public Sensor {
 public:
-    explicit PhotoReflector(int pin, int theta);
+    virtual bool IsBlack() = 0;
 
-    void Update() override;
-
-    bool IsBlack();
-
-    bool IsWhite();    
-
-private:
-    int theta_;     /// 閾値
-    bool is_black_;
+    virtual bool IsWhite() = 0;
 };
 
 #endif
