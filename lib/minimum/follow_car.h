@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_H
 
 #include "motor.h"
-#include "sensor.h"
+#include "sonic_sensor.h"
 
 /**
  * 追従車の各コンポーネントへのアクセスを提供するクラス
@@ -12,23 +12,23 @@ public:
     explicit FollowCar(
             Motor *left_motor,
             Motor *right_motor,
-            Sensor *left_sensor,
-            Sensor *right_sensor
+            SonicSensor *left_sensor,
+            SonicSensor *right_sensor
     );
 
     Motor *GetLeftMotor();
 
     Motor *GetRightMotor();
 
-    Sensor *GetLeftSensor();
+    SonicSensor *GetLeftSensor();
 
-    Sensor *GetRightSensor();
+    SonicSensor *GetRightSensor();
 
 private:
     Motor *left_motor_;
     Motor *right_motor_;
-    Sensor *left_sensor_;
-    Sensor *right_sensor_;
+    SonicSensor *left_sensor_;
+    SonicSensor *right_sensor_;
 };
 
 
