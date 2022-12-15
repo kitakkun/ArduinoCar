@@ -35,13 +35,13 @@ void PidTraceController::Trace() {
      * 前に計算されたprev_deviation_と今回計算したdeviation、経過時間delta_timeを用いてdeviationの微分(deviation_differential)を計算する。
      * 計算された操作量を用いて微分制御を行う（D制御）
      */
-    unsigned long delta_time = millis() - last_time_called_;
+    unsigned long delta_time = millis() - this->last_time_called_;
     float deviation_differential = (float) (deviation - this->prev_deviation_) / (float) delta_time;
 
     /**
      * 操作量の計算（PIDの各重みを考慮して最終的な操作量を計算する）
      */
-    int manipulation = (int) (this->p_weight_ * deviation + d_weight_ * deviation_differential);
+    int manipulation = (int) (this->p_weight_ * deviation + this->d_weight_ * deviation_differential);
 
     // 操作量の範囲を制限
     manipulation = constrain(manipulation, -this->max_manipulation_, this->max_manipulation_);
