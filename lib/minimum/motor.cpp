@@ -2,10 +2,11 @@
 #include <Arduino.h>
 
 /* TODO: 各メソッドの実装 */
-Motor::Motor(int plus_pin, int minus_pin, int pwm_pin){
+Motor::Motor(int plus_pin, int minus_pin, int pwm_pin, int gain){
     this->plus_pin_ = plus_pin;
     this->minus_pin_ = minus_pin;
     this->pwm_pin_ = pwm_pin;
+    this->gain_ = gain;
     this->speed_ = 0;
     this->direction_ = forward;
     pinMode(this->plus_pin_, OUTPUT);
@@ -32,7 +33,8 @@ void Motor::UpdateDirection(MoveDirection direction){
 }
 
 void Motor::ApplySpeed() {
-    analogWrite(this->pwm_pin_, this->speed_);
+    int speed=constrain(this->speed_ + this->gain_, 0, 255);
+    analogWrite(this->pwm_pin_, speed);
 }
 
 void Motor::ApplyDirection() {
