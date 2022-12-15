@@ -1,4 +1,5 @@
 #include "pid_trace_controller.h"
+#include "ArduinoLog.h"
 #include <Arduino.h>
 
 PidTraceController::PidTraceController(
@@ -17,7 +18,14 @@ PidTraceController::PidTraceController(
     this->d_weight_ = d_weight;
 }
 
+void PidTraceController::Update() {
+    this->car_->GetRightReflector()->Update();
+    this->car_->GetLeftReflector()->Update();
+    this->car_->GetMidReflector()->Update();
+}
+
 void PidTraceController::Operate() {
+    this->Update();
     this->Trace();
 }
 
