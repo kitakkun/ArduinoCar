@@ -6,7 +6,11 @@
  */
 class CarController {
 public:
+    /* センサー値を利用してモータを制御 */
     virtual void Operate() = 0;
+
+    /* センサーなどのリフレッシュ処理 */
+    virtual void Update() = 0;
 };
 
 
