@@ -1,6 +1,4 @@
 #include "fake_sensor.h"
-#include "fake/fake_sensor.h"
-
 
 FakeSensor::FakeSensor() {
     raw_value_ = 0;
@@ -10,7 +8,7 @@ void FakeSensor::Update() {
     // Do nothing...
 }
 
-int FakeSensor::RawValue() {
+int FakeSensor::GetRawValue() {
     return raw_value_;
 }
 
