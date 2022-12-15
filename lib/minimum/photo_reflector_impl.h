@@ -8,6 +8,8 @@ class PhotoReflectorImpl : public SensorImpl, public PhotoReflector {
 public:
     explicit PhotoReflectorImpl(int pin, int theta);
 
+    int GetRawValue() override;
+
     void Update() override;
 
     bool IsBlack() override;
