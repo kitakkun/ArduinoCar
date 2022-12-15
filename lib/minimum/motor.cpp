@@ -33,7 +33,7 @@ void Motor::UpdateDirection(MoveDirection direction){
 }
 
 void Motor::ApplySpeed() {
-    int speed=constrain(this->speed_ + this->gain_, 0, 255)
+    int speed=constrain(this->speed_ + this->gain_, 0, 255);
     analogWrite(this->pwm_pin_, speed);
 }
 
