@@ -1,5 +1,4 @@
 #include "pid_trace_controller.h"
-#include "ArduinoLog.h"
 #include <Arduino.h>
 
 PidTraceController::PidTraceController(
