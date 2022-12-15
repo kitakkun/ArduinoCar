@@ -17,6 +17,11 @@ PidFollowController::PidFollowController(
     this->d_weight_ = d_weight;
 }
 
+void PidFollowController::Update() {
+    this->car_->GetLeftSensor()->Update();
+    this->car_->GetRightSensor()->Update();
+}
+
 void PidFollowController::Operate() {
     this->Follow();
 }

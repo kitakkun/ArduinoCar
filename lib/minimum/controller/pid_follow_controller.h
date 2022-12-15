@@ -19,7 +19,7 @@ Public:
     void Operate() override;
 
 protected:
-    TraceCar *car_;
+    FollowCar *car_;
     int base_speed_;
     int lr_sensor_diff_; // 左右のセンサの個体差
     int max_manipulation_;
