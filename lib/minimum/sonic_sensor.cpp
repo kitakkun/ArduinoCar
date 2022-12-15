@@ -21,7 +21,7 @@ int SonicSensor::Update(){
         duration /= 2;
 
         //距離の計算
-        this->raw_value_ = duration * 340 * 10000;
+        this->raw_value_ = duration * 340 / 10000;
     }
 }
 
