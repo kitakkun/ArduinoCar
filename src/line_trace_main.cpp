@@ -3,6 +3,8 @@
 #include "car_controller.h"
 #include "controller/pid_trace_controller.h"
 #include "ArduinoLog.h"
+#include "motor_impl.h"
+#include "photo_reflector_impl.h"
 
 CarController *controller;
 
@@ -15,11 +17,11 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
     auto *car = new TraceCar(
-            new Motor(2, 3, 10),
-            new Motor(4, 5, 11),
-            new PhotoReflector(A0, reflector_theta),
-            new PhotoReflector(A1, reflector_theta),
-            new PhotoReflector(A2, reflector_theta)
+            new MotorImpl(2, 3, 10),
+            new MotorImpl(4, 5, 11),
+            new PhotoReflectorImpl(A0, reflector_theta),
+            new PhotoReflectorImpl(A1, reflector_theta),
+            new PhotoReflectorImpl(A2, reflector_theta)
     );
 
     car->GetLeftMotor()->UpdateDirection(forward);
