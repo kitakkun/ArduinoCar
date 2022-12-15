@@ -36,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-//    Log.verboseln("running TraceTask");
+    controller->Update();
     controller->Operate();
     delay(delay_millis);
 }

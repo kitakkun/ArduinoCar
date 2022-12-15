@@ -25,7 +25,6 @@ void PidTraceController::Update() {
 }
 
 void PidTraceController::Operate() {
-    this->Update();
     this->Trace();
 }
 

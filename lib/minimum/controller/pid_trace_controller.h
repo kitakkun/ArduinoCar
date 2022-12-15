@@ -15,7 +15,8 @@ public:
             float p_weight,
             float d_weight
     );
-    void Update();
+
+    void Update() override;
 
     void Operate() override;
 
