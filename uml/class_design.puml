@@ -1,0 +1,90 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title "具体的な実装(左: 追従車※仮, 右: トレース車)"
+
+class FollowCarController {
+- car_: FollowCar
++ Operate()
+}
+
+class FollowCar {
+- left_motor_: Motor*
+- right_motor_: Motor*
+- left_distance_sensor: Sensor*
+- right_distance_sensor: Sensor*
+- mid_distance_sensor: Sensor*
++ GetLeftMotor(): Motor*
++ GetRightMotor(): Motor*
++ GetLeftSensor(): Sensor*
++ GetRightSensor(): Sensor*
++ GetMidSensor(): Sensor*
+}
+
+FollowCarController ..|> CarController
+FollowCarController ..> FollowCar
+
+FollowCar ..> Motor
+FollowCar ..> Sensor
+
+class TraceCar {
+- left_motor_: Motor*
+- right_motor_: Motor*
+- left_reflector_: PhotoReflector*
+- right_reflector_: PhotoReflector*
+- mid_reflector_: PhotoReflector*
++ GetLeftMotor(): Motor*
++ GetRightMotor(): Motor*
++ GetLeftReflector(): PhotoReflector*
++ GetRightReflector(): PhotoReflector*
++ GetMidReflector(): PhotoReflector*
+}
+
+class TraceCarController {
+- car_: TraceCar
++ Operate()
+}
+
+interface CarController {
++ Operate()
+}
+
+class Motor {
+- plus_pin_: int
+- minus_pin_: int
+- pwm_pin_: int
+- speed_: int
+- direction_: MoveDirection
++ UpdateSpeed()
++ UpdateDirection()
++ GetSpeed(): int
++ GetDirection(): MoveDirection
+}
+
+class Sensor {
+- pin_: int
+- raw_value_: int
++ Update()
++ GetRawValue(): int
+}
+class PhotoReflector {
+- theta_: int
+- is_black_: bool
++ Update()
++ IsBlack(): bool
++ IsWhite(): bool
+}
+
+enum MoveDirection {
+forward
+backward
+}
+
+TraceCar ..> Motor
+TraceCar ..> PhotoReflector
+TraceCarController ..> TraceCar
+TraceCarController .|> CarController
+Motor ..> MoveDirection
+PhotoReflector --|> Sensor
+
+@enduml
