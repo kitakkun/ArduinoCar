@@ -6,7 +6,7 @@
 
 class Motor {
 public:
-    Motor(int plus_pin, int minus_pin, int pwm_pin);
+    Motor(int plus_pin, int minus_pin, int pwm_pin, int gain=0);
 
     void UpdateSpeed(int speed);
 
@@ -21,6 +21,7 @@ private:
     int minus_pin_;
     int pwm_pin_;
     int speed_;
+    int gain_;
     MoveDirection direction_;
 
     void ApplySpeed();
