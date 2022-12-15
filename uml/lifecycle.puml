@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+title "ライフサイクル"
+
+partition setup {
+    :車クラスの初期化;
+    note right: new Car();
+    :制御クラスの初期化;
+    note right: new MyController(car);
+}
+partition loop {
+repeat
+:車体制御;
+note right: controller->Operate();
+:遅延処理;
+note right: delay(10);
+repeat while
+
+@enduml
