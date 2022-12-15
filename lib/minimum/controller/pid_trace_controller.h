@@ -16,6 +16,8 @@ public:
             float d_weight
     );
 
+    void Update() override;
+
     void Operate() override;
 
 protected:

@@ -17,6 +17,12 @@ PidTraceController::PidTraceController(
     this->d_weight_ = d_weight;
 }
 
+void PidTraceController::Update() {
+    this->car_->GetRightReflector()->Update();
+    this->car_->GetLeftReflector()->Update();
+    this->car_->GetMidReflector()->Update();
+}
+
 void PidTraceController::Operate() {
     this->Trace();
 }
