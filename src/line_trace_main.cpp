@@ -27,11 +27,11 @@ void setup() {
 
     controller = new PidTraceController(
             car,
-            130,
+            100,
             -4,
             80,
-            0.062,
-            0.0
+            0.052,
+            0.042
     );
 }
 
