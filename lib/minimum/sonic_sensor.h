@@ -1,21 +1,13 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_H
 
-#include <AceRoutine.h>
+#include "sensor.h"
 
-class SonicSensor : ace_routine::Coroutine {
+class SonicSensor {
 public:
-    explicit SonicSensor(int trig_pin, int echo_pin);
+    virtual void Update() = 0;
 
-    int Update();
-
-    float GetRawValue();
-
-private:
-    int trig_pin_;
-    int echo_pin_;
-    float raw_value_;
+    virtual float GetRawValue() = 0;
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_H
- 
