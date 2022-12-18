@@ -2,11 +2,11 @@
 
 /* TODO: クラスの実装 */
 TraceCar::TraceCar(
-        Motor *left_motor,
-        Motor *right_motor,
-        PhotoReflector *mid_reflector,
-        PhotoReflector *left_reflector,
-        PhotoReflector *right_reflector
+    Motor *left_motor,
+    Motor *right_motor,
+    PhotoReflector *mid_reflector,
+    PhotoReflector *left_reflector,
+    PhotoReflector *right_reflector
 ) {
     this->left_motor_ = left_motor;
     this->right_motor_ = right_motor;

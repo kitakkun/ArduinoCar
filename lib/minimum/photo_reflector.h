@@ -11,7 +11,7 @@ public:
 
     bool IsBlack();
 
-    bool IsWhite();    
+    bool IsWhite();
 
 private:
     int theta_;     /// 閾値
