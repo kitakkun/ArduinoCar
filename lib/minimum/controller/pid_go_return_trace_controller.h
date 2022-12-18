@@ -10,12 +10,12 @@
 class PidGoReturnTraceController : public PidTraceController {
 public:
     explicit PidGoReturnTraceController(
-            TraceCar *car,
-            int base_speed,
-            int lr_sensor_diff,
-            int max_manipulation,
-            float p_weight,
-            float d_weight
+        TraceCar *car,
+        int base_speed,
+        int lr_sensor_diff,
+        int max_manipulation,
+        float p_weight,
+        float d_weight
     );
 
     void Operate() override;

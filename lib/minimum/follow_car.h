@@ -10,10 +10,10 @@
 class FollowCar {
 public:
     explicit FollowCar(
-            Motor *left_motor,
-            Motor *right_motor,
-            SonicSensor *left_sensor,
-            SonicSensor *right_sensor
+        Motor *left_motor,
+        Motor *right_motor,
+        SonicSensor *left_sensor,
+        SonicSensor *right_sensor
     );
 
     Motor *GetLeftMotor();
