@@ -2,16 +2,16 @@
 #include <Arduino.h>
 
 PidFollowController::PidFollowController(
-        FollowCar *car,
-        int base_distance,
-        int base_speed,
-        int lr_sensor_diff,
-        int max_manipulation_dist,
-        int max_manipulation_torque,
-        float p_weight_dist,
-        float d_weight_dist,
-        float p_weight_torque,
-        float d_weight_torque
+    FollowCar *car,
+    int base_distance,
+    int base_speed,
+    int lr_sensor_diff,
+    int max_manipulation_dist,
+    int max_manipulation_torque,
+    float p_weight_dist,
+    float d_weight_dist,
+    float p_weight_torque,
+    float d_weight_torque
 ) {
     this->car_ = car;
     this->base_distance_ = base_distance;
@@ -23,11 +23,11 @@ PidFollowController::PidFollowController(
     this->d_weight_dist_ = d_weight_dist;
     this->p_weight_torque_ = p_weight_torque;
     this->d_weight_torque_ = d_weight_torque;
+    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
 }
 
 void PidFollowController::Update() {
-    this->car_->GetLeftSensor()->Update();
-    this->car_->GetRightSensor()->Update();
+    this->sensor_updater_->Update();
 }
 
 void PidFollowController::Operate() {
@@ -43,8 +43,8 @@ void PidFollowController::Follow() {
      * この差分を用いて単純な比例制御を行う（P制御）
     */
     int distance = (this->car_->GetLeftSensor()->GetRawValue()
-                   + this->car_->GetRightSensor()->GetRawValue())
-                   /2 - base_distance_;
+                    + this->car_->GetRightSensor()->GetRawValue())
+                   / 2 - base_distance_;
 
     // D制御を行う
     unsigned long delta_time = millis() - this->last_time_called_;
@@ -65,7 +65,7 @@ void PidFollowController::Follow() {
      * deviation > 0 => 右の方が前に出ている
      * deviation < 0 => 左の方が前に出ている
      * この差分を用いて単純な比例制御を行う（P制御）
-     */    
+     */
     int deviation = this->car_->GetLeftSensor()->GetRawValue()
                     - this->car_->GetRightSensor()->GetRawValue()
                     - this->lr_sensor_diff_;
