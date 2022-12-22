@@ -10,14 +10,14 @@ public:
 
     void Update() override;
 
-    float GetRawValue() override;
+    double GetRawValue() override;
 
 private:
     int RunUpdateCoroutine();
 
     int trig_pin_;
     int echo_pin_;
-    float raw_value_;
+    double raw_value_;
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_IMPL_H

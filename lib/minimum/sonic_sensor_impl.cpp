@@ -13,7 +13,7 @@ void SonicSensorImpl::Update(){
 }
 
 //センサーの現在の値を取得
-float SonicSensorImpl::GetRawValue(){
+double SonicSensorImpl::GetRawValue(){
     return this->raw_value_;
 }
 
