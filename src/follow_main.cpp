@@ -1,38 +1,40 @@
 #include <Arduino.h>
-#include "car/trace_car.h"
+#include "car/follow_car.h"
 #include "interface/car_controller.h"
-#include "controller/pid_trace_controller.h"
+#include "controller/pid_follow_controller.h"
 #include "ArduinoLog.h"
 #include "impl.h"
 
 CarController *controller;
 
 const int delay_millis = 10;
-const int reflector_theta = 500;
 
 void setup() {
     Serial.begin(115200);
     while (!Serial);
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
-    auto *car = new TraceCar(
-        new MotorImpl(4, 5, 11),
+    auto *car = new FollowCar(
         new MotorImpl(2, 3, 10),
-        new PhotoReflectorImpl(A1, reflector_theta),
-        new PhotoReflectorImpl(A2, reflector_theta),
-        new PhotoReflectorImpl(A0, reflector_theta)
+        new MotorImpl(4, 5, 11),
+        new SonicSensorImpl(A0, A0),    // TODO:pin番号を入力する
+        new SonicSensorImpl(A0, A0)
     );
 
     car->GetLeftMotor()->UpdateDirection(forward);
     car->GetRightMotor()->UpdateDirection(forward);
 
-    controller = new PidTraceController(
+    controller = new PidFollowController(
         car,
-        120,
+        5,
+        100,
         -4,
         80,
+        20,
         0.052,
-        0.042
+        0.05,
+        0.042,
+        0.05
     );
 }
 

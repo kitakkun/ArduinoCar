@@ -2,12 +2,12 @@
 #include <Arduino.h>
 
 PidTraceController::PidTraceController(
-        TraceCar *car,
-        int base_speed,
-        int lr_sensor_diff,
-        int max_manipulation,
-        float p_weight,
-        float d_weight
+    TraceCar *car,
+    int base_speed,
+    int lr_sensor_diff,
+    int max_manipulation,
+    float p_weight,
+    float d_weight
 ) {
     this->car_ = car;
     this->base_speed_ = base_speed;
