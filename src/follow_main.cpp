@@ -18,7 +18,6 @@ void setup() {
         new MotorImpl(2, 3, 10),
         new MotorImpl(4, 5, 11),
         new SonicSensorImpl(A0, A0),    // TODO:pin番号を入力する
-        new SonicSensorImpl(A0, A0),
         new SonicSensorImpl(A0, A0)
     );
 
