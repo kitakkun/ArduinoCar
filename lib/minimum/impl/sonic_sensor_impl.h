@@ -12,6 +12,10 @@ public:
 
     double GetRawValue() override;
 
+    bool IsUpdateCompleted();
+
+    void InitUpdateTask();
+
 private:
     int runCoroutine() override;
 
