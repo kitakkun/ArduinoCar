@@ -2,18 +2,18 @@
 #include <Arduino.h>
 
 PidGoReturnTraceController::PidGoReturnTraceController(
-        TraceCar *car, int base_speed,
-        int lr_sensor_diff,
-        int max_manipulation,
-        float p_weight,
-        float d_weight
+    TraceCar *car, int base_speed,
+    int lr_sensor_diff,
+    int max_manipulation,
+    float p_weight,
+    float d_weight
 ) : PidTraceController(
-        car,
-        base_speed,
-        lr_sensor_diff,
-        max_manipulation,
-        p_weight,
-        d_weight
+    car,
+    base_speed,
+    lr_sensor_diff,
+    max_manipulation,
+    p_weight,
+    d_weight
 ) {}
 
 void PidGoReturnTraceController::Operate() {

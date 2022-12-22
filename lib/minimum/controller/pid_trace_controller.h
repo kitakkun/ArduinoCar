@@ -2,18 +2,18 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_TRACE_CONTROLLER_H
 
 
-#include "car_controller.h"
-#include "trace_car.h"
+#include "interface/car_controller.h"
+#include "car/trace_car.h"
 
 class PidTraceController : public CarController {
 public:
     explicit PidTraceController(
-            TraceCar *car,
-            int base_speed,
-            int lr_sensor_diff,
-            int max_manipulation,
-            float p_weight,
-            float d_weight
+        TraceCar *car,
+        int base_speed,
+        int lr_sensor_diff,
+        int max_manipulation,
+        float p_weight,
+        float d_weight
     );
 
     void Update() override;
