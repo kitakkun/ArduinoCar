@@ -5,7 +5,7 @@
 
 class FollowCarDebugger{
 public:
-    explicit FollowcarDebugger(FollowCar *follow_car);
+    explicit FollowCarDebugger(FollowCar *follow_car);
     void DebugSensors();
     void DebugMotors();
 
