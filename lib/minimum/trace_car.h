@@ -1,8 +1,8 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_LINETRACECAR_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_LINETRACECAR_H
 
-#include "motor.h"
-#include "photo_reflector.h"
+#include "interface/motor.h"
+#include "interface/photo_reflector.h"
 
 /**
  * ライントレース車の各コンポーネントへのアクセスを提供するクラス

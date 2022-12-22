@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_MOTOR_IMPL_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_MOTOR_IMPL_H
 
-#include "motor.h"
+#include "interface/motor.h"
 
 class MotorImpl : public Motor {
 public:

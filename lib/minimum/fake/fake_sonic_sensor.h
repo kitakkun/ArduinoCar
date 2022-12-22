@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_SONIC_SENSOR_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_SONIC_SENSOR_H
 
-#include "sonic_sensor.h"
+#include "interface/sonic_sensor.h"
 
 class FakeSonicSensor : public SonicSensor {
 public:

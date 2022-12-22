@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_SENSOR_H
 
 
-#include "sensor.h"
+#include "interface/sensor.h"
 
 class FakeSensor : public Sensor {
 public:

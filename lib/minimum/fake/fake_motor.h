@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_MOTOR_H
 
 
-#include "motor.h"
+#include "interface/motor.h"
 
 class FakeMotor : public Motor {
 public:
