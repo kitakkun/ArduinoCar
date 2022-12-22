@@ -3,6 +3,8 @@
 #include "car_controller.h"
 #include "controller/pid_follow_controller.h"
 #include "ArduinoLog.h"
+#include "motor_impl.h"
+#include "sonic_sensor_impl.h"
 
 CarController *controller;
 
@@ -14,11 +16,11 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
     auto *car = new FollowCar(
-            new Motor(2, 3, 10),
-            new Motor(4, 5, 11),
-            new SonicSensor(pin0, pin3),    // TODO:pin番号を入力する
-            new SonicSensor(pin1, pin4),
-            new SonicSensor(pin2, pin5)
+            new MotorImpl(2, 3, 10),
+            new MotorImpl(4, 5, 11),
+            new SonicSensorImpl(pin0, pin3),    // TODO:pin番号を入力する
+            new SonicSensorImpl(pin1, pin4),
+            new SonicSensorImpl(pin2, pin5)
     );
 
     car->GetLeftMotor()->UpdateDirection(forward);
@@ -26,15 +28,20 @@ void setup() {
 
     controller = new PidFollowController(
             car,
+            5,
             100,
             -4,
             80,
+            20,
             0.052,
-            0.042
+            0.05,
+            0.042,
+            0.05
     );
 }
 
 void loop() {
+
     controller->Update();
     controller->Operate();
     delay(delay_millis);

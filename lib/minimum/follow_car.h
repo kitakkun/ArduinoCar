@@ -1,8 +1,8 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_H
 
-#include "motor.h"
-#include "sonic_sensor.h"
+#include "motor_impl.h"
+#include "sonic_sensor_impl.h"
 
 /**
  * 追従車の各コンポーネントへのアクセスを提供するクラス
@@ -10,25 +10,25 @@
 class FollowCar {
 public:
     explicit FollowCar(
-        Motor *left_motor,
-        Motor *right_motor,
-        SonicSensor *left_sensor,
-        SonicSensor *right_sensor
+        MotorImpl *left_motor,
+        MotorImpl *right_motor,
+        SonicSensorImpl *left_sensor,
+        SonicSensorImpl *right_sensor
     );
 
-    Motor *GetLeftMotor();
+    MotorImpl *GetLeftMotor();
 
-    Motor *GetRightMotor();
+    MotorImpl *GetRightMotor();
 
-    SonicSensor *GetLeftSensor();
+    SonicSensorImpl *GetLeftSensor();
 
-    SonicSensor *GetRightSensor();
+    SonicSensorImpl *GetRightSensor();
 
 private:
-    Motor *left_motor_;
-    Motor *right_motor_;
-    SonicSensor *left_sensor_;
-    SonicSensor *right_sensor_;
+    MotorImpl *left_motor_;
+    MotorImpl *right_motor_;
+    SonicSensorImpl *left_sensor_;
+    SonicSensorImpl *right_sensor_;
 };
 
 
