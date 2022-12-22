@@ -5,7 +5,7 @@ FollowCarDebugger::FollowcarDebugger(FollowCar *follow_car){
 }
 
 //センサーの出力
-void DebugSensors(){
+void FollowCarDebugger::DebugSensors(){
     Serial.print(" LeftSensor= ");
     Serial.print(this->follow_car_->GetLeftSensor());
     Serial.print(" RightSensor= ");
@@ -13,7 +13,7 @@ void DebugSensors(){
 }
 
 //モーターの出力
-void DebugMotors(){
+void FollowCarDebugger::DebugMotors(){
     Serial.print(" LeftMotor= ");
     Serial.print(this->follow_car_->GetLeftMotor());
     Serial.print(" RightMotor= ");

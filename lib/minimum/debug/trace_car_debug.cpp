@@ -5,7 +5,7 @@ TraceCarDebugger::TracecarDebugger(TraceCar *trace_car){
 }
 
 //センサーの出力
-void DebugSensors(){
+void TraceCarDebugger::DebugSensors(){
     Serial.print(" LeftSensor= ");
     Serial.print(this->trace_car_->GetLeftReflector());
     Serial.print(" MidSensor= ");
@@ -15,7 +15,7 @@ void DebugSensors(){
 }
 
 //モーターの出力
-void DebugMotors(){
+void TraceCarDebugger::DebugMotors(){
     Serial.print(" LeftMotor= ");
     Serial.print(this->trace_car_->GetLeftMotor());
     Serial.print(" RightMotor= ");
