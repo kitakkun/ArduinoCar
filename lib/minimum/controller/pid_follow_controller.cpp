@@ -23,11 +23,11 @@ PidFollowController::PidFollowController(
     this->d_weight_dist_ = d_weight_dist;
     this->p_weight_torque_ = p_weight_torque;
     this->d_weight_torque_ = d_weight_torque;
+    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
 }
 
 void PidFollowController::Update() {
-    this->car_->GetLeftSensor()->Update();
-    this->car_->GetRightSensor()->Update();
+    this->sensor_updater_->Update();
 }
 
 void PidFollowController::Operate() {
