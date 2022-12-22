@@ -16,23 +16,23 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
     auto *car = new TraceCar(
-            new MotorImpl(2, 3, 10),
-            new MotorImpl(4, 5, 11),
-            new PhotoReflectorImpl(A0, reflector_theta),
-            new PhotoReflectorImpl(A1, reflector_theta),
-            new PhotoReflectorImpl(A2, reflector_theta)
+        new MotorImpl(4, 5, 11),
+        new MotorImpl(2, 3, 10),
+        new PhotoReflectorImpl(A1, reflector_theta),
+        new PhotoReflectorImpl(A2, reflector_theta),
+        new PhotoReflectorImpl(A0, reflector_theta)
     );
 
     car->GetLeftMotor()->UpdateDirection(forward);
     car->GetRightMotor()->UpdateDirection(forward);
 
     controller = new PidTraceController(
-            car,
-            100,
-            -4,
-            80,
-            0.052,
-            0.042
+        car,
+        120,
+        -4,
+        80,
+        0.052,
+        0.042
     );
 }
 
