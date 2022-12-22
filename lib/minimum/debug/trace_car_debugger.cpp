@@ -1,12 +1,12 @@
 #include "trace_car_debugger.h"
 #include "Arduino.h"
 
-TraceCarDebugger::TraceCarDebugger(TraceCar *trace_car){
+TraceCarDebugger::TraceCarDebugger(TraceCar *trace_car) {
     this->trace_car_ = trace_car;
 }
 
 //センサーの出力
-void TraceCarDebugger::DebugSensors(){
+void TraceCarDebugger::DebugSensors() {
     Serial.print(" LeftSensor= ");
     Serial.print(this->trace_car_->GetLeftReflector()->GetRawValue());
     Serial.print(" MidSensor= ");
@@ -16,7 +16,7 @@ void TraceCarDebugger::DebugSensors(){
 }
 
 //モーターの出力
-void TraceCarDebugger::DebugMotors(){
+void TraceCarDebugger::DebugMotors() {
     Serial.print(" LeftMotor= ");
     Serial.print(this->trace_car_->GetLeftMotor()->GetSpeed());
     Serial.print(" RightMotor= ");

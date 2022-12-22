@@ -3,10 +3,12 @@
 
 #include "car/trace_car.h"
 
-class TraceCarDebugger{
+class TraceCarDebugger {
 public:
     explicit TraceCarDebugger(TraceCar *trace_car);
+
     void DebugSensors();
+
     void DebugMotors();
 
 private:

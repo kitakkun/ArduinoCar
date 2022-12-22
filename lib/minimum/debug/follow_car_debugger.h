@@ -3,10 +3,12 @@
 
 #include "car/follow_car.h"
 
-class FollowCarDebugger{
+class FollowCarDebugger {
 public:
     explicit FollowCarDebugger(FollowCar *follow_car);
+
     void DebugSensors();
+
     void DebugMotors();
 
 private:

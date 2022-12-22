@@ -1,12 +1,12 @@
 #include "follow_car_debugger.h"
 #include <Arduino.h>
 
-FollowCarDebugger::FollowCarDebugger(FollowCar *follow_car){
+FollowCarDebugger::FollowCarDebugger(FollowCar *follow_car) {
     this->follow_car_ = follow_car;
 }
 
 //センサーの出力
-void FollowCarDebugger::DebugSensors(){
+void FollowCarDebugger::DebugSensors() {
     Serial.print(" LeftSensor= ");
     Serial.print(this->follow_car_->GetLeftSensor()->GetRawValue());
     Serial.print(" RightSensor= ");
@@ -14,7 +14,7 @@ void FollowCarDebugger::DebugSensors(){
 }
 
 //モーターの出力
-void FollowCarDebugger::DebugMotors(){
+void FollowCarDebugger::DebugMotors() {
     Serial.print(" LeftMotor= ");
     Serial.print(this->follow_car_->GetLeftMotor()->GetSpeed());
     Serial.print(" RightMotor= ");
