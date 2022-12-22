@@ -13,7 +13,7 @@ public:
     double GetRawValue() override;
 
 private:
-    int RunUpdateCoroutine();
+    int runCoroutine() override;
 
     int trig_pin_;
     int echo_pin_;
