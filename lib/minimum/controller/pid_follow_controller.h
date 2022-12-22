@@ -4,6 +4,7 @@
 
 #include "interface/car_controller.h"
 #include "car/follow_car.h"
+#include "sonic_sensor_updater.h"
 
 class PidFollowController : public CarController {
 public:
@@ -21,10 +22,12 @@ public:
     );
 
     void Update() override;
+
     void Operate() override;
 
 protected:
     FollowCar *car_;
+    SonicSensorUpdater *sensor_updater_;
     int base_distance_;
     int base_speed_;
     int lr_sensor_diff_; // 左右のセンサの個体差

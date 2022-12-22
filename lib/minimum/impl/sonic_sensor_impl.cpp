@@ -8,6 +8,14 @@ SonicSensorImpl::SonicSensorImpl(int trig_pin, int echo_pin) {
     pinMode(this->echo_pin_, INPUT);
 }
 
+bool SonicSensorImpl::IsUpdateCompleted() {
+    return this->isDone();
+}
+
+void SonicSensorImpl::InitUpdateTask() {
+    this->reset();
+}
+
 void SonicSensorImpl::Update() {
     this->runCoroutine();
 }
@@ -18,18 +26,19 @@ double SonicSensorImpl::GetRawValue() {
 }
 
 int SonicSensorImpl::runCoroutine() {
-    COROUTINE_LOOP() {
-        //念のために最初に超音波を止める
-        digitalWrite(this->trig_pin_, LOW);
-        digitalWrite(this->trig_pin_, HIGH);
-        COROUTINE_DELAY(10);
-        digitalWrite(this->trig_pin_, LOW);
+    unsigned long duration;
+    COROUTINE_BEGIN();
+    //念のために最初に超音波を止める
+    digitalWrite(this->trig_pin_, LOW);
+    digitalWrite(this->trig_pin_, HIGH);
+    COROUTINE_DELAY(10);
+    digitalWrite(this->trig_pin_, LOW);
 
-        //帰ってくるまでの時間を計測
-        unsigned long duration = pulseIn(this->echo_pin_, HIGH);
-        duration /= 2;
+    //帰ってくるまでの時間を計測
+    duration = pulseIn(this->echo_pin_, HIGH);
+    duration /= 2;
 
-        //距離の計算
-        this->raw_value_ = (double) duration * 340.0 / 10000.0;
-    }
+    //距離の計算
+    this->raw_value_ = (double) duration * 340.0 / 10000.0;
+    COROUTINE_END();
 }
