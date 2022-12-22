@@ -2,21 +2,21 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_UPDATOR_H
 
 
-#include "impl.h"
+#include "sonic_sensor.h"
 
 /**
  * 音波が干渉しないように左右の超音波センサーの更新タイミングをずらすクラス
  */
 class SonicSensorUpdater {
 public:
-    explicit SonicSensorUpdater(SonicSensorImpl* left_sensor, SonicSensorImpl *right_sensor);
+    explicit SonicSensorUpdater(SonicSensor* left_sensor, SonicSensor *right_sensor);
 
     void Update();
 
 private:
-    SonicSensorImpl *left_sensor_;
-    SonicSensorImpl *right_sensor_;
-    SonicSensorImpl *updating_sensor_;
+    SonicSensor *left_sensor_;
+    SonicSensor *right_sensor_;
+    SonicSensor *updating_sensor_;
 };
 
 
