@@ -1,24 +1,24 @@
 #include "sonic_sensor_impl.h"
 #include <Arduino.h>
 
-SonicSensorImpl::SonicSensorImpl(int trig_pin, int echo_pin){
+SonicSensorImpl::SonicSensorImpl(int trig_pin, int echo_pin) {
     this->trig_pin_ = trig_pin;
     this->echo_pin_ = echo_pin;
     pinMode(this->trig_pin_, OUTPUT);
     pinMode(this->echo_pin_, INPUT);
 }
 
-void SonicSensorImpl::Update(){
-    RunUpdateCoroutine();
+void SonicSensorImpl::Update() {
+    this->runCoroutine();
 }
 
 //センサーの現在の値を取得
-double SonicSensorImpl::GetRawValue(){
+double SonicSensorImpl::GetRawValue() {
     return this->raw_value_;
 }
 
-int SonicSensorImpl::RunUpdateCoroutine() {
-    COROUTINE_LOOP(){
+int SonicSensorImpl::runCoroutine() {
+    COROUTINE_LOOP() {
         //念のために最初に超音波を止める
         digitalWrite(this->trig_pin_, LOW);
         digitalWrite(this->trig_pin_, HIGH);
@@ -30,6 +30,6 @@ int SonicSensorImpl::RunUpdateCoroutine() {
         duration /= 2;
 
         //距離の計算
-        this->raw_value_ = (double)duration * 340.0 / 10000.0;
+        this->raw_value_ = (double) duration * 340.0 / 10000.0;
     }
 }
