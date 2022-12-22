@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_MOTOR_H
 
 
-#include "move_direction.h"
+#include "datamodel/move_direction.h"
 
 class Motor {
 public:
