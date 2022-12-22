@@ -1,5 +1,5 @@
 #include "trace_car_debugger.h"
-#include "Arduino.h"
+#include <Arduino.h>
 
 TraceCarDebugger::TraceCarDebugger(TraceCar *trace_car) {
     this->trace_car_ = trace_car;
