@@ -3,8 +3,7 @@
 #include "car_controller.h"
 #include "controller/pid_trace_controller.h"
 #include "ArduinoLog.h"
-#include "motor_impl.h"
-#include "photo_reflector_impl.h"
+#include "impl.h"
 
 CarController *controller;
 
