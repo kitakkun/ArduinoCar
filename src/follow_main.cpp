@@ -15,27 +15,27 @@ void setup() {
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
     auto *car = new FollowCar(
-            new MotorImpl(2, 3, 10),
-            new MotorImpl(4, 5, 11),
-            new SonicSensorImpl(pin0, pin3),    // TODO:pin番号を入力する
-            new SonicSensorImpl(pin1, pin4),
-            new SonicSensorImpl(pin2, pin5)
+        new MotorImpl(2, 3, 10),
+        new MotorImpl(4, 5, 11),
+        new SonicSensorImpl(A0, A0),    // TODO:pin番号を入力する
+        new SonicSensorImpl(A0, A0),
+        new SonicSensorImpl(A0, A0)
     );
 
     car->GetLeftMotor()->UpdateDirection(forward);
     car->GetRightMotor()->UpdateDirection(forward);
 
     controller = new PidFollowController(
-            car,
-            5,
-            100,
-            -4,
-            80,
-            20,
-            0.052,
-            0.05,
-            0.042,
-            0.05
+        car,
+        5,
+        100,
+        -4,
+        80,
+        20,
+        0.052,
+        0.05,
+        0.042,
+        0.05
     );
 }
 
