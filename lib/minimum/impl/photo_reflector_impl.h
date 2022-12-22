@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PHOTO_REFLECTOR_IMPL_H
 
 #include "sensor_impl.h"
-#include "photo_reflector.h"
+#include "interface/photo_reflector.h"
 
 class PhotoReflectorImpl : public SensorImpl, public PhotoReflector {
 public:

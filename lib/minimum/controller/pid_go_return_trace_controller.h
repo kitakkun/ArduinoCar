@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_GO_RETURN_TRACE_CONTROLLER_H
 
 #include "pid_trace_controller.h"
-#include "trace_state.h"
+#include "datamodel/trace_state.h"
 
 /*
  * 行ってターンして戻ってくるトレースコントローラ

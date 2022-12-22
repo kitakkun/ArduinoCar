@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SENSOR_IMPL_H
 
 
-#include "sensor.h"
+#include "interface/sensor.h"
 
 class SensorImpl : public Sensor {
 public:

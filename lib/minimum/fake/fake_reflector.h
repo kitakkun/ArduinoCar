@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_REFLECTOR_H
 
 
-#include "photo_reflector.h"
+#include "interface/photo_reflector.h"
 #include "fake_sensor.h"
 
 class FakeReflector : public FakeSensor, public PhotoReflector {
