@@ -5,6 +5,7 @@
 #include "ArduinoLog.h"
 #include "impl.h"
 #include "carbuilder/follow_car_builder.h"
+#include "carbuilder/pid_follow_controller_builder.h"
 
 CarController *controller;
 
@@ -25,18 +26,18 @@ void setup() {
     car->GetLeftMotor()->UpdateDirection(forward);
     car->GetRightMotor()->UpdateDirection(forward);
 
-    controller = new PidFollowController(
-        car,
-        5,
-        100,
-        -4,
-        80,
-        20,
-        0.052,
-        0.05,
-        0.042,
-        0.05
-    );
+    controller = PidFollowControllerBuilder()
+        .SetCar(car)
+        .SetBaseDistance(5)
+        .SetBaseSpeed(100)
+        .SetLRSensorDiff(-4)
+        .SetDistanceMaxManipulation(80)
+        .SetTorqueMaxManipulation(20)
+        .SetDistancePWeight(0.052)
+        .SetDistanceDWeight(0.05)
+        .SetTorquePWeight(0.042)
+        .SetTorqueDWeight(0.05)
+        .Build();
 }
 
 void loop() {

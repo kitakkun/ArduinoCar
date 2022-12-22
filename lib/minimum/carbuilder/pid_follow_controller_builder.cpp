@@ -1,9 +1,5 @@
 #include "pid_follow_controller_builder.h"
 
-PidFollowControllerBuilder::PidFollowControllerBuilder() {
-    this->car_ = nullptr;
-}
-
 PidFollowControllerBuilder& PidFollowControllerBuilder::SetCar(FollowCar *car) {
     this->car_ = car;
     return *this;
@@ -55,12 +51,16 @@ PidFollowControllerBuilder& PidFollowControllerBuilder::SetTorqueDWeight(float d
 }
 
 PidFollowController *PidFollowControllerBuilder::Build() {
-    if (this->car_ == nullptr) {
-        // インスタンス生成できない状態ならnullptrを返す
-        return nullptr;
-    } else {
-        return new PidFollowController(
-            this->car_
-        );
-    }
+    return new PidFollowController(
+        this->car_,
+        this->base_distance_,
+        this->base_speed_,
+        this->lr_sensor_diff_,
+        this->max_manipulation_dist_,
+        this->max_manipulation_torque_,
+        this->p_weight_dist_,
+        this->d_weight_dist_,
+        this->p_weight_torque_,
+        this->d_weight_torque_
+    );
 }

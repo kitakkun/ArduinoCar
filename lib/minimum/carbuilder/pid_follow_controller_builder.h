@@ -1,9 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_FOLLOW_CONTROLLER_BUILDER_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_FOLLOW_CONTROLLER_BUILDER_H
 
-
-#include "interface/sonic_sensor.h"
-#include "interface/motor.h"
+#include "car/follow_car.h"
 #include "controller/pid_follow_controller.h"
 
 class PidFollowControllerBuilder {
@@ -46,4 +44,4 @@ private:
 };
 
 
-#endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_BUILDER_H
+#endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_FOLLOW_CONTROLLER_H
