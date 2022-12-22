@@ -6,8 +6,6 @@
 
 class PidFollowControllerBuilder {
 public:
-    explicit PidFollowControllerBuilder();
-
     PidFollowControllerBuilder &SetCar(FollowCar *car);
 
     PidFollowControllerBuilder &SetBaseDistance(int base_distance);
