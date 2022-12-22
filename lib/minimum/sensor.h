@@ -4,15 +4,9 @@
 
 class Sensor {
 public:
-    explicit Sensor(int pin);
+    virtual void Update() = 0;
 
-    virtual void Update();
-
-    int GetRawValue();
-
-private:
-    int pin_;
-    int raw_value_;
+    virtual int GetRawValue() = 0;
 };
 
 

@@ -6,27 +6,13 @@
 
 class Motor {
 public:
-    Motor(int plus_pin, int minus_pin, int pwm_pin, int gain = 0);
+    virtual void UpdateSpeed(int speed) = 0;
 
-    void UpdateSpeed(int speed);
+    virtual void UpdateDirection(MoveDirection direction) = 0;
 
-    void UpdateDirection(MoveDirection direction);
+    virtual int GetSpeed() = 0;
 
-    int GetSpeed();
-
-    MoveDirection GetMoveDirection();
-
-private:
-    int plus_pin_;
-    int minus_pin_;
-    int pwm_pin_;
-    int speed_;
-    int gain_;
-    MoveDirection direction_;
-
-    void ApplySpeed();
-
-    void ApplyDirection();
+    virtual MoveDirection GetMoveDirection() = 0;
 };
 
 
