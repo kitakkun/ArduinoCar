@@ -30,6 +30,6 @@ int SonicSensorImpl::RunUpdateCoroutine() {
         duration /= 2;
 
         //距離の計算
-        this->raw_value_ = duration * 340 / 10000;
+        this->raw_value_ = (double)duration * 340.0 / 10000.0;
     }
 }
