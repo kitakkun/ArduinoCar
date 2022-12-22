@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PHOTO_REFLECTOR_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PHOTO_REFLECTOR_H
 
-#include "sensor.h"
+#include "interface/sensor.h"
 
 class PhotoReflector : public Sensor {
 public:

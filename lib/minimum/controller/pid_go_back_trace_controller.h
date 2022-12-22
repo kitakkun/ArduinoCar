@@ -3,7 +3,7 @@
 
 
 #include "pid_trace_controller.h"
-#include "trace_state.h"
+#include "datamodel/trace_state.h"
 
 /*
  * 行ってバックで戻ってくるコントローラ
