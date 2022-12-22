@@ -4,6 +4,7 @@
 #include "controller/pid_follow_controller.h"
 #include "ArduinoLog.h"
 #include "impl.h"
+#include "carbuilder/follow_car_builder.h"
 
 CarController *controller;
 
@@ -14,12 +15,12 @@ void setup() {
     while (!Serial);
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
     Log.verboseln("Building a Car instance...");
-    auto *car = new FollowCar(
-        new MotorImpl(2, 3, 10),
-        new MotorImpl(4, 5, 11),
-        new SonicSensorImpl(A0, A0),    // TODO:pin番号を入力する
-        new SonicSensorImpl(A0, A0)
-    );
+    auto *car = FollowCarBuilder()
+        .SetLeftMotor(new MotorImpl(2, 3, 10))
+        .SetRightMotor(new MotorImpl(4, 5, 11))
+        .SetLeftSensor(new SonicSensorImpl(A0, A0))
+        .SetRightSensor(new SonicSensorImpl(A0, A0))
+        .Build();
 
     car->GetLeftMotor()->UpdateDirection(forward);
     car->GetRightMotor()->UpdateDirection(forward);
