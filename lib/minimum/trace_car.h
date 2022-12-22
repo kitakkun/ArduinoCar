@@ -10,11 +10,11 @@
 class TraceCar {
 public:
     explicit TraceCar(
-            Motor *left_motor,
-            Motor *right_motor,
-            PhotoReflector *mid_reflector,
-            PhotoReflector *left_reflector,
-            PhotoReflector *right_reflector
+        Motor *left_motor,
+        Motor *right_motor,
+        PhotoReflector *mid_reflector,
+        PhotoReflector *left_reflector,
+        PhotoReflector *right_reflector
     );
 
     Motor *GetLeftMotor();
