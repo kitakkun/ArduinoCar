@@ -42,9 +42,9 @@ void PidFollowController::Follow() {
      * distance (-base_distance) < 0 => トレース車との距離が近い
      * この差分を用いて単純な比例制御を行う（P制御）
     */
-    int distance = (this->car_->GetLeftSensor()->GetRawValue()
-                    + this->car_->GetRightSensor()->GetRawValue())
-                   / 2 - base_distance_;
+    float distance = (this->car_->GetLeftSensor()->GetRawValue()
+                      + this->car_->GetRightSensor()->GetRawValue())
+                     / 2 - base_distance_;
 
     // D制御を行う
     unsigned long delta_time = millis() - this->last_time_called_;
@@ -57,7 +57,7 @@ void PidFollowController::Follow() {
     manipulation_dist = constrain(manipulation_dist, -this->max_manipulation_dist_, this->max_manipulation_dist_);
 
     // base_speedを更新
-    base_speed_ += manipulation_dist;
+    int adjusted_base_speed = this->base_speed_ + manipulation_dist;
 
 
     // 左右の差分についてのpd制御
@@ -66,9 +66,9 @@ void PidFollowController::Follow() {
      * deviation < 0 => 左の方が前に出ている
      * この差分を用いて単純な比例制御を行う（P制御）
      */
-    int deviation = this->car_->GetLeftSensor()->GetRawValue()
-                    - this->car_->GetRightSensor()->GetRawValue()
-                    - this->lr_sensor_diff_;
+    float deviation = this->car_->GetLeftSensor()->GetRawValue()
+                      - this->car_->GetRightSensor()->GetRawValue()
+                      - this->lr_sensor_diff_;
 
     /**
      * 前に計算されたprev_deviation_と今回計算したdeviation、経過時間delta_timeを用いてdeviationの微分(deviation_differential)を計算する。
@@ -90,6 +90,6 @@ void PidFollowController::Follow() {
     this->last_time_called_ = millis();
 
     // 反映
-    this->car_->GetLeftMotor()->UpdateSpeed(this->base_speed_ + manipulation_torque);
-    this->car_->GetRightMotor()->UpdateSpeed(this->base_speed_ - manipulation_torque);
+    this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
+    this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
 }
