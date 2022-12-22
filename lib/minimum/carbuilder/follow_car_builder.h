@@ -12,7 +12,7 @@ public:
 
     void SetLeftMotor(Motor *left_motor);
 
-    void SetRightMotor(Motor *left_motor);
+    void SetRightMotor(Motor *right_motor);
 
     void SetLeftSensor(SonicSensor *left_sensor);
 
