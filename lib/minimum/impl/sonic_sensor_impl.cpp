@@ -31,7 +31,7 @@ int SonicSensorImpl::runCoroutine() {
     //念のために最初に超音波を止める
     digitalWrite(this->trig_pin_, LOW);
     digitalWrite(this->trig_pin_, HIGH);
-    COROUTINE_DELAY(10);
+    COROUTINE_DELAY_MICROS(10);
     digitalWrite(this->trig_pin_, LOW);
 
     //帰ってくるまでの時間を計測
