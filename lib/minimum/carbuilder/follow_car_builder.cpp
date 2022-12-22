@@ -7,20 +7,24 @@ FollowCarBuilder::FollowCarBuilder() {
     this->right_senor_ = nullptr;
 }
 
-void FollowCarBuilder::SetLeftMotor(Motor *left_motor) {
+FollowCarBuilder* FollowCarBuilder::SetLeftMotor(Motor *left_motor) {
     this->left_motor_ = left_motor;
+    return this;
 }
 
-void FollowCarBuilder::SetRightMotor(Motor *right_motor) {
+FollowCarBuilder* FollowCarBuilder::SetRightMotor(Motor *right_motor) {
     this->right_motor_ = right_motor;
+    return this;
 }
 
-void FollowCarBuilder::SetLeftSensor(SonicSensor *left_sensor) {
+FollowCarBuilder* FollowCarBuilder::SetLeftSensor(SonicSensor *left_sensor) {
     this->left_sensor_ = left_sensor;
+    return this;
 }
 
-void FollowCarBuilder::SetRightSensor(SonicSensor *right_sensor) {
+FollowCarBuilder* FollowCarBuilder::SetRightSensor(SonicSensor *right_sensor) {
     this->right_senor_ = right_sensor;
+    return this;
 }
 
 FollowCar *FollowCarBuilder::Build() {

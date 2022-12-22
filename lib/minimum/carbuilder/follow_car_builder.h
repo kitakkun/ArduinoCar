@@ -10,13 +10,13 @@ class FollowCarBuilder {
 public:
     explicit FollowCarBuilder();
 
-    void SetLeftMotor(Motor *left_motor);
+    FollowCarBuilder *SetLeftMotor(Motor *left_motor);
 
-    void SetRightMotor(Motor *right_motor);
+    FollowCarBuilder *SetRightMotor(Motor *right_motor);
 
-    void SetLeftSensor(SonicSensor *left_sensor);
+    FollowCarBuilder *SetLeftSensor(SonicSensor *left_sensor);
 
-    void SetRightSensor(SonicSensor *right_sensor);
+    FollowCarBuilder *SetRightSensor(SonicSensor *right_sensor);
 
     FollowCar *Build();
 
