@@ -16,9 +16,9 @@ public:
         SonicSensor *right_sensor
     );
 
-    SonicSensor *GetLeftMotor();
+    Motor *GetLeftMotor();
 
-    SonicSensor *GetRightMotor();
+    Motor *GetRightMotor();
 
     SonicSensor *GetLeftSensor();
 

@@ -1,10 +1,9 @@
 #include <Arduino.h>
-#include "follow_car.h"
-#include "car_controller.h"
+#include "car/follow_car.h"
+#include "interface/car_controller.h"
 #include "controller/pid_follow_controller.h"
 #include "ArduinoLog.h"
-#include "motor_impl.h"
-#include "sonic_sensor_impl.h"
+#include "impl.h"
 
 CarController *controller;
 
