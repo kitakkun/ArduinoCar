@@ -8,7 +8,7 @@ class PidFollowControllerBuilder {
 public:
     PidFollowControllerBuilder &SetCar(FollowCar *car);
 
-    PidFollowControllerBuilder &SetBaseDistance(int base_distance);
+    PidFollowControllerBuilder &SetBaseDistance(float base_distance);
 
     PidFollowControllerBuilder &SetBaseSpeed(int base_speed);
 
@@ -30,7 +30,7 @@ public:
 
 private:
     FollowCar *car_;
-    int base_distance_;
+    float base_distance_;
     int base_speed_;
     int lr_sensor_diff_;
     int max_manipulation_dist_;
