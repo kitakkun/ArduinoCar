@@ -50,10 +50,16 @@ PidFollowControllerBuilder& PidFollowControllerBuilder::SetTorqueDWeight(float d
     return *this;
 }
 
+PidFollowControllerBuilder &PidFollowControllerBuilder::SetMinDistance(float min_distance) {
+    this->min_distance_ = min_distance;
+    return *this;
+}
+
 PidFollowController *PidFollowControllerBuilder::Build() {
     return new PidFollowController(
         this->car_,
         this->base_distance_,
+        this->min_distance_,
         this->base_speed_,
         this->lr_sensor_diff_,
         this->max_manipulation_dist_,
