@@ -22,6 +22,7 @@ private:
     int trig_pin_;
     int echo_pin_;
     double raw_value_;
+    unsigned long last_updated_time_;
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_IMPL_H
