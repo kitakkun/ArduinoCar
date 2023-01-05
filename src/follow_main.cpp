@@ -8,6 +8,7 @@
 #include "controllerbuilder/pid_follow_controller_builder.h"
 
 CarController *controller;
+HeartbeatLedImpl *heartbeatLed;
 
 const int delay_millis = 10;
 
@@ -38,10 +39,13 @@ void setup() {
         .SetTorquePWeight(0.042)
         .SetTorqueDWeight(0.05)
         .Build();
+
+    heartbeatLed = new HeartbeatLedImpl(13, 500);
 }
 
 void loop() {
     controller->Update();
     controller->Operate();
+    heartbeatLed->runCoroutine();
     delay(delay_millis);
 }
