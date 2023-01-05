@@ -91,7 +91,7 @@ void PidFollowController::Follow() {
     this->last_time_called_ = millis();
 
     // 反映
-    if (this->car_->GetCrashDetector()->IsHigh()) {
+    if (this->car_->GetCrashDetector()->IsLow()) {
         // ぶつからないように左右のトルク調整のみ行う
         this->car_->GetLeftMotor()->UpdateSpeed(manipulation_torque);
         this->car_->GetRightMotor()->UpdateSpeed(-manipulation_torque);
