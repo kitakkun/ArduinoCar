@@ -3,7 +3,8 @@
 
 PidFollowController::PidFollowController(
     FollowCar *car,
-    int base_distance,
+    float base_distance,
+    float min_distance,
     int base_speed,
     int lr_sensor_diff,
     int max_manipulation_dist,
@@ -15,6 +16,7 @@ PidFollowController::PidFollowController(
 ) {
     this->car_ = car;
     this->base_distance_ = base_distance;
+    this->min_distance_ = min_distance;
     this->base_speed_ = base_speed;
     this->lr_sensor_diff_ = lr_sensor_diff;
     this->max_manipulation_dist_ = max_manipulation_dist;
@@ -90,6 +92,12 @@ void PidFollowController::Follow() {
     this->last_time_called_ = millis();
 
     // 反映
-    this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
-    this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
+    if (distance > this->min_distance_) {
+        this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
+        this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
+    } else {
+        // ぶつからないように左右の微調整のみ行う
+        this->car_->GetLeftMotor()->UpdateSpeed(manipulation_torque);
+        this->car_->GetRightMotor()->UpdateSpeed(-manipulation_torque);
+    }
 }
