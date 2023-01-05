@@ -40,7 +40,7 @@ void setup() {
         .SetTorqueDWeight(0.05)
         .Build();
 
-    heartbeatLed = new HeartbeatLedImpl(13, 500)
+    heartbeatLed = new HeartbeatLedImpl(13, 500);
 }
 
 void loop() {
