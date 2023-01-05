@@ -21,6 +21,7 @@ void setup() {
         .SetRightMotor(new MotorImpl(4, 5, 10))
         .SetLeftSensor(new SonicSensorImpl(6, 7))
         .SetRightSensor(new SonicSensorImpl(9, 8))
+        .SetCrashDetector(new DigitalSensorImpl(12))
         .Build();
 
     debugger = new FollowCarDebugger(car);

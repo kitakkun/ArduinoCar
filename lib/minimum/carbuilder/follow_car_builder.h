@@ -18,6 +18,8 @@ public:
 
     FollowCarBuilder &SetRightSensor(SonicSensor *right_sensor);
 
+    FollowCarBuilder &SetCrashDetector(DigitalSensor *crash_detector);
+
     FollowCar *Build();
 
 private:
@@ -25,6 +27,7 @@ private:
     Motor *right_motor_;
     SonicSensor *left_sensor_;
     SonicSensor *right_senor_;
+    DigitalSensor *crash_detector_;
 };
 
 
