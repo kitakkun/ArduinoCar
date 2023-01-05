@@ -11,6 +11,7 @@ public:
     explicit PidFollowController(
         FollowCar *car,
         float base_distance,
+        float min_distance,
         int base_speed,
         int ir_sensor_diff,
         int max_manipulation_dist,
@@ -29,6 +30,7 @@ protected:
     FollowCar *car_;
     SonicSensorUpdater *sensor_updater_;
     float base_distance_;
+    float min_distance_;
     int base_speed_;
     int lr_sensor_diff_; // 左右のセンサの個体差
     int max_manipulation_dist_;
