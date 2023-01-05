@@ -15,7 +15,7 @@ PidFollowControllerBuilder& PidFollowControllerBuilder::SetBaseSpeed(int base_sp
     return *this;
 }
 
-PidFollowControllerBuilder& PidFollowControllerBuilder::SetLRSensorDiff(int lr_sensor_diff) {
+PidFollowControllerBuilder& PidFollowControllerBuilder::SetLRSensorDiff(float lr_sensor_diff) {
     this->lr_sensor_diff_ = lr_sensor_diff;
     return *this;
 }

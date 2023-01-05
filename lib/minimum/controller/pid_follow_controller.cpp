@@ -5,7 +5,7 @@ PidFollowController::PidFollowController(
     FollowCar *car,
     float base_distance,
     int base_speed,
-    int lr_sensor_diff,
+    float lr_sensor_diff,
     int max_manipulation_dist,
     int max_manipulation_torque,
     float p_weight_dist,

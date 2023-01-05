@@ -12,7 +12,7 @@ public:
 
     PidFollowControllerBuilder &SetBaseSpeed(int base_speed);
 
-    PidFollowControllerBuilder &SetLRSensorDiff(int lr_sensor_diff);
+    PidFollowControllerBuilder &SetLRSensorDiff(float lr_sensor_diff);
 
     PidFollowControllerBuilder &SetDistanceMaxManipulation(int max_manipulation_dist);
 
@@ -32,7 +32,7 @@ private:
     FollowCar *car_;
     float base_distance_;
     int base_speed_;
-    int lr_sensor_diff_;
+    float lr_sensor_diff_;
     int max_manipulation_dist_;
     int max_manipulation_torque_;
     float p_weight_dist_;

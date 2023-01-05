@@ -12,7 +12,7 @@ public:
         FollowCar *car,
         float base_distance,
         int base_speed,
-        int ir_sensor_diff,
+        float lr_sensor_diff,
         int max_manipulation_dist,
         int max_manipulation_torque,
         float p_weight_dist,
@@ -30,7 +30,7 @@ protected:
     SonicSensorUpdater *sensor_updater_;
     float base_distance_;
     int base_speed_;
-    int lr_sensor_diff_; // 左右のセンサの個体差
+    float lr_sensor_diff_; // 左右のセンサの個体差
     int max_manipulation_dist_;
     int max_manipulation_torque_;
     float p_weight_dist_;
