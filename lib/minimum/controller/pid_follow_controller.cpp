@@ -93,8 +93,8 @@ void PidFollowController::Follow() {
 
     // 反映
     if (distance > this->min_distance_) {
-        this->car_->GetLeftMotor()->UpdateSpeed(this->base_speed_ + manipulation_torque);
-        this->car_->GetRightMotor()->UpdateSpeed(this->base_speed_ - manipulation_torque);
+        this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
+        this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
     } else {
         // ぶつからないように左右の微調整のみ行う
         this->car_->GetLeftMotor()->UpdateSpeed(manipulation_torque);
