@@ -28,6 +28,7 @@ PidFollowController::PidFollowController(
 
 void PidFollowController::Update() {
     this->sensor_updater_->Update();
+    this->car_->GetCrashDetector()->Update();
 }
 
 void PidFollowController::Operate() {
@@ -90,6 +91,12 @@ void PidFollowController::Follow() {
     this->last_time_called_ = millis();
 
     // 反映
-    this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
-    this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
+    if (this->car_->GetCrashDetector()->IsHigh()) {
+        // ぶつからないように左右のトルク調整のみ行う
+        this->car_->GetLeftMotor()->UpdateSpeed(manipulation_torque);
+        this->car_->GetRightMotor()->UpdateSpeed(-manipulation_torque);
+    } else {
+        this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
+        this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
+    }
 }
