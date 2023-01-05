@@ -6,6 +6,7 @@
 #include "impl.h"
 
 CarController *controller;
+HeartbeatLedImpl *heartbeatLed;
 
 const int delay_millis = 10;
 const int reflector_theta = 500;
@@ -34,10 +35,13 @@ void setup() {
         0.052,
         0.042
     );
+
+    heartbeatLed = new HeartbeatLedImpl(13, 500);
 }
 
 void loop() {
     controller->Update();
     controller->Operate();
+    heartbeatLed->runCoroutine();
     delay(delay_millis);
 }
