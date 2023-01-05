@@ -27,15 +27,15 @@ void setup() {
 
     controller = PidFollowControllerBuilder()
         .SetCar(car)
-        .SetBaseDistance(7.5)
-        .SetBaseSpeed(105)
+        .SetBaseDistance(10.0)
+        .SetBaseSpeed(130)
         .SetLRSensorDiff(0)
         .SetDistanceMaxManipulation(20)
         .SetTorqueMaxManipulation(50)
-        .SetDistancePWeight(0.50)
-        .SetDistanceDWeight(0.50)
-        .SetTorquePWeight(10.0)
-        .SetTorqueDWeight(6.0)
+        .SetDistancePWeight(15.0)
+        .SetDistanceDWeight(10.0)
+        .SetTorquePWeight(12.0)
+        .SetTorqueDWeight(7.0)
         .Build();
 }
 
@@ -43,7 +43,7 @@ void loop() {
     controller->Update();
     controller->Operate();
     delay(delay_millis);
-    debugger->DebugSensors();
+    // debugger->DebugSensors();
     //Serial.println(car->GetLeftSensor()->GetRawValue());
     // Serial.println(car->GetLeftSensor()->GetRawValue());
 }
