@@ -15,7 +15,7 @@ public:
         Motor *right_motor,
         SonicSensor *left_sensor,
         SonicSensor *right_sensor,
-        DigitalSensor *crash_detector,
+        DigitalSensor *crash_detector
     );
 
     Motor *GetLeftMotor();
