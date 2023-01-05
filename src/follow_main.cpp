@@ -25,9 +25,6 @@ void setup() {
 
     debugger = new FollowCarDebugger(car);
 
-    car->GetLeftMotor()->UpdateDirection(forward);
-    car->GetRightMotor()->UpdateDirection(forward);
-
     controller = PidFollowControllerBuilder()
         .SetCar(car)
         .SetBaseDistance(7.5)

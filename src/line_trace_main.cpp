@@ -23,9 +23,6 @@ void setup() {
         new PhotoReflectorImpl(A0, reflector_theta)
     );
 
-    car->GetLeftMotor()->UpdateDirection(forward);
-    car->GetRightMotor()->UpdateDirection(forward);
-
     controller = new PidTraceController(
         car,
         120,
