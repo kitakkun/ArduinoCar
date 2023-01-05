@@ -31,65 +31,76 @@ void PidFollowController::Update() {
 }
 
 void PidFollowController::Operate() {
-    this->Follow();
+    this->runCoroutine();
 }
 
-void PidFollowController::Follow() {
-    // base_speedについてのpd制御
+int PidFollowController::runCoroutine() {
+    float distance;
+    unsigned long delta_time;
+    float distance_differential;
+    int manipulation_dist;
+    int adjusted_base_speed;
+    float deviation;
+    float deviation_differential;
+    int manipulation_torque;
+    COROUTINE_LOOP() {
+        // base_speedについてのpd制御
+        /**
+         * distance (-base_distance) > 0 => トレース車との距離が遠い
+         * distance (-base_distance) < 0 => トレース車との距離が近い
+         * この差分を用いて単純な比例制御を行う（P制御）
+        */
+        distance = (this->car_->GetLeftSensor()->GetRawValue()
+                    + this->car_->GetRightSensor()->GetRawValue())
+                   / 2 - base_distance_;
 
-    /**
-     * distance (-base_distance) > 0 => トレース車との距離が遠い
-     * distance (-base_distance) < 0 => トレース車との距離が近い
-     * この差分を用いて単純な比例制御を行う（P制御）
-    */
-    float distance = (this->car_->GetLeftSensor()->GetRawValue()
-                      + this->car_->GetRightSensor()->GetRawValue())
-                     / 2 - base_distance_;
+        // D制御を行う
+        delta_time = millis() - this->last_time_called_;
+        distance_differential = (float) (distance - this->prev_distance_) / (float) delta_time;
 
-    // D制御を行う
-    unsigned long delta_time = millis() - this->last_time_called_;
-    float distance_differential = (float) (distance - this->prev_distance_) / (float) delta_time;
+        // 操作量の計算（PIDの各重みを考慮して最終的な操作量を計算する）
+        manipulation_dist = (int) (this->p_weight_dist_ * distance + this->d_weight_dist_ * distance_differential);
 
-    // 操作量の計算（PIDの各重みを考慮して最終的な操作量を計算する）
-    int manipulation_dist = (int) (this->p_weight_dist_ * distance + this->d_weight_dist_ * distance_differential);
+        // 操作量の範囲を制限
+        manipulation_dist = constrain(manipulation_dist, -this->max_manipulation_dist_, this->max_manipulation_dist_);
 
-    // 操作量の範囲を制限
-    manipulation_dist = constrain(manipulation_dist, -this->max_manipulation_dist_, this->max_manipulation_dist_);
-
-    // base_speedを更新
-    int adjusted_base_speed = this->base_speed_ + manipulation_dist;
+        // base_speedを更新
+        adjusted_base_speed = this->base_speed_ + manipulation_dist;
 
 
-    // 左右の差分についてのpd制御
-    /**
-     * deviation > 0 => 右の方が前に出ている
-     * deviation < 0 => 左の方が前に出ている
-     * この差分を用いて単純な比例制御を行う（P制御）
-     */
-    float deviation = this->car_->GetLeftSensor()->GetRawValue()
-                      - this->car_->GetRightSensor()->GetRawValue()
-                      - this->lr_sensor_diff_;
+        // 左右の差分についてのpd制御
+        /**
+         * deviation > 0 => 右の方が前に出ている
+         * deviation < 0 => 左の方が前に出ている
+         * この差分を用いて単純な比例制御を行う（P制御）
+         */
+        deviation = this->car_->GetLeftSensor()->GetRawValue()
+                    - this->car_->GetRightSensor()->GetRawValue()
+                    - this->lr_sensor_diff_;
 
-    /**
-     * 前に計算されたprev_deviation_と今回計算したdeviation、経過時間delta_timeを用いてdeviationの微分(deviation_differential)を計算する。
-     * 計算された操作量を用いて微分制御を行う（D制御）
-     */
-    float deviation_differential = (float) (deviation - this->prev_deviation_) / (float) delta_time;
+        /**
+         * 前に計算されたprev_deviation_と今回計算したdeviation、経過時間delta_timeを用いてdeviationの微分(deviation_differential)を計算する。
+         * 計算された操作量を用いて微分制御を行う（D制御）
+         */
+        deviation_differential = (float) (deviation - this->prev_deviation_) / (float) delta_time;
 
-    /**
-     * 操作量の計算（PIDの各重みを考慮して最終的な操作量を計算する）
-     */
-    int manipulation_torque = (int) (this->p_weight_torque_ * deviation + this->d_weight_torque_ * deviation_differential);
+        /**
+         * 操作量の計算（PIDの各重みを考慮して最終的な操作量を計算する）
+         */
+        manipulation_torque = (int) (this->p_weight_torque_ * deviation + this->d_weight_torque_ * deviation_differential);
 
-    // 操作量の範囲を制限
-    manipulation_torque = constrain(manipulation_torque, -this->max_manipulation_torque_, this->max_manipulation_torque_);
+        // 操作量の範囲を制限
+        manipulation_torque = constrain(manipulation_torque, -this->max_manipulation_torque_, this->max_manipulation_torque_);
 
-    // deviationの上書きと時間更新（次回の準備）
-    this->prev_distance_ = distance;
-    this->prev_deviation_ = deviation;
-    this->last_time_called_ = millis();
+        // deviationの上書きと時間更新（次回の準備）
+        this->prev_distance_ = distance;
+        this->prev_deviation_ = deviation;
+        this->last_time_called_ = millis();
 
-    // 反映
-    this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
-    this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
+        // 反映
+        this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + manipulation_torque);
+        this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - manipulation_torque);
+
+        COROUTINE_DELAY(10);
+    }
 }

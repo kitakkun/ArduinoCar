@@ -5,8 +5,9 @@
 #include "interface/car_controller.h"
 #include "car/follow_car.h"
 #include "sonic_sensor_updater.h"
+#include "ace_routine/Coroutine.h"
 
-class PidFollowController : public CarController {
+class PidFollowController : public CarController, ace_routine::Coroutine {
 public:
     explicit PidFollowController(
         FollowCar *car,
@@ -39,9 +40,8 @@ protected:
     float d_weight_torque_;
     unsigned long last_time_called_;
 
-    virtual void Follow();
-
 private:
+    int runCoroutine() override;
     float prev_distance_;
     float prev_deviation_;
 };
