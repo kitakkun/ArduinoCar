@@ -5,7 +5,7 @@ PidFollowControllerBuilder& PidFollowControllerBuilder::SetCar(FollowCar *car) {
     return *this;
 }
 
-PidFollowControllerBuilder& PidFollowControllerBuilder::SetBaseDistance(int base_distance) {
+PidFollowControllerBuilder& PidFollowControllerBuilder::SetBaseDistance(float base_distance) {
     this->base_distance_ = base_distance;
     return *this;
 }
