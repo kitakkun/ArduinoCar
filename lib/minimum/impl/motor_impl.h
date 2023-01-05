@@ -2,9 +2,8 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_MOTOR_IMPL_H
 
 #include "interface/motor.h"
-#include "ace_routine/Coroutine.h"
 
-class MotorImpl : public Motor, ace_routine::Coroutine {
+class MotorImpl : public Motor {
 public:
     MotorImpl(int plus_pin, int minus_pin, int pwm_pin, int gain = 0);
 
@@ -13,8 +12,6 @@ public:
     void UpdateDirection(MoveDirection direction) override;
 
     int GetSpeed() override;
-
-    int runCoroutine() override;
 
     MoveDirection GetMoveDirection() override;
 
@@ -26,7 +23,9 @@ private:
     int gain_;
     MoveDirection direction_;
 
-    void Apply();
+    void ApplySpeed();
+
+    void ApplyDirection();
 };
 
 #endif //LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_MOTOR_IMPL_H
