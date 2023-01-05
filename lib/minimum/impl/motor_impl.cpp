@@ -11,6 +11,8 @@ MotorImpl::MotorImpl(int plus_pin, int minus_pin, int pwm_pin, int gain) {
     pinMode(this->plus_pin_, OUTPUT);
     pinMode(this->minus_pin_, OUTPUT);
     pinMode(this->pwm_pin_, OUTPUT);
+    ApplySpeed();
+    ApplyDirection();
 }
 
 MoveDirection MotorImpl::GetMoveDirection() {
