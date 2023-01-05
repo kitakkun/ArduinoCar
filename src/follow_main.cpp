@@ -42,6 +42,7 @@ void setup() {
 void loop() {
     controller->Update();
     controller->Operate();
+    delay(delay_millis);
     debugger->DebugSensors();
     //Serial.println(car->GetLeftSensor()->GetRawValue());
     // Serial.println(car->GetLeftSensor()->GetRawValue());
