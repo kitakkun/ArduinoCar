@@ -3,7 +3,7 @@
 
 PidFollowController::PidFollowController(
     FollowCar *car,
-    int base_distance,
+    float base_distance,
     int base_speed,
     int lr_sensor_diff,
     int max_manipulation_dist,
@@ -11,7 +11,7 @@ PidFollowController::PidFollowController(
     float p_weight_dist,
     float d_weight_dist,
     float p_weight_torque,
-    float d_weight_torque
+    float d_weight_torque,
 ) {
     this->car_ = car;
     this->base_distance_ = base_distance;
