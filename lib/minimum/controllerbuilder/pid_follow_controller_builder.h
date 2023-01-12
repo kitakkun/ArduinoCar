@@ -3,6 +3,7 @@
 
 #include "car/follow_car.h"
 #include "controller/pid_follow_controller.h"
+#include "controller/pid_controller.h"
 
 class PidFollowControllerBuilder {
 public:
@@ -18,27 +19,21 @@ public:
 
     PidFollowControllerBuilder &SetTorqueMaxManipulation(int max_manipulation_torque);
 
-    PidFollowControllerBuilder &SetDistancePWeight(float p_weight_dist);
+    PidFollowControllerBuilder &SetSpeedPidController(PIDController *pid_controller);
 
-    PidFollowControllerBuilder &SetDistanceDWeight(float d_weight_dist);
-
-    PidFollowControllerBuilder &SetTorquePWeight(float p_weight_torque);
-
-    PidFollowControllerBuilder &SetTorqueDWeight(float d_weight_torque);
+    PidFollowControllerBuilder &SetTorquePidController(PIDController *pid_controller);
 
     PidFollowController *Build();
 
 private:
     FollowCar *car_;
+    PIDController *speed_pid_controller_;
+    PIDController *torque_pid_controller_;
     float base_distance_;
     int base_speed_;
     float lr_sensor_diff_;
     int max_manipulation_dist_;
     int max_manipulation_torque_;
-    float p_weight_dist_;
-    float d_weight_dist_;
-    float p_weight_torque_;
-    float d_weight_torque_;
 };
 
 

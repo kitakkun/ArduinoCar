@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "car/follow_car.h"
 #include "interface/car_controller.h"
 #include "ArduinoLog.h"
 #include "impl.h"
@@ -35,10 +34,8 @@ void setup() {
         .SetLRSensorDiff(0.1)
         .SetDistanceMaxManipulation(70)
         .SetTorqueMaxManipulation(50)
-        .SetDistancePWeight(10.0)
-        .SetDistanceDWeight(8.0)
-        .SetTorquePWeight(12.0)
-        .SetTorqueDWeight(9.0)
+        .SetSpeedPidController(new PIDController(10.0, 0.0, 8.0))
+        .SetTorquePidController(new PIDController(12.0, 0.0, 9.0))
         .Build();
 
     heartbeatLed = new HeartbeatLedImpl(13, 500);
