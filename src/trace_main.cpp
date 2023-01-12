@@ -29,8 +29,8 @@ void setup() {
         120,
         -4,
         80,
-        0.052,
-        0.042
+        0.072,
+        0.062
     );
 
     heartbeatLed = new HeartbeatLedImpl(13, 500);
