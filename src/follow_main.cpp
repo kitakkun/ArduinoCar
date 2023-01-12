@@ -38,7 +38,7 @@ void setup() {
         .SetDistancePWeight(10.0)
         .SetDistanceDWeight(8.0)
         .SetTorquePWeight(12.0)
-        .SetTorqueDWeight(8.0)
+        .SetTorqueDWeight(9.0)
         .Build();
 
     heartbeatLed = new HeartbeatLedImpl(13, 500);
