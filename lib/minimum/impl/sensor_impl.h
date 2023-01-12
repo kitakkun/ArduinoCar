@@ -2,9 +2,9 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SENSOR_IMPL_H
 
 
-#include "interface/sensor.h"
+#include "interface/analog_sensor.h"
 
-class SensorImpl : public Sensor {
+class SensorImpl : public AnalogSensor {
 public:
     explicit SensorImpl(int pin);
 

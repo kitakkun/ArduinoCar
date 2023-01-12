@@ -2,9 +2,9 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FAKE_SENSOR_H
 
 
-#include "interface/sensor.h"
+#include "interface/analog_sensor.h"
 
-class FakeSensor : public Sensor {
+class FakeSensor : public AnalogSensor {
 public:
     explicit FakeSensor();
 
