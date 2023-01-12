@@ -32,6 +32,12 @@ void PidFollowController::Operate() {
 }
 
 void PidFollowController::Follow() {
+
+    // 15cm超えてたら無視する（急ハンドル・急加速防止）
+    if (abs(this->car_->GetLeftSensor()->GetRawValue()) > 15 || abs(this->car_->GetRightSensor()->GetRawValue()) > 15) {
+        return;
+    }
+
     // base_speedについてのpd制御
     double actual_distance = (this->car_->GetLeftSensor()->GetRawValue() + this->car_->GetRightSensor()->GetRawValue()) / 2;
     double speed_manipulation = speed_pid_controller_->CalcManipulation(actual_distance, this->base_distance_);
