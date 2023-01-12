@@ -32,6 +32,7 @@ double PIDController::CalcManipulation(double actual, double target) {
     this->last_time_called_ = millis();
     this->errors_[this->error_cursor_] = deviation;
     this->error_cursor_++;
+    this->error_cursor_ %= 10;
 
     return manipulation;
 }
