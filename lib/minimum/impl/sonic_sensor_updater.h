@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_UPDATOR_H
 
 
-#include "interface/sonic_sensor.h"
+#include "interface/sensor/sonic_sensor.h"
 
 /**
  * 音波が干渉しないように左右の超音波センサーの更新タイミングをずらすクラス

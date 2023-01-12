@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_BUILDER_H
 
 
-#include "interface/sonic_sensor.h"
+#include "interface/sensor/sonic_sensor.h"
 #include "interface/motor.h"
 #include "car/follow/follow_car.h"
 

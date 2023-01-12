@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_IMPL_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_IMPL_H
 
-#include "interface/sonic_sensor.h"
+#include "interface/sensor/sonic_sensor.h"
 #include "ace_routine/Coroutine.h"
 
 class SonicSensorImpl : public SonicSensor, ace_routine::Coroutine {

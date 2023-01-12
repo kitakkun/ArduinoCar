@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_SONIC_SENSOR_H
 
-#include "interface/analog_sensor.h"
+#include "analog_sensor.h"
 
 class SonicSensor {
 public:

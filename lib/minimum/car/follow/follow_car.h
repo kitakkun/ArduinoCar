@@ -2,8 +2,8 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_H
 
 #include "interface/motor.h"
-#include "interface/sonic_sensor.h"
-#include "interface/digital_sensor.h"
+#include "interface/sensor/sonic_sensor.h"
+#include "interface/sensor/digital_sensor.h"
 
 /**
  * 追従車の各コンポーネントへのアクセスを提供するクラス

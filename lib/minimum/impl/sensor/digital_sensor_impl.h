@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_DIGITAL_SENSOR_IMPL_H
 
 
-#include "interface/digital_sensor.h"
+#include "interface/sensor/digital_sensor.h"
 
 class DigitalSensorImpl : public DigitalSensor {
 public:

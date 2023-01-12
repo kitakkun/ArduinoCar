@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_TRACE_CAR_BUILDER_H
 
 
-#include "interface/photo_reflector.h"
+#include "interface/sensor/photo_reflector.h"
 #include "interface/motor.h"
 #include "car/trace/trace_car.h"
 
