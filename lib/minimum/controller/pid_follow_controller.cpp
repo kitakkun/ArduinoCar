@@ -41,7 +41,7 @@ void PidFollowController::Follow() {
     // torque制御
     int torque_manipulation = this->torque_pid_controller_->CalcManipulation(
         this->car_->GetLeftSensor()->GetRawValue(),
-        this->car_->GetRightSensor()->GetRawValue() - this->lr_sensor_diff_
+        this->car_->GetRightSensor()->GetRawValue() + this->lr_sensor_diff_
     );
 
     // 操作量の範囲を制限
