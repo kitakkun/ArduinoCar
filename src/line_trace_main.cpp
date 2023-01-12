@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "car/trace_car.h"
 #include "interface/car_controller.h"
-#include "controller/pid_trace_controller.h"
+#include "controller/trace/pid_trace_controller.h"
 #include "ArduinoLog.h"
 #include "impl.h"
 

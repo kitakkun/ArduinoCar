@@ -2,8 +2,8 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_FOLLOW_CONTROLLER_BUILDER_H
 
 #include "car/follow_car.h"
-#include "controller/pid_follow_controller.h"
-#include "controller/pid_controller.h"
+#include "controller/follow/pid_follow_controller.h"
+#include "controller/follow/pid_controller.h"
 
 class PidFollowControllerBuilder {
 public:

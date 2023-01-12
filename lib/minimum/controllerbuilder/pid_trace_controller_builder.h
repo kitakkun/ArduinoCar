@@ -2,7 +2,7 @@
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_TRACE_CONTROLLER_BUILDER_H
 
 #include "car/trace_car.h"
-#include "controller/pid_trace_controller.h"
+#include "controller/trace/pid_trace_controller.h"
 
 class PidTraceControllerBuilder {
 public:
