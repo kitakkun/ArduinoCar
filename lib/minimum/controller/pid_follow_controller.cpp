@@ -33,9 +33,7 @@ void PidFollowController::Operate() {
 
 void PidFollowController::Follow() {
     // base_speedについてのpd制御
-    double actual_distance = (this->car_->GetLeftSensor()->GetRawValue()
-                              + this->car_->GetRightSensor()->GetRawValue())
-                             / 2 - base_distance_;
+    double actual_distance = (this->car_->GetLeftSensor()->GetRawValue() + this->car_->GetRightSensor()->GetRawValue()) / 2;
     double speed_manipulation = speed_pid_controller_->CalcManipulation(actual_distance, this->base_distance_);
     speed_manipulation = constrain(speed_manipulation, -this->max_manipulation_dist_, this->max_manipulation_dist_);
     int adjusted_base_speed = this->base_speed_ + speed_manipulation;
