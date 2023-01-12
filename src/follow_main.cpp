@@ -9,6 +9,8 @@
 
 CarController *controller;
 FollowCarDebugger *debugger;
+HeartbeatLedImpl *heartbeatLed;
+
 const int delay_millis = 10;
 
 void setup() {
@@ -38,11 +40,14 @@ void setup() {
         .SetTorquePWeight(12.0)
         .SetTorqueDWeight(8.0)
         .Build();
+
+    heartbeatLed = new HeartbeatLedImpl(13, 500);
 }
 
 void loop() {
     controller->Update();
     controller->Operate();
+    heartbeatLed->runCoroutine();
     delay(delay_millis);
     debugger->DebugSensors();
     //Serial.println(car->GetLeftSensor()->GetRawValue());
