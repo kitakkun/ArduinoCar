@@ -1,17 +1,17 @@
 #include "photo_reflector_impl.h"
 
-PhotoReflectorImpl::PhotoReflectorImpl(int pin, int theta) : SensorImpl(pin) {
+PhotoReflectorImpl::PhotoReflectorImpl(int pin, int theta) : AnalogSensorImpl(pin) {
     this->theta_ = theta;
     this->is_black_ = false;
 }
 
 void PhotoReflectorImpl::Update() {
-    SensorImpl::Update();
-    this->is_black_ = SensorImpl::GetRawValue() > this->theta_;
+    AnalogSensorImpl::Update();
+    this->is_black_ = AnalogSensorImpl::GetRawValue() > this->theta_;
 }
 
 int PhotoReflectorImpl::GetRawValue() {
-    return SensorImpl::GetRawValue();
+    return AnalogSensorImpl::GetRawValue();
 }
 
 bool PhotoReflectorImpl::IsBlack() {
