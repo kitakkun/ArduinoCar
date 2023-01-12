@@ -39,10 +39,10 @@ void PidFollowController::Follow() {
     int adjusted_base_speed = this->base_speed_ + speed_manipulation;
 
     // torque制御
-    double actual_deviation = this->car_->GetLeftSensor()->GetRawValue()
-                              - this->car_->GetRightSensor()->GetRawValue()
-                              - this->lr_sensor_diff_;
-    int torque_manipulation = this->torque_pid_controller_->CalcManipulation(actual_deviation, 0.0);
+    int torque_manipulation = this->torque_pid_controller_->CalcManipulation(
+        this->car_->GetLeftSensor()->GetRawValue(),
+        this->car_->GetRightSensor()->GetRawValue() - this->lr_sensor_diff_
+    );
 
     // 操作量の範囲を制限
     torque_manipulation = constrain(torque_manipulation, -this->max_manipulation_torque_, this->max_manipulation_torque_);
