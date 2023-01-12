@@ -32,10 +32,10 @@ void setup() {
         .SetBaseDistance(6.0)
         .SetBaseSpeed(130)
         .SetLRSensorDiff(0.1)
-        .SetDistanceMaxManipulation(70)
+        .SetDistanceMaxManipulation(50)
         .SetTorqueMaxManipulation(50)
-        .SetSpeedPidController(new PIDController(10.0, 0.0, 8.0))
-        .SetTorquePidController(new PIDController(12.0, 0.0, 9.0))
+        .SetSpeedPidController(new PIDController(10.0, 0.5,7.0))
+        .SetTorquePidController(new PIDController(12.0, 1.0, 8.0))
         .Build();
 
     heartbeatLed = new HeartbeatLedImpl(13, 500);
