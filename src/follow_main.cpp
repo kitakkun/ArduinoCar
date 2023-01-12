@@ -2,7 +2,7 @@
 #include "interface/car_controller.h"
 #include "ArduinoLog.h"
 #include "impl.h"
-#include "debug/follow_car_debugger.h"
+#include "debug/follow/follow_car_debugger.h"
 #include "car/follow/follow_car_builder.h"
 #include "controller/follow/pid_follow_controller_builder.h"
 
