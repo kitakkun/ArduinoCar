@@ -4,7 +4,7 @@
 #include "impl.h"
 #include "debug/follow_car_debugger.h"
 #include "carbuilder/follow_car_builder.h"
-#include "controllerbuilder/pid_follow_controller_builder.h"
+#include "controller/follow/pid_follow_controller_builder.h"
 
 CarController *controller;
 FollowCarDebugger *debugger;
