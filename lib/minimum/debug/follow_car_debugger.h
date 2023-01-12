@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_DEBUGGER_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_FOLLOW_CAR_DEBUGGER_H
 
-#include "car/follow_car.h"
+#include "car/follow/follow_car.h"
 
 class FollowCarDebugger {
 public:

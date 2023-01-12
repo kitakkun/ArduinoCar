@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_TRACE_CONTROLLER_BUILDER_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_TRACE_CONTROLLER_BUILDER_H
 
-#include "car/trace_car.h"
+#include "car/trace/trace_car.h"
 #include "controller/trace/pid_trace_controller.h"
 
 class PidTraceControllerBuilder {

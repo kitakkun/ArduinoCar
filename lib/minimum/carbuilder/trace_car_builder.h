@@ -4,7 +4,7 @@
 
 #include "interface/photo_reflector.h"
 #include "interface/motor.h"
-#include "car/trace_car.h"
+#include "car/trace/trace_car.h"
 
 class TraceCarBuilder {
 public:

@@ -3,7 +3,7 @@
 
 
 #include "interface/car_controller.h"
-#include "car/trace_car.h"
+#include "car/trace/trace_car.h"
 
 class PidTraceController : public CarController {
 public:

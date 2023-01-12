@@ -4,7 +4,7 @@
 
 #include "interface/sonic_sensor.h"
 #include "interface/motor.h"
-#include "car/follow_car.h"
+#include "car/follow/follow_car.h"
 
 class FollowCarBuilder {
 public:
