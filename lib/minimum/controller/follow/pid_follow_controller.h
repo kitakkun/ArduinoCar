@@ -4,7 +4,7 @@
 
 #include "interface/car_controller.h"
 #include "car/follow/follow_car.h"
-#include "sonic_sensor_updater.h"
+#include "impl/sonic_sensor_updater.h"
 #include "pid_controller.h"
 
 class PidFollowController : public CarController {
