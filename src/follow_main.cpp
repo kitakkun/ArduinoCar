@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "car/follow_car.h"
 #include "interface/car_controller.h"
 #include "ArduinoLog.h"
 #include "impl.h"
@@ -30,10 +29,10 @@ void setup() {
 
     controller = PidFollowControllerBuilder()
         .SetCar(car)
-        .SetBaseDistance(10.0)
+        .SetBaseDistance(6.0)
         .SetBaseSpeed(130)
-        .SetLRSensorDiff(0)
-        .SetDistanceMaxManipulation(20)
+        .SetLRSensorDiff(0.1)
+        .SetDistanceMaxManipulation(70)
         .SetTorqueMaxManipulation(50)
         .SetSpeedPidController(new PIDController(15.0, 0.0, 10.0))
         .SetTorquePidController(new PIDController(12.0, 0.0, 7.0))
@@ -47,7 +46,7 @@ void loop() {
     controller->Operate();
     heartbeatLed->runCoroutine();
     delay(delay_millis);
-    // debugger->DebugSensors();
+    debugger->DebugSensors();
     //Serial.println(car->GetLeftSensor()->GetRawValue());
     // Serial.println(car->GetLeftSensor()->GetRawValue());
 }
