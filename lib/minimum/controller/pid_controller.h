@@ -1,6 +1,8 @@
 #ifndef LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_CONTROLLER_H
 #define LABORATORY_WORK_IN_INFORMATION_ENGINEERING_III_PID_CONTROLLER_H
 
+#define ERROR_MEM_COUNT 10
+
 /**
  * 汎用PIDコントローラ
  */
@@ -16,7 +18,7 @@ private:
     double d_weight_;
 
     double prev_deviation_;
-    double errors_[10];
+    double errors_[ERROR_MEM_COUNT];
     int error_cursor_;
     unsigned long last_time_called_;
 };
