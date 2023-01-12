@@ -30,6 +30,16 @@ PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorqueMaxManipulation
     return *this;
 }
 
+PidFollowControllerBuilder &PidFollowControllerBuilder::SetSpeedPidController(PIDController *pid_controller) {
+    this->speed_pid_controller_ = pid_controller;
+    return *this;
+}
+
+PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorquePidController(PIDController *pid_controller) {
+    this->torque_pid_controller_ = pid_controller;
+    return *this;
+}
+
 PidFollowController *PidFollowControllerBuilder::Build() {
     return new PidFollowController(
         this->car_,
@@ -41,14 +51,4 @@ PidFollowController *PidFollowControllerBuilder::Build() {
         this->speed_pid_controller_,
         this->torque_pid_controller_
     );
-}
-
-PidFollowControllerBuilder &PidFollowControllerBuilder::SetSpeedPidController(PIDController *pid_controller) {
-    this->speed_pid_controller_ = pid_controller;
-    return *this;
-}
-
-PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorquePidController(PIDController *pid_controller) {
-    this->torque_pid_controller_ = pid_controller;
-    return *this;
 }

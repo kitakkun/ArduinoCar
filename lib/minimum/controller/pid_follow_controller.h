@@ -9,20 +9,7 @@
 
 class PidFollowController : public CarController {
 public:
-    PidFollowController(
-        FollowCar *car,
-        float base_distance,
-        int base_speed,
-        float lr_sensor_diff,
-        int max_manipulation_dist,
-        int max_manipulation_torque,
-        float p_weight_dist,
-        float d_weight_dist,
-        float p_weight_torque,
-        float d_weight_torque
-    );
-
-    PidFollowController(
+    explicit PidFollowController(
         FollowCar *car,
         float base_distance,
         int base_speed,

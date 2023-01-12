@@ -1,6 +1,27 @@
 #include "pid_follow_controller.h"
 #include <Arduino.h>
 
+PidFollowController::PidFollowController(
+    FollowCar *car,
+    float base_distance,
+    int base_speed,
+    float lr_sensor_diff,
+    int max_manipulation_dist,
+    int max_manipulation_torque,
+    PIDController *speed_pid_controller,
+    PIDController *torque_pid_controller
+) {
+    this->car_ = car;
+    this->base_distance_ = base_distance;
+    this->base_speed_ = base_speed;
+    this->lr_sensor_diff_ = lr_sensor_diff;
+    this->max_manipulation_dist_ = max_manipulation_dist;
+    this->max_manipulation_torque_ = max_manipulation_torque;
+    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
+    this->speed_pid_controller_ = speed_pid_controller;
+    this->torque_pid_controller_ = torque_pid_controller;
+}
+
 void PidFollowController::Update() {
     this->sensor_updater_->Update();
     this->car_->GetCrashDetector()->Update();
@@ -37,25 +58,4 @@ void PidFollowController::Follow() {
         this->car_->GetLeftMotor()->UpdateSpeed(adjusted_base_speed + torque_manipulation);
         this->car_->GetRightMotor()->UpdateSpeed(adjusted_base_speed - torque_manipulation);
     }
-}
-
-PidFollowController::PidFollowController(
-    FollowCar *car,
-    float base_distance,
-    int base_speed,
-    float lr_sensor_diff,
-    int max_manipulation_dist,
-    int max_manipulation_torque,
-    PIDController *speed_pid_controller,
-    PIDController *torque_pid_controller
-) {
-    this->car_ = car;
-    this->base_distance_ = base_distance;
-    this->base_speed_ = base_speed;
-    this->lr_sensor_diff_ = lr_sensor_diff;
-    this->max_manipulation_dist_ = max_manipulation_dist;
-    this->max_manipulation_torque_ = max_manipulation_torque;
-    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
-    this->speed_pid_controller_ = speed_pid_controller;
-    this->torque_pid_controller_ = torque_pid_controller;
 }
