@@ -16,6 +16,7 @@ public:
         float lr_sensor_diff,
         int max_manipulation_dist,
         int max_manipulation_torque,
+        float ignore_sensor_value_threshold,
         PIDController *speed_pid_controller,
         PIDController *torque_pid_controller
     );
@@ -34,6 +35,7 @@ protected:
     float lr_sensor_diff_; // 左右のセンサの個体差
     int max_manipulation_dist_;
     int max_manipulation_torque_;
+    float ignore_sensor_value_threshold_;
 
     virtual void Follow();
 };

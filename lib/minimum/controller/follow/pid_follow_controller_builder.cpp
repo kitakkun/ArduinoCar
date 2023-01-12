@@ -40,6 +40,11 @@ PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorquePidController(P
     return *this;
 }
 
+PidFollowControllerBuilder &PidFollowControllerBuilder::SetIgnoreSensorValueThreshold(float threshold) {
+    this->ignore_sensor_value_threshold_ = threshold;
+    return *this;
+}
+
 PidFollowController *PidFollowControllerBuilder::Build() {
     return new PidFollowController(
         this->car_,
@@ -48,6 +53,7 @@ PidFollowController *PidFollowControllerBuilder::Build() {
         this->lr_sensor_diff_,
         this->max_manipulation_dist_,
         this->max_manipulation_torque_,
+        this->ignore_sensor_value_threshold_,
         this->speed_pid_controller_,
         this->torque_pid_controller_
     );

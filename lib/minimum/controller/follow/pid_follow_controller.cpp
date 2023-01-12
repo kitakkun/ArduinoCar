@@ -8,6 +8,7 @@ PidFollowController::PidFollowController(
     float lr_sensor_diff,
     int max_manipulation_dist,
     int max_manipulation_torque,
+    float ignore_sensor_value_threshold,
     PIDController *speed_pid_controller,
     PIDController *torque_pid_controller
 ) {
@@ -20,6 +21,7 @@ PidFollowController::PidFollowController(
     this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
     this->speed_pid_controller_ = speed_pid_controller;
     this->torque_pid_controller_ = torque_pid_controller;
+    this->ignore_sensor_value_threshold_ = ignore_sensor_value_threshold;
 }
 
 void PidFollowController::Update() {
@@ -34,7 +36,8 @@ void PidFollowController::Operate() {
 void PidFollowController::Follow() {
 
     // 15cm超えてたら無視する（急ハンドル・急加速防止）
-    if (abs(this->car_->GetLeftSensor()->GetRawValue()) > 15 || abs(this->car_->GetRightSensor()->GetRawValue()) > 15) {
+    if (abs(this->car_->GetLeftSensor()->GetRawValue()) > ignore_sensor_value_threshold_
+        || abs(this->car_->GetRightSensor()->GetRawValue()) > ignore_sensor_value_threshold_) {
         return;
     }
 

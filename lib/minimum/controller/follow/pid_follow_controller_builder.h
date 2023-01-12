@@ -23,6 +23,8 @@ public:
 
     PidFollowControllerBuilder &SetTorquePidController(PIDController *pid_controller);
 
+    PidFollowControllerBuilder &SetIgnoreSensorValueThreshold(float threshold);
+
     PidFollowController *Build();
 
 private:
@@ -34,6 +36,7 @@ private:
     float lr_sensor_diff_;
     int max_manipulation_dist_;
     int max_manipulation_torque_;
+    float ignore_sensor_value_threshold_;
 };
 
 
