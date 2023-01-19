@@ -20,8 +20,8 @@ void setup() {
     auto *car = FollowCarBuilder()
         .SetLeftMotor(new MotorImpl(2, 3, 11))
         .SetRightMotor(new MotorImpl(4, 5, 10))
-        .SetLeftSensor(new SonicSensorImpl(6, 7, 0, 15))
-        .SetRightSensor(new SonicSensorImpl(9, 8, 0, 15))
+        .SetLeftSensor(new SonicSensorImpl(6, 7, 0, 30))
+        .SetRightSensor(new SonicSensorImpl(9, 8, 0, 30))
         .SetCrashDetector(new DigitalSensorImpl(12))
         .Build();
 
@@ -29,13 +29,13 @@ void setup() {
 
     controller = PidFollowControllerBuilder()
         .SetCar(car)
-        .SetBaseDistance(6.0)
+        .SetBaseDistance(5.5)
         .SetBaseSpeed(130)
         .SetLRSensorDiff(0.1)
-        .SetDistanceMaxManipulation(50)
-        .SetTorqueMaxManipulation(50)
-        .SetSpeedPidController(new PIDController(10.0, 0.5,7.0))
-        .SetTorquePidController(new PIDController(12.0, 1.0, 8.0))
+        .SetDistanceMaxManipulation(25)
+        .SetTorqueMaxManipulation(40)
+        .SetSpeedPidController(new PIDController(10.0, 0.5, 8.0))
+        .SetTorquePidController(new PIDController(11.0, 0.05, 9.0))
         .Build();
 
     heartbeatLed = new HeartbeatLedImpl(13, 500);
