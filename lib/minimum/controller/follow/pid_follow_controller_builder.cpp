@@ -6,27 +6,27 @@ PidFollowControllerBuilder &PidFollowControllerBuilder::SetCar(FollowCar *car) {
 }
 
 PidFollowControllerBuilder &PidFollowControllerBuilder::SetBaseDistance(float base_distance) {
-    this->base_distance_ = base_distance;
+    this->params_.base_distance = base_distance;
     return *this;
 }
 
 PidFollowControllerBuilder &PidFollowControllerBuilder::SetBaseSpeed(int base_speed) {
-    this->base_speed_ = base_speed;
+    this->params_.base_speed = base_speed;
     return *this;
 }
 
 PidFollowControllerBuilder &PidFollowControllerBuilder::SetLRSensorDiff(float lr_sensor_diff) {
-    this->lr_sensor_diff_ = lr_sensor_diff;
+    this->params_.lr_sensor_diff = lr_sensor_diff;
     return *this;
 }
 
-PidFollowControllerBuilder &PidFollowControllerBuilder::SetDistanceMaxManipulation(int max_manipulation_dist) {
-    this->max_manipulation_dist_ = max_manipulation_dist;
+PidFollowControllerBuilder &PidFollowControllerBuilder::SetSpeedMaxManipulation(int speed_max_manipulation) {
+    this->params_.speed_max_manipulation = speed_max_manipulation;
     return *this;
 }
 
-PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorqueMaxManipulation(int max_manipulation_torque) {
-    this->max_manipulation_torque_ = max_manipulation_torque;
+PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorqueMaxManipulation(int torque_max_manipulation) {
+    this->params_.torque_max_manipulation = torque_max_manipulation;
     return *this;
 }
 
@@ -43,12 +43,8 @@ PidFollowControllerBuilder &PidFollowControllerBuilder::SetTorquePidController(P
 PidFollowController *PidFollowControllerBuilder::Build() {
     return new PidFollowController(
         this->car_,
-        this->base_distance_,
-        this->base_speed_,
-        this->lr_sensor_diff_,
-        this->max_manipulation_dist_,
-        this->max_manipulation_torque_,
         this->speed_pid_controller_,
-        this->torque_pid_controller_
+        this->torque_pid_controller_,
+        this->params_
     );
 }

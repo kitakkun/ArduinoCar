@@ -3,23 +3,15 @@
 
 PidFollowController::PidFollowController(
     FollowCar *car,
-    float base_distance,
-    int base_speed,
-    float lr_sensor_diff,
-    int max_manipulation_dist,
-    int max_manipulation_torque,
     PIDController *speed_pid_controller,
-    PIDController *torque_pid_controller
+    PIDController *torque_pid_controller,
+    FollowParams params
 ) {
     this->car_ = car;
-    this->base_distance_ = base_distance;
-    this->base_speed_ = base_speed;
-    this->lr_sensor_diff_ = lr_sensor_diff;
-    this->max_manipulation_dist_ = max_manipulation_dist;
-    this->max_manipulation_torque_ = max_manipulation_torque;
-    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
     this->speed_pid_controller_ = speed_pid_controller;
     this->torque_pid_controller_ = torque_pid_controller;
+    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
+    this->params_ = params;
 }
 
 void PidFollowController::Update() {
@@ -34,18 +26,26 @@ void PidFollowController::Operate() {
 void PidFollowController::Follow() {
     // base_speedについてのpd制御
     double actual_distance = (this->car_->GetLeftSensor()->GetRawValue() + this->car_->GetRightSensor()->GetRawValue()) / 2;
-    double speed_manipulation = speed_pid_controller_->CalcManipulation(actual_distance, this->base_distance_);
-    speed_manipulation = constrain(speed_manipulation, -this->max_manipulation_dist_, this->max_manipulation_dist_);
-    int adjusted_base_speed = this->base_speed_ + speed_manipulation;
+    double speed_manipulation = speed_pid_controller_->CalcManipulation(actual_distance, params_.base_distance);
+    speed_manipulation = constrain(
+        speed_manipulation,
+        -params_.speed_max_manipulation,
+        params_.speed_max_manipulation
+    );
+    int adjusted_base_speed = params_.base_speed + speed_manipulation;
 
     // torque制御
     int torque_manipulation = this->torque_pid_controller_->CalcManipulation(
         this->car_->GetLeftSensor()->GetRawValue(),
-        this->car_->GetRightSensor()->GetRawValue() + this->lr_sensor_diff_
+        this->car_->GetRightSensor()->GetRawValue() + params_.lr_sensor_diff
     );
 
     // 操作量の範囲を制限
-    torque_manipulation = constrain(torque_manipulation, -this->max_manipulation_torque_, this->max_manipulation_torque_);
+    torque_manipulation = constrain(
+        torque_manipulation,
+        -params_.torque_max_manipulation,
+        params_.torque_max_manipulation
+    );
 
     // 反映
     if (this->car_->GetCrashDetector()->IsLow()) {

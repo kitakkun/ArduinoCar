@@ -32,7 +32,7 @@ void setup() {
         .SetBaseDistance(6.0)
         .SetBaseSpeed(130)
         .SetLRSensorDiff(0.1)
-        .SetDistanceMaxManipulation(50)
+        .SetSpeedMaxManipulation(50)
         .SetTorqueMaxManipulation(50)
         .SetSpeedPidController(new PIDController(10.0, 0.5,7.0))
         .SetTorquePidController(new PIDController(12.0, 1.0, 8.0))
