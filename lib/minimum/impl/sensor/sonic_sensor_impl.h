@@ -6,7 +6,7 @@
 
 class SonicSensorImpl : public SonicSensor, ace_routine::Coroutine {
 public:
-    explicit SonicSensorImpl(int trig_pin, int echo_pin);
+    explicit SonicSensorImpl(int trig_pin, int echo_pin, double min_value, double max_value);
 
     void Update() override;
 
@@ -21,6 +21,8 @@ private:
 
     int trig_pin_;
     int echo_pin_;
+    double min_value_;
+    double max_value_;
     double raw_value_;
     unsigned long last_updated_time_;
 };

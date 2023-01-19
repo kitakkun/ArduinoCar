@@ -1,9 +1,11 @@
 #include "sonic_sensor_impl.h"
 #include <Arduino.h>
 
-SonicSensorImpl::SonicSensorImpl(int trig_pin, int echo_pin) {
+SonicSensorImpl::SonicSensorImpl(int trig_pin, int echo_pin, double min_value, double max_value) {
     this->trig_pin_ = trig_pin;
     this->echo_pin_ = echo_pin;
+    this->min_value_ = min_value;
+    this->max_value_ = max_value;
     this->last_updated_time_ = millis();
     pinMode(this->trig_pin_, OUTPUT);
     pinMode(this->echo_pin_, INPUT);
@@ -31,7 +33,7 @@ int SonicSensorImpl::runCoroutine() {
     COROUTINE_BEGIN();
 
     // 最終更新から60ms経過するまで次の更新タスクを実行しない
-    while(millis() - last_updated_time_ < 60) {
+    while (millis() - last_updated_time_ < 60) {
         COROUTINE_YIELD();
     }
 
@@ -47,7 +49,11 @@ int SonicSensorImpl::runCoroutine() {
     duration /= 2;
 
     //距離の計算
-    this->raw_value_ = (double) duration * 340.0 / 10000.0;
+    this->raw_value_ = constrain(
+        (double) duration * 340.0 / 10000.0,
+        this->min_value_,
+        this->max_value_
+    );
 
     this->last_updated_time_ = millis();
     COROUTINE_END();

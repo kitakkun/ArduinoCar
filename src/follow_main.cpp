@@ -20,8 +20,8 @@ void setup() {
     auto *car = FollowCarBuilder()
         .SetLeftMotor(new MotorImpl(2, 3, 11))
         .SetRightMotor(new MotorImpl(4, 5, 10))
-        .SetLeftSensor(new SonicSensorImpl(6, 7))
-        .SetRightSensor(new SonicSensorImpl(9, 8))
+        .SetLeftSensor(new SonicSensorImpl(6, 7, 0, 15))
+        .SetRightSensor(new SonicSensorImpl(9, 8, 0, 15))
         .SetCrashDetector(new DigitalSensorImpl(12))
         .Build();
 
