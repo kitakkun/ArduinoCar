@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "unity.h"
-#include "controller/pid_trace_controller.h"
+#include "controller/trace/pid_trace_controller.h"
 #include "fake.h"
 
 void runUnityTests();
