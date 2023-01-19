@@ -6,18 +6,15 @@
 #include "car/follow/follow_car.h"
 #include "impl/sonic_sensor_updater.h"
 #include "pid_controller.h"
+#include "datamodel/follow_params.h"
 
 class PidFollowController : public CarController {
 public:
     explicit PidFollowController(
         FollowCar *car,
-        float base_distance,
-        int base_speed,
-        float lr_sensor_diff,
-        int max_manipulation_dist,
-        int max_manipulation_torque,
         PIDController *speed_pid_controller,
-        PIDController *torque_pid_controller
+        PIDController *torque_pid_controller,
+        FollowParams params
     );
 
     void Update() override;
@@ -29,11 +26,7 @@ protected:
     SonicSensorUpdater *sensor_updater_;
     PIDController *speed_pid_controller_;
     PIDController *torque_pid_controller_;
-    float base_distance_;
-    int base_speed_;
-    float lr_sensor_diff_; // 左右のセンサの個体差
-    int max_manipulation_dist_;
-    int max_manipulation_torque_;
+    FollowParams params_;
 
     virtual void Follow();
 };
