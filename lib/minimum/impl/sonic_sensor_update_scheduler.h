@@ -7,9 +7,9 @@
 /**
  * 音波が干渉しないように左右の超音波センサーの更新タイミングをずらすクラス
  */
-class SonicSensorUpdater {
+class SonicSensorUpdateScheduler {
 public:
-    explicit SonicSensorUpdater(SonicSensor* left_sensor, SonicSensor *right_sensor);
+    explicit SonicSensorUpdateScheduler(SonicSensor* left_sensor, SonicSensor *right_sensor);
 
     void Update();
 

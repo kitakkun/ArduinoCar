@@ -4,7 +4,7 @@
 
 #include "interface/car_controller.h"
 #include "car/follow/follow_car.h"
-#include "impl/sonic_sensor_updater.h"
+#include "impl/sonic_sensor_update_scheduler.h"
 #include "pid_controller.h"
 
 class PidFollowController : public CarController {
@@ -26,7 +26,7 @@ public:
 
 protected:
     FollowCar *car_;
-    SonicSensorUpdater *sensor_updater_;
+    SonicSensorUpdateScheduler *sensor_updater_;
     PIDController *speed_pid_controller_;
     PIDController *torque_pid_controller_;
     float base_distance_;
