@@ -1,0 +1,74 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title "コア機能の設計図"
+
+interface CarBuilder {
++ SetLeftWheel(wheel: Wheel*)
++ SetRightWheel(wheel: Wheel*)
++ GetLeftWheel(): Wheel*
++ GetRightWheel(): Wheel*
++ Build(): Car*
+}
+
+interface Car {
++ UpdateSensors()
++ Think()
++ Act()
+}
+
+interface Wheel {
++ UpdateSpeed(speed: int)
++ UpdateDeltaSpeed(speed: int)
++ UpdateDirection(direction: MoveDirection)
++ Speed(): int
++ Direction(): MoveDirection
+}
+
+enum MoveDirection {
+    forward
+    backward
+}
+
+interface Sensor {
++ Update()
++ RawValue(): int
+}
+
+interface PhotoReflector {
++ Value(): BinaryColor
+}
+
+enum BinaryColor {
+    black
+    white
+}
+
+interface Brain {
+    CalculateNextInstruction(): Instruction*
+}
+
+interface Instruction {
++ Run(left_wheel: Wheel*, right_wheel: Wheel*)
++ Mode(): InstructionMode
+}
+
+enum InstructionMode {
+    none
+    interrupt
+}
+
+
+CarBuilder ..> Car
+CarBuilder ..> Wheel
+'CarBuilder ..> Car
+'CarBuilder ..> Wheel
+'Car ..> CarBuilder
+Car ..> CarBuilder
+Car ..> Wheel
+Wheel ..> MoveDirection
+PhotoReflector --|> Sensor
+PhotoReflector ..> BinaryColor
+Brain ..> Instruction
+Instruction ..> InstructionMode
+@enduml
