@@ -7,13 +7,10 @@ SonicSensorUpdater::SonicSensorUpdater(SonicSensor *left_sensor, SonicSensor *ri
 }
 
 void SonicSensorUpdater::Update() {
-    this->updating_sensor_->Update();
-    if(this->updating_sensor_->IsUpdateCompleted()) {
-        if (this->updating_sensor_ == this->left_sensor_) {
-            this->updating_sensor_ = this->right_sensor_;
-        } else {
-            this->updating_sensor_ = this->left_sensor_;
-        }
-        this->updating_sensor_->InitUpdateTask();
-    }
+    bool is_update_completed = this->updating_sensor_->Update();
+    if (!is_update_completed) return;
+    if (updating_sensor_ == left_sensor_)
+        updating_sensor_ = right_sensor_;
+    else
+        updating_sensor_ = left_sensor_;
 }

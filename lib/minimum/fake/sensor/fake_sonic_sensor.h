@@ -7,7 +7,7 @@ class FakeSonicSensor : public SonicSensor {
 public:
     explicit FakeSonicSensor();
 
-    void Update() override;
+    bool Update() override;
 
     double GetRawValue() override;
 
