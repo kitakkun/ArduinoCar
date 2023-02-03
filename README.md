@@ -7,6 +7,15 @@
 
 開発フレームワークとしてはPlatformIOを採用しています。プログラムのビルド・実行には事前にPlatformIO環境が必要です。
 
+### 依存ライブラリ
+
+当プロジェクトにおいて利用させていただいた外部ライブラリを以下に紹介させていただきます。
+
+- [bxparks/AceRoutine@^1.5.1](https://github.com/bxparks/AceRoutine)
+- [bxparks/AceCommon@^1.5.2](https://github.com/bxparks/AceCommon)
+- [thijse/ArduinoLog@^1.1.1](https://github.com/thijse/Arduino-Log)
+- [throwtheswitch/Unity@^2.5.2](https://github.com/throwtheswitch/Unity)
+
 ## ビルド・実行方法
 
 使用するボードは「Arduino Uno」を想定しています。
@@ -14,6 +23,7 @@
 ### トレースプログラムのビルド＆アップロード
 
 Arduino UnoをPC本体につなげた状態で、以下のコマンドを叩きます。
+
 ```sh
 pio run -t upload -e trace
 ```
@@ -21,9 +31,11 @@ pio run -t upload -e trace
 ### 追従プログラムのビルド＆アップロード
 
 Arduino UnoをPC本体につなげた状態で、以下のコマンドを叩きます。
+
 ```sh
 pio run -t upload -e follow
 ```
+
 その他pioコマンドの使い方は公式リファレンスを参考にしてください。
 
 ## ハードウェア要件
@@ -87,6 +99,7 @@ Arduinoボードの各種ピンはデフォルトで以下の設定になって�
 #### その他クラス
 
 用途に応じて様々なクラスを作成しています。一部の例を以下に紹介します。
+
 - `xxDebugger`・・・デバッグ用クラス
 - `PhotoReflector`・・・フォトリフレクタを抽象化
 - `SonicSensor`・・・超音波センサを抽象化
@@ -107,14 +120,14 @@ Arduinoボードの各種ピンはデフォルトで以下の設定になって�
 CarController *controller;
 
 void setup() {
-  Car *car = new MyCar(
-    new Motor(),
-    new Motor(),
-    new PhotoReflector(),
-    new PhotoReflector(),
-    new PhotoReflector()
-  );
-  controller = new MyCarController(car);
+Car *car = new MyCar(
+new Motor(),
+new Motor(),
+new PhotoReflector(),
+new PhotoReflector(),
+new PhotoReflector()
+);
+controller = new MyCarController(car);
 }
 ```
 
