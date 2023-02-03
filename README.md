@@ -120,14 +120,14 @@ Arduinoボードの各種ピンはデフォルトで以下の設定になって�
 CarController *controller;
 
 void setup() {
-Car *car = new MyCar(
-new Motor(),
-new Motor(),
-new PhotoReflector(),
-new PhotoReflector(),
-new PhotoReflector()
-);
-controller = new MyCarController(car);
+    Car *car = new MyCar(
+        new Motor(),
+        new Motor(),
+        new PhotoReflector(),
+        new PhotoReflector(),
+        new PhotoReflector()
+    );
+    controller = new MyCarController(car);
 }
 ```
 
