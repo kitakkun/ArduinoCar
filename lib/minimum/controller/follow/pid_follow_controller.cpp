@@ -17,7 +17,7 @@ PidFollowController::PidFollowController(
     this->lr_sensor_diff_ = lr_sensor_diff;
     this->max_manipulation_dist_ = max_manipulation_dist;
     this->max_manipulation_torque_ = max_manipulation_torque;
-    this->sensor_updater_ = new SonicSensorUpdater(car->GetLeftSensor(), car->GetRightSensor());
+    this->sensor_updater_ = new SonicSensorUpdateScheduler(car->GetLeftSensor(), car->GetRightSensor());
     this->speed_pid_controller_ = speed_pid_controller;
     this->torque_pid_controller_ = torque_pid_controller;
 }
