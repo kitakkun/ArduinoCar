@@ -11,30 +11,11 @@ SonicSensorImpl::SonicSensorImpl(int trig_pin, int echo_pin, double min_value, d
     pinMode(this->echo_pin_, INPUT);
 }
 
-bool SonicSensorImpl::IsUpdateCompleted() {
-    return this->isDone();
-}
-
-void SonicSensorImpl::InitUpdateTask() {
-    this->reset();
-}
-
-void SonicSensorImpl::Update() {
-    this->runCoroutine();
-}
-
-//センサーの現在の値を取得
-double SonicSensorImpl::GetRawValue() {
-    return this->raw_value_;
-}
-
-int SonicSensorImpl::runCoroutine() {
-    unsigned long duration;
-    COROUTINE_BEGIN();
+bool SonicSensorImpl::Update() {
 
     // 最終更新から60ms経過するまで次の更新タスクを実行しない
-    while (millis() - last_updated_time_ < 60) {
-        COROUTINE_YIELD();
+    if (millis() - last_updated_time_ < 60) {
+        return false;
     }
 
     //念のために最初に超音波を止める
@@ -45,8 +26,7 @@ int SonicSensorImpl::runCoroutine() {
     digitalWrite(this->trig_pin_, LOW);
 
     //帰ってくるまでの時間を計測
-    duration = pulseIn(this->echo_pin_, HIGH);
-    duration /= 2;
+    unsigned long duration = pulseIn(this->echo_pin_, HIGH) / 2;
 
     //距離の計算
     this->raw_value_ = constrain(
@@ -56,5 +36,10 @@ int SonicSensorImpl::runCoroutine() {
     );
 
     this->last_updated_time_ = millis();
-    COROUTINE_END();
+    return true;
+}
+
+//センサーの現在の値を取得
+double SonicSensorImpl::GetRawValue() {
+    return this->raw_value_;
 }

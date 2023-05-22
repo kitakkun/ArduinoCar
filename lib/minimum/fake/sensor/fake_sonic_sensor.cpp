@@ -1,7 +1,8 @@
 #include "fake_sonic_sensor.h"
 
-void FakeSonicSensor::Update() {
+bool FakeSonicSensor::Update() {
     // do nothing...
+    return false;
 }
 
 double FakeSonicSensor::GetRawValue() {

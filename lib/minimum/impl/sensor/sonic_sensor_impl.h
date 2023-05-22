@@ -4,20 +4,15 @@
 #include "interface/sensor/sonic_sensor.h"
 #include "ace_routine/Coroutine.h"
 
-class SonicSensorImpl : public SonicSensor, ace_routine::Coroutine {
+class SonicSensorImpl : public SonicSensor {
 public:
     explicit SonicSensorImpl(int trig_pin, int echo_pin, double min_value, double max_value);
 
-    void Update() override;
+    bool Update() override;
 
     double GetRawValue() override;
 
-    bool IsUpdateCompleted() override;
-
-    void InitUpdateTask() override;
-
 private:
-    int runCoroutine() override;
 
     int trig_pin_;
     int echo_pin_;
